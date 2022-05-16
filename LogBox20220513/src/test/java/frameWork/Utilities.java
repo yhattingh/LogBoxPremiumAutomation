@@ -3,6 +3,7 @@ package frameWork;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
@@ -16,7 +17,7 @@ import org.testng.Reporter;
 
 public class Utilities extends BasePageFrameWork {
 
-	// Method:  Create Screenshots
+	// Method: Create Screenshots
 	public void takeSnapShot(String fileWithPath) throws IOException {
 
 		TakesScreenshot scrShot = ((TakesScreenshot) driver);
@@ -32,11 +33,10 @@ public class Utilities extends BasePageFrameWork {
 				+ "'height='200' width='200'/> </a>");
 	}
 
-	// Method:  Write to output file
+	// Method: to get the property values from the app.properties file for
+	// screenshots
+	public String getAppConfigProperties(String propertyName) {
 
-	// Method: to get the property values from the app.properties file for screenshots
-	public String getAppConfigProperties(String propertyName) { 
-		
 		Properties p = new Properties();
 		InputStream is = null;
 		try {

@@ -81,9 +81,9 @@ public class BasePageFrameWork {
 	// Method:  Close Browsers
 	public void closeChildBrowserTab() {
 		Set<String> handles = driver.getWindowHandles();
-		Iterator<String> it = handles.iterator();
-		String parentWindowID = it.next();
-		String childWindowID = it.next();
+		Iterator<String> iterator = handles.iterator();
+		String parentWindowID = iterator.next();
+		String childWindowID = iterator.next();
 		driver.switchTo().window(childWindowID);
 		driver.close();
 		driver.switchTo().window(parentWindowID);
@@ -91,9 +91,9 @@ public class BasePageFrameWork {
 
 	public void closeParentBrowserTab() {
 		Set<String> handles = driver.getWindowHandles(); 
-		Iterator<String> it = handles.iterator(); 
-		String parentWindowID = it.next();
-		String childWindowID = it.next();
+		Iterator<String> iterator = handles.iterator(); 
+		String parentWindowID = iterator.next();
+		String childWindowID = iterator.next();
 		driver.switchTo().window(parentWindowID).close();
 	}
 
@@ -112,19 +112,19 @@ public class BasePageFrameWork {
 	// Method:  Read the Config File
 	public String getDataConfigProperties(String propertyName) { 
 		// Properties set
-		Properties p = new Properties();
-		InputStream is = null;
+		Properties properties = new Properties();
+		InputStream inputStream = null;
 		try {
-			is = new FileInputStream("config.properties");
+			inputStream = new FileInputStream("config.properties");
 		} catch (FileNotFoundException e) { 
 			e.printStackTrace();
 		}
 		try {
-			p.load(is); 
+			properties.load(inputStream); 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return p.getProperty(propertyName); 
+		return properties.getProperty(propertyName); 
 	}
 
 	// Method: Get Element
@@ -157,37 +157,7 @@ public class BasePageFrameWork {
 		String getCurrentURL = driver.getCurrentUrl();
 		return getCurrentURL;
 	}
-
-	// Method:  Read from a PDF Document
-	public String readPDFContent(String appUrl, int expectedNoPages) throws Exception {
-
-		URL url = new URL(appUrl);
-		InputStream input = url.openStream();
-		BufferedInputStream fileToParse = new BufferedInputStream(input);
-		PDDocument document = null;
-		String output = null;
-
-		try {
-			document = PDDocument.load(fileToParse);
-			output = new PDFTextStripper().getText(document);
-			int numberOfPages = getPageCount(document);
-			Assert.assertEquals(numberOfPages, expectedNoPages);
-
-		} finally { 
-			if (document != null) {
-				document.close();
-			}
-			fileToParse.close();
-			input.close();
-		}
-		return output;
-	}
-
-	public int getPageCount(PDDocument doc) { 
-		int pageCount = doc.getNumberOfPages();
-		return pageCount;
-	}
-
+	
 	// Method: Select from Dropdown
 	public void selectDropdown(By pLocator, String pValue) {
 		waitForElement(20, pLocator);
