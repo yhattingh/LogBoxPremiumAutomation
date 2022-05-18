@@ -116,7 +116,5 @@ public class FileUtilities extends BasePageFrameWork {
 		} catch (IOException e) {
 			System.out.println("The exception error is: " + e.getMessage());
 		}
-
 	}
-
 }
