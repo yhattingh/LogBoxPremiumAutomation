@@ -1,6 +1,7 @@
 package frameWork;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -25,6 +26,7 @@ import org.pdfbox.util.PDFTextStripper;
 import org.testng.Assert;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import pageObjectsLogBox.BasePageLogBox;
 
 public class BasePageFrameWork {
 	// Declare the Webdriver
@@ -35,8 +37,10 @@ public class BasePageFrameWork {
 	public BasePageFrameWork() {
 		if (driver == null) {
 
+	
 			String browser = getDataConfigProperties("browser");
 			String URL = getDataConfigProperties("URL");
+		
 
 			// check if parameter passed as "Chrome"
 			if (browser.equalsIgnoreCase("chrome")) {
