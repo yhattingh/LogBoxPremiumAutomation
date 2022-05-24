@@ -11,8 +11,7 @@ import frameWork.ReadDataFromExcel;
 public class PageObjectsBrochurePage extends BasePageFrameWork {
 
 	ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
-//	String username = readDataFromExcel.getCellValue(001);
-//	String password
+
 
 	// Method:Select Practice on Brochure Page
 	public void selectPracticeAndClickLoginButton() {

@@ -1,7 +1,9 @@
 package frameWork;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.net.URL;
@@ -15,11 +17,14 @@ import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.pdfbox.pdmodel.PDDocument;
 import org.pdfbox.util.PDFTextStripper;
 import org.testng.Assert;
 
 public class FileUtilities extends BasePageFrameWork {
+	private static XSSFCell cell;
+	
 
 	// Method: To read data from Excel
 	public String[][] getExcelData(String fileName, String sheetName) {
@@ -49,6 +54,27 @@ public class FileUtilities extends BasePageFrameWork {
 		}
 		return data;
 	}
+	
+	// Method: To read cell value from Excel
+		public String getExcelCellValue(String fileName, String sheetName, int rowNumber, int cellNumber) {
+			String cellValue = null;
+			try {
+				FileInputStream fileInputStream = new FileInputStream(fileName);
+				XSSFWorkbook xssfWorkbook = new XSSFWorkbook(fileInputStream);
+				XSSFSheet xssfSheet = xssfWorkbook.getSheet(sheetName);
+		 
+					// getting the cell value from rowNumber and cell Number
+					cell = xssfSheet.getRow(rowNumber).getCell(cellNumber);
+					// returning the cell value as string
+					return cell.getStringCellValue();
+					
+			}
+			catch (Exception e) {
+				System.out.println("The exception is: " + e.getMessage());
+			}
+			return cellValue;
+		
+		}
 
 	// Method: Read from a PDF Document
 	public String readPDFContent(String appUrl, int expectedNoPages) throws Exception {

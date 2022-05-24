@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import frameWork.BasePageFrameWork;
+import frameWork.FileUtilities;
 import frameWork.ReadDataFromExcel;
 import pageObjectsLogBox.BasePageLogBox;
 import pageObjectsLogBox.PageObjectsBrochurePage;
@@ -19,7 +20,10 @@ public class LoginPracticeTests extends BasePageFrameWork {
 	// Instantiate Page Object Classes
 	BasePageLogBox basePageLogBox = new BasePageLogBox();
 	PageObjectsBrochurePage pageObjectsBrochurePage = new PageObjectsBrochurePage();
-	ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
+	FileUtilities fileUtilities = new FileUtilities();
+	String inputDirectory = getDataConfigProperties("inputDir");
+	String inputFile = "logBoxUserAccounts.xlsx";
+
 
 	@BeforeTest
 	public void setUp() {
@@ -27,8 +31,9 @@ public class LoginPracticeTests extends BasePageFrameWork {
 	}
 
 	@Test
-	public void shouldLoginWithValidUsernameValidPassword(String username, String password) throws IOException {
-		readDataFromExcel.getDataFromExcel("logBoxUserAccount.xlsx", "sheet1");
+	public void shouldLoginWithValidUsernameValidPassword() throws IOException {
+		String username = fileUtilities.getExcelCellValue(inputFile , "sheet1", 2, 2);
+		String password = fileUtilities.getExcelCellValue(inputFile , "sheet1", 2, 3);
 		pageObjectsBrochurePage.loginUsernamePassword(username, password);
 		String actualUrl = getURL();
 		String expectedUrl = "https://qa.logbox.co.za/premium/#/";
@@ -40,7 +45,7 @@ public class LoginPracticeTests extends BasePageFrameWork {
 	
 	@Test
 	public void shouldNotLoginWithInValidUsernameValidPassword(String username, String password) throws IOException {
-		readDataFromExcel.getDataFromExcel("logBoxUserAccount.xlsx", "sheet1");
+		//readDataFromExcel.getDataFromExcel("logBoxUserAccount.xlsx", "sheet1");
 		pageObjectsBrochurePage.loginUsernamePassword(username, password);
 		boolean validationErrorDisplays = driver.equals("validation error exact text");
 		Assert.assertTrue(validationErrorDisplays, "invalid username or password");
