@@ -107,7 +107,7 @@ public class FileUtilities extends BasePageFrameWork {
 		int pageCount = document.getNumberOfPages();
 		return pageCount;
 	}
-	// Method: Reset an output file in case it is corrupted or still open
+	// Method: Reset an output file in case it is corrupted or still open - A new conflict created here
 	public void resetOutPutFile(String OutputFileName) {
 		try {
 			FileWriter fileWriter = new FileWriter(OutputFileName, false);
