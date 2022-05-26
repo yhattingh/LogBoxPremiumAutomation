@@ -33,8 +33,7 @@ public class Utilities extends BasePageFrameWork {
 				+ "'height='200' width='200'/> </a>");
 	}
 
-	// Method: to get the property values from the app.properties file for
-	// screenshots
+	// Method: to get the property values from the app.properties file for screenshots..
 	public String getAppConfigProperties(String propertyName) {
 
 		Properties p = new Properties();
