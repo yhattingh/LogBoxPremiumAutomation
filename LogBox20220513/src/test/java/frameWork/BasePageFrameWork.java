@@ -42,7 +42,7 @@ public class BasePageFrameWork {
 			String URL = getDataConfigProperties("URL");
 		
 
-			// check if parameter passed as "Chrome"
+			// Method:  Check if parameter passed as "Chrome"
 			if (browser.equalsIgnoreCase("chrome")) {
 				WebDriverManager.chromedriver().setup(); 
 				driver = new ChromeDriver();
