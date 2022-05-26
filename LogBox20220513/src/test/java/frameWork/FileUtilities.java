@@ -119,6 +119,7 @@ public class FileUtilities extends BasePageFrameWork {
 	String outputDirectory = getDataConfigProperties("outputDir");
 	String outputFile = outputDirectory + "OutputFile.txt";
 	// Method: Write to file
+	//Creating a new conflict here
 	public void writingToFile(String column1, String column2) {
 		boolean bool = true;
 		String result;
