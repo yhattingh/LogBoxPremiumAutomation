@@ -6,7 +6,6 @@
       <class name="testsLogBox.LoginPracticeTests">
         <methods>
           <include name="shouldLoginWithValidUsernameValidPassword"/>
-          <include name="setUp"/>
         </methods>
       </class> <!-- testsLogBox.LoginPracticeTests -->
     </classes>
