@@ -20,8 +20,9 @@ public class PageObjectsBrochurePage extends BasePageFrameWork {
 	}
 
 	// Method: Click Login Button
-	public void clickLoginButtonToSubmitUsernameAndPassword() {
+	public void clickLoginButtonToSubmitUsernameAndPassword() throws InterruptedException {
 		driver.findElement(By.cssSelector("#login-submit")).click();
+//		driver.wait(100);
 
 	}
 
@@ -39,7 +40,8 @@ public class PageObjectsBrochurePage extends BasePageFrameWork {
 	}
 
 	// Method: To input Username and Password from Excel
-	public void insertUsernameAndPasswordFromExcel(int rowNumber, int cellNumber1, int cellNumber2) throws IOException {
+	public void insertUsernameAndPasswordFromExcel(int rowNumber, int cellNumber1, int cellNumber2)
+			throws IOException, InterruptedException {
 
 		FileUtilities fileUtilities = new FileUtilities();
 
@@ -48,10 +50,9 @@ public class PageObjectsBrochurePage extends BasePageFrameWork {
 
 		// Method: To call the FileUtilities method to read from Excel
 		fileUtilities.setExcelFile(inputFile, "sheet1");
-		for (int i = rowNumber; i <= fileUtilities.getRowCountInSheet(); i++) {
-			username.sendKeys(fileUtilities.getCellData(i, cellNumber1));
-			password.sendKeys(fileUtilities.getCellData(i, cellNumber2));
+		int i = rowNumber;
+		username.sendKeys(fileUtilities.getCellData(i, cellNumber1));
+		password.sendKeys(fileUtilities.getCellData(i, cellNumber2));
 
-		}
 	}
 }
