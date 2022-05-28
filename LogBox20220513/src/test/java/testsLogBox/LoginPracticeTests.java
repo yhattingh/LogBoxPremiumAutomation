@@ -19,17 +19,14 @@ public class LoginPracticeTests extends BasePageFrameWork {
 
 	@Test
 	public void shouldLoginWithValidUsernameValidPassword() throws IOException, InterruptedException {
-		
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertUsernameAndPasswordFromExcel(1,1,2);
     	pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-			
-		String actualUrl = getURL();
-		String expectedUrl = "https://qa.logbox.co.za/premium/#/";
-		Assert.assertEquals(actualUrl,expectedUrl );
+    	waitForElement(5, By.cssSelector(".v-toolbar__items > a:nth-of-type(1) > .v-btn__content"));
+		String expectedUrl = getURL();
+		Assert.assertEquals(expectedUrl, "https://qa.logbox.co.za/premium/#/" );
 		//System.out.println("Logged in successfully using valid username and valid password: " + username + "," + password);
-		Reporter.log("Expected URL " + " " + expectedUrl);
-		Reporter.log("Actual URL is " + actualUrl);
+		Reporter.log("Logged in with a valid username and valid password into Expected URL = " + expectedUrl);
 	        }
 	}
 	

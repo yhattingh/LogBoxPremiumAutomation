@@ -173,7 +173,7 @@ public class Listeners extends BasePageFrameWork implements ITestListener {
 				try {
 					
 					utilities.takeSnapShot("On test success" + utilities.timeReturn() + ".png");
-					System.out.println("Listener:  On test success");
+					System.out.println("Listener:Test Success");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

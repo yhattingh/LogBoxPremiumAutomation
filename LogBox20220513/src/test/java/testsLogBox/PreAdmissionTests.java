@@ -26,7 +26,7 @@ public class PreAdmissionTests extends BasePageFrameWork {
 
 	@Test
 	public void shouldSearchForPatientOnPreAdmissionScreen(String patientName) throws IOException {
-		//pageObjectsBrochurePage.loginUsernamePassword(username,password );Here I need to call the webelement ID's of username and password
+		pageObjectsBrochurePage.loginUsernamePassword(username,password );//Here I need to call the webelement ID's of username and password
 		System.out.println("Logged in successfully using valid username and valid password: "
 				+ username + "," + password);
 		//Call method to select preadmission menu item in left pane (from baselogbox)
@@ -64,7 +64,7 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	
 	@Test
 	public void shouldDisplayAllRequiredFieldsOnPreAdmissionDialog(String patientName) throws IOException {
-		pageObjectsBrochurePage.loginUsernamePassword("lbPreAdmissionToDischarges", "LogBoxMaster");
+		//pageObjectsBrochurePage.loginUsernamePassword("lbPreAdmissionToDischarges", "LogBoxMaster");
 		System.out.println("Logged in successfully using valid username and valid password: "
 				+ "lbPreAdmissionToDischarges" + "," + "LogBoxMaster");
 		//Call method to select preadmission menu item in left pane (from baselogbox)
