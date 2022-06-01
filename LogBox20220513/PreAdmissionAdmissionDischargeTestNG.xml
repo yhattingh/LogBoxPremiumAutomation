@@ -7,7 +7,9 @@
 
 	<test thread-count="5" name="Pre-admission, Admission and Discharge">
 		<packages>
-			<package name="testsLogBox.LoginTests" />
+			<package name="testsLogBox.PreAdmissionTests" />
+			<package name="testsLogBox.AdmissionTests" />
+			<package name="testsLogBox.DischargesTests" />
 		</packages>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
