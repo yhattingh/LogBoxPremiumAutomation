@@ -1,4 +1,4 @@
-package testsLogBox;
+package testsLogBox.AdmissionTests;
 
 import frameWork.BasePageFrameWork;
 

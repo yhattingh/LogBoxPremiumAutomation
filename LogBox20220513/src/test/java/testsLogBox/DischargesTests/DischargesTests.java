@@ -1,4 +1,4 @@
-package testsLogBox;
+package testsLogBox.DischargesTests;
 
 import frameWork.BasePageFrameWork;
 
