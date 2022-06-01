@@ -1,4 +1,4 @@
-package testsLogBox;
+package testsLogBox.PreAdmissionTests;
 
 import java.io.IOException;
 

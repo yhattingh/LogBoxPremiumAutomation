@@ -18,7 +18,7 @@
 
 	<profiles>
 		<profile>
-			<id>Screenshots</id>
+			<id>Charlotte</id>
 			<build>
 				<plugins>
 					<plugin>
