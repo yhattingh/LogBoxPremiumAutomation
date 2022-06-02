@@ -16,6 +16,7 @@ public class PageObjectsHomePage extends BasePageFrameWork {
 	
 	public void clickOnSearchedPatient() {
 		driver.findElement(By.cssSelector("[data-cy] tr td:nth-of-type(2)")).click();
+		waitForElement(100, (By.cssSelector(".btn-table-row .material-icons")));
 		
 	}
 
