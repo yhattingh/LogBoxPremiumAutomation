@@ -1,10 +1,7 @@
 package testsLogBox.ActivityFeedTests;
 
-import static org.testng.Assert.assertTrue;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import org.hamcrest.core.StringContains;
+
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
@@ -22,6 +19,11 @@ public class ActivityTests extends BasePageFrameWork{
 	
 	@Test
 	public void shouldCreateCaseFileForSelectedPatient() throws InterruptedException, IOException {
+		
+		String textFromFirstItemOnCaseFilesList;
+		String textFromSecondItemOnCaseFileList;
+		String localTime;
+		
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertUsernameAndPasswordFromExcel(1,1,2);
     	pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
@@ -29,17 +31,20 @@ public class ActivityTests extends BasePageFrameWork{
 		pageObjectsHomePage.clickOnSearchedPatient();
 		pageObjectsActivityPage.clickMoreButton();
 		pageObjectsActivityPage.selectOptionFromMoreButtonList("Create Case File");
-		
-		//add a timestamp variable
-		LocalDateTime localDateTime = LocalDateTime.now();
-		String localTime = localDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
-
+		localTime = pageObjectsActivityPage.getLocalTime();
 		System.out.println("CURRENT LOCAL TIME" + " " + localTime);
 		pageObjectsActivityPage.inputinputCaseFileProblem("Case file added on" + " " + localTime);
 		pageObjectsActivityPage.clickSaveButtonCaseFile();
-		//String feedURL = driver.getCurrentUrl();
-		//Assert.assertTrue(feedURL.contains("feed"));
-		//Reporter.log("User ");
+		pageObjectsActivityPage.clickCaseFilesDropdown();
+		textFromFirstItemOnCaseFilesList = pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList();
+		System.out.println("The latest item on the list is: " + " " + textFromFirstItemOnCaseFilesList);
+		textFromSecondItemOnCaseFileList = pageObjectsActivityPage.getTextFromSecondItemOnCaseFilesList();
+		System.out.println("The second item on the list is: :" + " " + textFromSecondItemOnCaseFileList);
+		String feedURL = driver.getCurrentUrl();
+		Assert.assertTrue(feedURL.contains("feed"));
+		Assert.assertTrue(pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList().equals("Case file added on" + " " + localTime));
+		Reporter.log("URL contains \"feed\"");
+		Reporter.log("The following file was created successfully: " + pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList());
 	}
 
 }
