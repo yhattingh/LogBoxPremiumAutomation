@@ -55,4 +55,38 @@ public class PageObjectsBrochurePage extends BasePageFrameWork {
 		password.sendKeys(fileUtilities.getCellData(i, cellNumber2));
 
 	}
+	
+	//Method: To log in as Activity Feed role
+	public void insertActivityUsernameAndPasswordFromExcel()
+			throws IOException, InterruptedException {
+
+		FileUtilities fileUtilities = new FileUtilities();
+
+		WebElement username = driver.findElement(By.id("username"));
+		WebElement password = driver.findElement(By.id("password"));
+
+		// Method: To call the FileUtilities method to read from Excel
+		fileUtilities.setExcelFile(inputFile, "sheet1");
+		int i = 1;
+		username.sendKeys(fileUtilities.getCellData(1,1));
+		password.sendKeys(fileUtilities.getCellData(1,2));
+
+	}
+	
+	//Method: To log in as Activity Feed role
+		public void insertPreAdmissionUsernameAndPasswordFromExcel()
+				throws IOException, InterruptedException {
+
+			FileUtilities fileUtilities = new FileUtilities();
+
+			WebElement username = driver.findElement(By.id("username"));
+			WebElement password = driver.findElement(By.id("password"));
+
+			// Method: To call the FileUtilities method to read from Excel
+			fileUtilities.setExcelFile(inputFile, "sheet1");
+			int i = 2;
+			username.sendKeys(fileUtilities.getCellData(2,1));
+			password.sendKeys(fileUtilities.getCellData(2,2));
+
+		}
 }

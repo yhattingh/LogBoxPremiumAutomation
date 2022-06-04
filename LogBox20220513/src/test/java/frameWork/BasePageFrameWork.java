@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.Set;
@@ -32,19 +34,16 @@ public class BasePageFrameWork {
 	// Declare the Webdriver
 	public static WebDriver driver;
 
-
 	// Set browser URL
 	public BasePageFrameWork() {
 		if (driver == null) {
 
-	
 			String browser = getDataConfigProperties("browser");
 			String URL = getDataConfigProperties("URL");
-		
 
-			// Method:  Check if parameter passed as "Chrome"
+			// Method: Check if parameter passed as "Chrome"
 			if (browser.equalsIgnoreCase("chrome")) {
-				WebDriverManager.chromedriver().setup(); 
+				WebDriverManager.chromedriver().setup();
 				driver = new ChromeDriver();
 				driver.get(URL);
 				driver.manage().window().maximize();
@@ -78,11 +77,11 @@ public class BasePageFrameWork {
 
 	// Method: Click on an Element
 	public void clickElement(By pLocator) {
-		waitforClick(100, pLocator);
+		waitforClick(200, pLocator);
 		getElement(pLocator).click();
 	}
 
-	// Method:  Close Browsers
+	// Method: Close Browsers
 	public void closeChildBrowserTab() {
 		Set<String> handles = driver.getWindowHandles();
 		Iterator<String> iterator = handles.iterator();
@@ -94,8 +93,8 @@ public class BasePageFrameWork {
 	}
 
 	public void closeParentBrowserTab() {
-		Set<String> handles = driver.getWindowHandles(); 
-		Iterator<String> iterator = handles.iterator(); 
+		Set<String> handles = driver.getWindowHandles();
+		Iterator<String> iterator = handles.iterator();
 		String parentWindowID = iterator.next();
 		String childWindowID = iterator.next();
 		driver.switchTo().window(parentWindowID).close();
@@ -113,22 +112,22 @@ public class BasePageFrameWork {
 		driver.findElement(pLocator).sendKeys(enterText);
 	}
 
-	// Method:  Read the Config File
-	public String getDataConfigProperties(String propertyName) { 
+	// Method: Read the Config File
+	public String getDataConfigProperties(String propertyName) {
 		// Properties set
 		Properties properties = new Properties();
 		InputStream inputStream = null;
 		try {
 			inputStream = new FileInputStream("config.properties");
-		} catch (FileNotFoundException e) { 
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		try {
-			properties.load(inputStream); 
+			properties.load(inputStream);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return properties.getProperty(propertyName); 
+		return properties.getProperty(propertyName);
 	}
 
 	// Method: Get Element
@@ -161,7 +160,7 @@ public class BasePageFrameWork {
 		String getCurrentURL = driver.getCurrentUrl();
 		return getCurrentURL;
 	}
-	
+
 	// Method: Select from Dropdown
 	public void selectDropdown(By pLocator, String pValue) {
 		waitForElement(20, pLocator);
@@ -169,39 +168,45 @@ public class BasePageFrameWork {
 		selectDropDown.selectByVisibleText(pValue);
 	}
 
-	// Method:  Switch Window / Tab
+	// Method: Switch Window / Tab
 	public void switchToNewTab() {
-		Set<String> handles = driver.getWindowHandles(); 
-		Iterator<String> it = handles.iterator(); 
+		Set<String> handles = driver.getWindowHandles();
+		Iterator<String> it = handles.iterator();
 		String parentWindowID = it.next();
 		String childWindowID = it.next();
-		driver.switchTo().window(childWindowID); 
+		driver.switchTo().window(childWindowID);
 	}
 
 	public void switchToParent() {
-		Set<String> handles = driver.getWindowHandles(); 
-		Iterator<String> it = handles.iterator(); 
+		Set<String> handles = driver.getWindowHandles();
+		Iterator<String> it = handles.iterator();
 		String parentWindowID = it.next();
 		String childWindowID = it.next();
-		driver.switchTo().window(parentWindowID); 
+		driver.switchTo().window(parentWindowID);
 	}
 
-	// Method:  Wait for Click
+	// Method: Wait for Click
 	public void waitforClick(int elementWait, By pLocator) {
 		WebDriverWait wait = new WebDriverWait(driver, elementWait);
 		wait.until(ExpectedConditions.elementToBeClickable(pLocator));
 	}
 
-	// Method:  Wait for Element
+	// Method: Wait for Element
 	public void waitForElement(int elementWait, By pLocator) {
 		WebDriverWait wait = new WebDriverWait(driver, elementWait);
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(pLocator));
 	}
 
-	// Method:  Wait for URL
+	// Method: Wait for URL
 	public void waitForUrl(int elementWait, String pLocator) {
 		WebDriverWait wait = new WebDriverWait(driver, elementWait);
 		wait.until(ExpectedConditions.urlContains(pLocator));
+	}
+
+	public String getLocalDateTime() {
+		LocalDateTime localDateTime = LocalDateTime.now();
+		String localTime = localDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+		return localTime;
 	}
 
 }
