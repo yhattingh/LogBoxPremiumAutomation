@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="9" total="10" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[URL contains "feed"]]>
+      <![CDATA[URL contains "preAdmission"]]>
     </line>
     <line>
-      <![CDATA[The following file was created successfully: Case file added on 03-06-2022 21:14:20]]>
+      <![CDATA[A new PreAdmission page was created for patient: PreAdmission One]]>
     </line>
   </reporter-output>
-  <suite started-at="2022-06-03T19:14:16Z" name="Default suite" finished-at="2022-06-03T19:14:22Z" duration-ms="5185">
+  <suite started-at="2022-06-04T09:27:32Z" name="Default suite" finished-at="2022-06-04T09:27:40Z" duration-ms="7484">
     <groups>
     </groups>
-    <test started-at="2022-06-03T19:14:16Z" name="Default test" finished-at="2022-06-03T19:14:22Z" duration-ms="5185">
-      <class name="testsLogBox.ActivityFeedTests.ActivityTests">
-        <test-method signature="shouldCreateCaseFileForSelectedPatient()[pri:0, instance:testsLogBox.ActivityFeedTests.ActivityTests@697446d4]" started-at="2022-06-03T19:14:16Z" name="shouldCreateCaseFileForSelectedPatient" finished-at="2022-06-03T19:14:22Z" duration-ms="5170" status="PASS">
+    <test started-at="2022-06-04T09:27:32Z" name="Default test" finished-at="2022-06-04T09:27:40Z" duration-ms="7484">
+      <class name="testsLogBox.PreAdmissionTests.PreAdmissionTests">
+        <test-method signature="shouldOpenPreAdmissionPageAfterPatientSearch()[pri:0, instance:testsLogBox.PreAdmissionTests.PreAdmissionTests@99a65d3]" started-at="2022-06-04T09:27:32Z" name="shouldOpenPreAdmissionPageAfterPatientSearch" finished-at="2022-06-04T09:27:40Z" duration-ms="7446" status="PASS">
           <reporter-output>
             <line>
-              <![CDATA[URL contains "feed"]]>
+              <![CDATA[URL contains "preAdmission"]]>
             </line>
             <line>
-              <![CDATA[The following file was created successfully: Case file added on 03-06-2022 21:14:20]]>
+              <![CDATA[A new PreAdmission page was created for patient: PreAdmission One]]>
             </line>
           </reporter-output>
-        </test-method> <!-- shouldCreateCaseFileForSelectedPatient -->
-      </class> <!-- testsLogBox.ActivityFeedTests.ActivityTests -->
+        </test-method> <!-- shouldOpenPreAdmissionPageAfterPatientSearch -->
+      </class> <!-- testsLogBox.PreAdmissionTests.PreAdmissionTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
