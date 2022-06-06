@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Sat Jun 04 11:27:32 SAST 2022</td>
+<td>Started on:</td><td>Mon Jun 06 09:05:50 SAST 2022</td>
 </tr>
-<tr><td>Total time:</td><td>7 seconds (7484 ms)</td>
+<tr><td>Total time:</td><td>4 seconds (4272 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,26 +67,85 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-passed'>
-<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td width="30%"><b>Exception</b></td>
 <td width="10%"><b>Time (seconds)</b></td>
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='testsLogBox.PreAdmissionTests.PreAdmissionTests.shouldOpenPreAdmissionPageAfterPatientSearch()'><b>shouldOpenPreAdmissionPageAfterPatientSearch</b><br>Test class: testsLogBox.PreAdmissionTests.PreAdmissionTests<br/>
-<a href="#Output-194672584" onClick='toggleBox("Output-194672584", this, "Show output", "Hide output");'>Show output</a>
-
-<a href="#Output-194672584" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-194672584">
-URL contains "preAdmission"<br/>
-A new PreAdmission page was created for patient: PreAdmission One<br/>
-</div>
-</td>
-<td></td>
-<td>7</td>
-<td>testsLogBox.PreAdmissionTests.PreAdmissionTests@99a65d3</td></tr>
+<td title='testsLogBox.ActivityFeedTests.ActivityTests.yhtestlists()'><b>yhtestlists</b><br>Test class: testsLogBox.ActivityFeedTests.ActivityTests</td>
+<td><div><pre>org.openqa.selenium.support.ui.UnexpectedTagNameException: Element should have been &quot;select&quot; but was &quot;div&quot;
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;YOLANDEH-DELL2&apos;, ip: &apos;192.168.0.102&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.2&apos;
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.Select.&lt;init&gt;(Select.java:48)
+	at frameWork.BasePageFrameWork.selectDropdown(BasePageFrameWork.java:167)
+	at pageObjectsLogBox.PageObjectsActivityPage.selectCaseFileFromDropdownList1(PageObjectsActivityPage.java:47)
+	at testsLogBox.ActivityFeedTests.ActivityTests.yhtestlists(ActivityTests.java:79)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace759564454", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace759564454'><pre>org.openqa.selenium.support.ui.UnexpectedTagNameException: Element should have been &quot;select&quot; but was &quot;div&quot;
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;YOLANDEH-DELL2&apos;, ip: &apos;192.168.0.102&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.2&apos;
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.Select.&lt;init&gt;(Select.java:48)
+	at frameWork.BasePageFrameWork.selectDropdown(BasePageFrameWork.java:167)
+	at pageObjectsLogBox.PageObjectsActivityPage.selectCaseFileFromDropdownList1(PageObjectsActivityPage.java:47)
+	at testsLogBox.ActivityFeedTests.ActivityTests.yhtestlists(ActivityTests.java:79)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>4</td>
+<td>testsLogBox.ActivityFeedTests.ActivityTests@36453307</td></tr>
 </table><p>
 </body>
 </html>
