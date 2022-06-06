@@ -2,6 +2,7 @@ package testsLogBox.ActivityFeedTests;
 
 import java.io.IOException;
 
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
@@ -43,6 +44,38 @@ public class ActivityTests extends BasePageFrameWork{
 		Assert.assertTrue(pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList().equals("Case file added on" + " " + localDateTime));
 		Reporter.log("URL contains \"feed\"");
 		Reporter.log("The following file was created successfully: " + pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList());
+	}
+	
+	@Test
+	public void shouldCreateActivityForSelectedPatient() throws InterruptedException, IOException {
+		
+		String localDateTime;
+
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();;
+    	pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		pageObjectsHomePage.searchPracticePatientsOnHomePage("Jane");
+		pageObjectsHomePage.clickOnSearchedPatient();
+		pageObjectsActivityPage.clickCaseFilesDropdown();
+//		String feedURL = driver.getCurrentUrl();
+//		Assert.assertTrue(feedURL.contains("feed"));
+//		Assert.assertTrue(pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList().equals("Case file added on" + " " + localDateTime));
+//		Reporter.log("URL contains \"feed\"");
+//		Reporter.log("The following file was created successfully: " + pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList());
+	}
+	
+	@Test
+	public void yhtestinglists() throws InterruptedException, IOException {
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();;
+    	pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		pageObjectsHomePage.searchPracticePatientsOnHomePage("Jane");
+		pageObjectsHomePage.clickOnSearchedPatient();
+		pageObjectsActivityPage.clickCaseFilesDropdown();
+		pageObjectsActivityPage.anotherList(null);
+		//pageObjectsActivityPage.getList();
+		//pageObjectsActivityPage.yhList(null);
+
 	}
 
 }

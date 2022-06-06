@@ -163,7 +163,7 @@ public class BasePageFrameWork {
 
 	// Method: Select from Dropdown
 	public void selectDropdown(By pLocator, String pValue) {
-		waitForElement(20, pLocator);
+		waitForElement(100, pLocator);
 		Select selectDropDown = new Select(getElement(pLocator));
 		selectDropDown.selectByVisibleText(pValue);
 	}
