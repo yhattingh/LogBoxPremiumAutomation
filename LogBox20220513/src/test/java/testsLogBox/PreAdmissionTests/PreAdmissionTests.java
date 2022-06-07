@@ -22,8 +22,6 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	PageObjectsBrochurePage pageObjectsBrochurePage = new PageObjectsBrochurePage();
 	PageObjectsPreAdmissionPage pageObjectsPreAdmissionPage = new PageObjectsPreAdmissionPage();
 	ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
-	// String patientName = "PreAdmissionOne Patient";//Would like to ideally read
-	// this form excel file
 
 	@Test
 	public void shouldOpenPreAdmissionPageAfterPatientSearch() throws IOException, InterruptedException {
@@ -47,31 +45,48 @@ public class PreAdmissionTests extends BasePageFrameWork {
 
 	@Test
 	public void shouldValidateRequiredFieldsWhenCreatingPreAdmission()
-			throws IOException {
-		pageObjectsBrochurePage.loginUsernamePassword("lbPreAdmissionToDischarges", "LogBoxMaster");
-		System.out.println("Logged in successfully using valid username and valid password: "
-				+ "lbPreAdmissionToDischarges" + "," + "LogBoxMaster");
-		//Method: Save without any required fields
-
+			throws IOException, InterruptedException {
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		pageObjectsPreAdmissionPage.clickOnPreAdmissionButtonInLeftMenu();
+		pageObjectsPreAdmissionPage.clickCreatePreAdmissionButton();
+		pageObjectsPreAdmissionPage.clickPreAdmissionPatientSearchField();
+		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch("One");
+		pageObjectsPreAdmissionPage.selectSearchedPatientOnPreAdmission();
+		pageObjectsPreAdmissionPage.clickSelectAfterPreAdmissionPatientSearch();
+		pageObjectsPreAdmissionPage.clickSaveButton();
+	
 		//Assert: Validation displays
+		String validationError = pageObjectsPreAdmissionPage.getTextFromPreAdmissionRequiredFieldsValidationPageMessage();
+		Assert.assertTrue(validationError.contains("fill in the form"));
+		String pageValidation = pageObjectsPreAdmissionPage.getTextFromPreAdmissionRequiredFieldsValidationErrorText();
+		Assert.assertEquals(pageValidation, "The Expected Date of Admission is required.'");
+		Reporter.log("The Preadmission is validated on required fields");
 
 	}
 	@Test
 	public void shouldCreatePreAdmissionOnCurrentDateTimeFromPracticeQuickLinkWithRequiredFieldsOnly(String patientName)
-			throws IOException {
-		pageObjectsBrochurePage.loginUsernamePassword("lbPreAdmissionToDischarges", "LogBoxMaster");
-		System.out.println("Logged in successfully using valid username and valid password: "
-				+ "lbPreAdmissionToDischarges" + "," + "LogBoxMaster");
-		// Call method to select preadmission menu item in left pane (from baselogbox)
+			throws IOException, InterruptedException {
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		pageObjectsPreAdmissionPage.clickOnPreAdmissionButtonInLeftMenu();
+		//Get a list of the number of preadmissions to verify later
+		pageObjectsPreAdmissionPage.clickCreatePreAdmissionButton();
+		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch("One");
+		pageObjectsPreAdmissionPage.selectSearchedPatientOnPreAdmission();
+		pageObjectsPreAdmissionPage.clickSelectAfterPreAdmissionPatientSearch();
+		//pageObjectsPreAdmissionPage.enterRequiredFieldsPreadmission();
+		pageObjectsPreAdmissionPage.clickSaveButton();
+	
+		//String preadmissionListValuePatientName = pageObjectsPreAdmissionPage.getTextFromPreAdmissionList();
+		//Assert.assertEquals(preadmissionListValuePatientName, "Preadmission One");
+		//String preadmissionListValueHospitalName = pageObjectsPreAdmissionPage.getTextFromPreAdmissionList();
+				//Assert.assertEquals(preadmissionListValueHospitalName, "Preadmission One");
+		//Get a list of the number of preadmissions, then verify that the page contains initial plus one		
+		Reporter.log("The Preadmission with required fields only was created successfully");
 
-		// Method to click on create preadmission button
-
-		// Method to add patient name
-
-		// Method to complete all required fields - use a constructor here (possibly use
-		// excel for constructor)
-
-		// Verify the preadmission is created with a list
 
 	}
 
