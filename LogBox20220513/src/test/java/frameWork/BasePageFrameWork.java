@@ -107,7 +107,7 @@ public class BasePageFrameWork {
 	}
 
 	// Method: Enter text in Field
-	public void enterText(By pLocator, String enterText) {
+	public void enterText(By pLocator, String enterText) throws InterruptedException {
 		waitforClick(30, pLocator);
 		driver.findElement(pLocator).sendKeys(enterText);
 	}
