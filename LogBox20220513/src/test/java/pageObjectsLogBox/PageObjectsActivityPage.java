@@ -20,7 +20,7 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 		clickElement(By.linkText(optiontext));
 	}
 
-	public void inputCaseFileProblem(String presentingproblem) {
+	public void inputCaseFileProblem(String presentingproblem) throws InterruptedException {
 		enterText(By.cssSelector("input[name='Presenting Problem']"), presentingproblem);
 	}
 
@@ -29,8 +29,8 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 				By.cssSelector("div:nth-of-type(11) .primary.theme--light.v-btn.v-btn--depressed > .v-btn__content"));
 	}
 
-	public void clickCaseFilesDropdown() {
-		clickElement(By.cssSelector(".container.fluid div[role='combobox'] .material-icons.theme--light.v-icon"));
+	public void clickCaseFilesDropdown() throws InterruptedException{
+		clickElement(By.cssSelector(".justify-space-between.row"));
 	}
 
 	public String getTextFromFirstItemOnCaseFilesList() {
@@ -57,5 +57,36 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 	         System.out.println("Elements are: ");
 	         System.out.println(v);
 	      }
+	      }
 
-}}
+	  	public static void main1(String[] args) throws InterruptedException {			
+				
+	        //Click on Dropdown				
+					
+	  				
+	        driver.findElement((By.className(".v-select__selections")));				
+	         				
+	        List<WebElement> allOptions = driver.findElements(By.cssSelector("div[role='listbox']"));				
+	        System.out.println(allOptions.size());				
+	        				
+	             				
+	        for(int i = 0; i<=allOptions.size()-1; i++) {				
+	        	System.out.println(allOptions.get(i).getText());			
+	             				
+	             				
+	            if(allOptions.get(i).getText().equals("Case file added on 04-06-2022 09:00:45")) {				
+	            	//if(allOptions.get(i).getText().contains("Initial case file")) {			
+	                allOptions.get(i).click();				
+	                break;				
+	                 				
+	            }				
+	        }				
+		}}	
+	
+	
+////Create instance of Javascript executor				
+//JavascriptExecutor je = (JavascriptExecutor) driver;				
+////Identify the WebElement which will appear after scrolling down				
+//WebElement element = driver.findElement(By.tagName("...."));				
+////now execute query which actually will scroll until that element is not appeared on page.				
+//je.executeScript("arguments[0].scrollIntoView(true);",element);

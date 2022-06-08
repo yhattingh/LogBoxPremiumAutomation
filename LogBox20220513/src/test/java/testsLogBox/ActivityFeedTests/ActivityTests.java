@@ -54,9 +54,12 @@ public class ActivityTests extends BasePageFrameWork{
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();;
     	pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		pageObjectsHomePage.searchPracticePatientsOnHomePage("Jane");
+    	pageObjectsHomePage.clickInSearchPracticePatient();
+		pageObjectsHomePage.searchPracticePatientsOnHomePage("John");
 		pageObjectsHomePage.clickOnSearchedPatient();
 		pageObjectsActivityPage.clickCaseFilesDropdown();
+		pageObjectsActivityPage.main1(null);
+		
 //		String feedURL = driver.getCurrentUrl();
 //		Assert.assertTrue(feedURL.contains("feed"));
 //		Assert.assertTrue(pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList().equals("Case file added on" + " " + localDateTime));
