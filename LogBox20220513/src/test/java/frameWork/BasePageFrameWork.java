@@ -77,7 +77,7 @@ public class BasePageFrameWork {
 
 	// Method: Click on an Element
 	public void clickElement(By pLocator) {
-		waitforClick(200, pLocator);
+		waitforClick(100, pLocator);
 		getElement(pLocator).click();
 	}
 
@@ -108,7 +108,7 @@ public class BasePageFrameWork {
 
 	// Method: Enter text in Field
 	public void enterText(By pLocator, String enterText) throws InterruptedException {
-		waitforClick(30, pLocator);
+		waitForElement(30, pLocator);
 		driver.findElement(pLocator).sendKeys(enterText);
 	}
 

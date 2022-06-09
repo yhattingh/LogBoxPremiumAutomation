@@ -30,6 +30,7 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		pageObjectsPreAdmissionPage.clickOnPreAdmissionButtonInLeftMenu();
 		pageObjectsPreAdmissionPage.clickCreatePreAdmissionButton();
+		pageObjectsPreAdmissionPage.clickPreAdmissionPatientSearchField();
 		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch("One");
 		pageObjectsPreAdmissionPage.selectSearchedPatientOnPreAdmission();
 		pageObjectsPreAdmissionPage.clickSelectAfterPreAdmissionPatientSearch();
@@ -39,7 +40,7 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		Assert.assertTrue(feedURL.contains("preAdmission"));
 		Assert.assertTrue(patientName.contains("One"));
 		Reporter.log("URL contains \"preAdmission\"");
-		Reporter.log("A new PreAdmission page was created for patient: PreAdmission One");
+		Reporter.log("A new PreAdmission page was opened for patient: PreAdmission One");
 	}
 
 

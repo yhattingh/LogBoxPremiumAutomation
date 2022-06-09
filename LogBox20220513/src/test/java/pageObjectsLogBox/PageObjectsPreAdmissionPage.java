@@ -12,19 +12,19 @@ public class PageObjectsPreAdmissionPage extends BasePageFrameWork {
 
 	public void clickCreatePreAdmissionButton() throws InterruptedException {
 		clickElement(By.cssSelector(".btn.btn--router.primary.theme--light.v-btn > .v-btn__content"));
-		Thread.sleep(100);
 	}
 
 	public void enterPreAdmissionPatientNameToSearch(String patientname) throws InterruptedException {
 		enterText(By.cssSelector("[class='py-1 col col-12'] [type='text']"), patientname);
-		Thread.sleep(100);
+//		Thread.sleep(100);
 	}
 	public void clickPreAdmissionPatientSearchField() {
+		//waitForElement(30,By.cssSelector("[class='py-1 col col-12'] [type='text']"));
 		clickElement(By.cssSelector("[class='py-1 col col-12'] [type='text']"));
 	}
 
 	public void selectSearchedPatientOnPreAdmission() throws InterruptedException {
-		clickElement(By.xpath("div[role='listbox'] > div:nth-of-type(1)  .v-list-item__title"));
+		clickElement(By.cssSelector("[data-cy='lb-patient-search-item-preadmission-one'] .v-list-item__title"));
 
 	}
 
@@ -35,11 +35,11 @@ public class PageObjectsPreAdmissionPage extends BasePageFrameWork {
 
 	public void clickSelectAfterPreAdmissionPatientSearch() {
 		clickElement(By.cssSelector(
-				"div:nth-of-type(1) > .v-stepper__wrapper > .v-card__actions > .primary--text.theme--light.v-btn.v-btn--flat > .v-btn__content"));
+				"[data-cy='lb-psd-select'] .v-btn__content"));
 	}
 	
 	public String getTextFromPreAdmissionPatientHeader() {
-		String patientName = getElementText(By.cssSelector(".layout > .flex.xs5"));
+		String patientName = getElementText(By.cssSelector(".mt-1.title"));
 		return patientName;
 	}
 	
