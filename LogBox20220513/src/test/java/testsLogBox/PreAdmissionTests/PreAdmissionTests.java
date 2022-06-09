@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -22,6 +23,11 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	PageObjectsBrochurePage pageObjectsBrochurePage = new PageObjectsBrochurePage();
 	PageObjectsPreAdmissionPage pageObjectsPreAdmissionPage = new PageObjectsPreAdmissionPage();
 	ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
+	
+//	@AfterTest
+//	public void cleanUpAfterTest() throws InterruptedException {
+//		cleanUp();
+//	}
 
 	@Test
 	public void shouldOpenPreAdmissionPageAfterPatientSearch() throws IOException, InterruptedException {
@@ -56,13 +62,14 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch("One");
 		pageObjectsPreAdmissionPage.selectSearchedPatientOnPreAdmission();
 		pageObjectsPreAdmissionPage.clickSelectAfterPreAdmissionPatientSearch();
+		pageObjectsPreAdmissionPage.enterSpecialInstructionsToPatient();
 		pageObjectsPreAdmissionPage.clickSaveButton();
 	
 		//Assert: Validation displays
 		String validationError = pageObjectsPreAdmissionPage.getTextFromPreAdmissionRequiredFieldsValidationPageMessage();
 		Assert.assertTrue(validationError.contains("fill in the form"));
 		String pageValidation = pageObjectsPreAdmissionPage.getTextFromPreAdmissionRequiredFieldsValidationErrorText();
-		Assert.assertEquals(pageValidation, "The Expected Date of Admission is required.'");
+		Assert.assertEquals(pageValidation, "The Expected Date of Admission is required.");
 		Reporter.log("The Preadmission is validated on required fields");
 
 	}

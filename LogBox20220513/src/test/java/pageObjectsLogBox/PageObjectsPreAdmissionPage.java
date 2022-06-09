@@ -54,8 +54,11 @@ public class PageObjectsPreAdmissionPage extends BasePageFrameWork {
 	}
 	
 	public void clickSaveButton() throws InterruptedException {
-		clickElement(By.cssSelector(".v-btn--has-bg .v-btn__content"));
-		wait(10);
+		clickElement(By.cssSelector(".v-btn--has-bg"));
+	}
+	
+	public void enterSpecialInstructionsToPatient() throws InterruptedException {
+		enterText(By.cssSelector("[placeholder]"), "test");
 	}
 	
 
