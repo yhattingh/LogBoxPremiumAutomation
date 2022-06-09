@@ -84,7 +84,7 @@ public class Listeners extends BasePageFrameWork implements ITestListener {
 	}
 
 	@Override
-	public void enterText(By pLocator, String enterText) {
+	public void enterText(By pLocator, String enterText) throws InterruptedException {
 		// TODO Auto-generated method stub
 		super.enterText(pLocator, enterText);
 	}
