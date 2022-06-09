@@ -5,6 +5,7 @@
     <classes>
       <class name="testsLogBox.PreAdmissionTests.PreAdmissionTests">
         <methods>
+          <include name="shouldOpenPreAdmissionPageAfterPatientSearch"/>
           <include name="shouldValidateRequiredFieldsWhenCreatingPreAdmission"/>
         </methods>
       </class> <!-- testsLogBox.PreAdmissionTests.PreAdmissionTests -->
