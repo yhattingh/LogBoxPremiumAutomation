@@ -15,6 +15,7 @@ import frameWork.BasePageFrameWork;
 import frameWork.ReadDataFromExcel;
 import pageObjectsLogBox.BasePageLogBox;
 import pageObjectsLogBox.PageObjectsBrochurePage;
+import pageObjectsLogBox.PageObjectsHomePage;
 import pageObjectsLogBox.PageObjectsPreAdmissionPage;
 
 public class PreAdmissionTests extends BasePageFrameWork {
@@ -23,12 +24,14 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	PageObjectsBrochurePage pageObjectsBrochurePage = new PageObjectsBrochurePage();
 	PageObjectsPreAdmissionPage pageObjectsPreAdmissionPage = new PageObjectsPreAdmissionPage();
 	ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
+	PageObjectsHomePage pageObjectsHomePage = new PageObjectsHomePage();
 	
 //	@AfterTest
 //	public void cleanUpAfterTest() throws InterruptedException {
 //		cleanUp();
 //	}
 
+	//User Story One
 	@Test
 	public void shouldOpenPreAdmissionPageAfterPatientSearch() throws IOException, InterruptedException {
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
@@ -48,10 +51,11 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		Reporter.log("URL contains \"preAdmission\"");
 		Reporter.log("A new PreAdmission page was opened for patient: PreAdmission One");
 	}
-
-
+	
+	
+	//User Story Two
 	@Test
-	public void shouldValidateRequiredFieldsWhenCreatingPreAdmission()
+	public void shouldNotAllowPreadmissionForDraftPatient()
 			throws IOException, InterruptedException {
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
@@ -59,10 +63,30 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		pageObjectsPreAdmissionPage.clickOnPreAdmissionButtonInLeftMenu();
 		pageObjectsPreAdmissionPage.clickCreatePreAdmissionButton();
 		pageObjectsPreAdmissionPage.clickPreAdmissionPatientSearchField();
-		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch("One");
+		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch("Draft");
 		pageObjectsPreAdmissionPage.selectSearchedPatientOnPreAdmission();
 		pageObjectsPreAdmissionPage.clickSelectAfterPreAdmissionPatientSearch();
-		pageObjectsPreAdmissionPage.enterSpecialInstructionsToPatient();
+	
+		//Assert: Validation displays
+		String validationError = pageObjectsPreAdmissionPage.getTextfromDraftPatientErrorMessageOnPreadmission();
+		Assert.assertTrue(validationError.contains("Cannot create pre-admission for a draft patient"));
+		System.out.println(validationError);
+		String feedURL = driver.getCurrentUrl();
+		Assert.assertTrue(feedURL.contains("premium/#/pre-admission/?context=pre-admissions"));
+		Reporter.log("The pre-admission is not allowed for draft patients");
+
+	}
+
+	//User Story Three
+	@Test
+	public void shouldValidateRequiredFieldsWhenCreatingPreAdmissionFromEllipseList()
+			throws IOException, InterruptedException {
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		pageObjectsHomePage.searchPracticePatientsOnHomePage("One");
+		pageObjectsHomePage.clickOnEllipseNextToPatientName();
+		pageObjectsHomePage.clickOnListOptionInEllipseMenu("Create Pre-Admission");
 		pageObjectsPreAdmissionPage.clickSaveButton();
 	
 		//Assert: Validation displays
@@ -73,31 +97,29 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		Reporter.log("The Preadmission is validated on required fields");
 
 	}
+	
+	//User Story Four
 	@Test
-	public void shouldCreatePreAdmissionOnCurrentDateTimeFromPracticeQuickLinkWithRequiredFieldsOnly(String patientName)
+	public void shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields()
 			throws IOException, InterruptedException {
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		pageObjectsPreAdmissionPage.clickOnPreAdmissionButtonInLeftMenu();
-		//Get a list of the number of preadmissions to verify later
-		pageObjectsPreAdmissionPage.clickCreatePreAdmissionButton();
-		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch("One");
-		pageObjectsPreAdmissionPage.selectSearchedPatientOnPreAdmission();
-		pageObjectsPreAdmissionPage.clickSelectAfterPreAdmissionPatientSearch();
-		//pageObjectsPreAdmissionPage.enterRequiredFieldsPreadmission();
+		pageObjectsHomePage.searchPracticePatientsOnHomePage("One");
+		pageObjectsHomePage.clickOnEllipseNextToPatientName();
+		pageObjectsHomePage.clickOnListOptionInEllipseMenu("Create Pre-Admission");
+		basePageLogBox.enterDate("10-06-2022");
+		basePageLogBox.enterTime("21:00");
+		pageObjectsPreAdmissionPage.enterAndSelectHospitalName("Wits");
+		pageObjectsPreAdmissionPage.clickAndEnterICD10CodeSearchInDialog("Malignant neoplasms follow-up");
 		pageObjectsPreAdmissionPage.clickSaveButton();
 	
-		//String preadmissionListValuePatientName = pageObjectsPreAdmissionPage.getTextFromPreAdmissionList();
-		//Assert.assertEquals(preadmissionListValuePatientName, "Preadmission One");
-		//String preadmissionListValueHospitalName = pageObjectsPreAdmissionPage.getTextFromPreAdmissionList();
-				//Assert.assertEquals(preadmissionListValueHospitalName, "Preadmission One");
-		//Get a list of the number of preadmissions, then verify that the page contains initial plus one		
-		Reporter.log("The Preadmission with required fields only was created successfully");
+		//Assert: Get row count before creating preadmission and row count after compare after should be plus 1
 
 
 	}
-
+	
+	//User Story Five
 	@Test
 	public void shouldCreatePreAdmissionOnCurrentDateTimeFromPatientMenuWithAllFields(String patientName)
 			throws IOException {
