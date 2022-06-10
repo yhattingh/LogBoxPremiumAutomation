@@ -208,5 +208,16 @@ public class BasePageFrameWork {
 		String localTime = localDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
 		return localTime;
 	}
+	//Method:To return the current date and then add 5 min to it
+//	public long getCurrentTime() {
+//	long systemTime = System.currentTimeMillis();
+//	System.out.println("The current system time is " + systemTime);
+//	return systemTime;
+//	}
+	
+	//Method:Enter time in timepicker fields
+	public void enterCurrentTimePlus5Min() throws InterruptedException {
+			
+			}
 
 }
