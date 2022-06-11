@@ -13,12 +13,11 @@ public class PageObjectsHomePage extends BasePageFrameWork {
 
 	public void searchPracticePatientsOnHomePage(String patientname) throws InterruptedException {
 		enterText(By.cssSelector(".v-text-field__slot [type]"), patientname);
-		waitForElement(100, (By.cssSelector(".pa-0.text-right  .v-btn__content")));
-
 	}
 
 	public void clickOnSearchedPatient() {
-		driver.findElement(By.cssSelector(".text-start")).click();
+		waitForElement(200, (By.cssSelector("tbody .pointer:nth-of-type(1) .text-start")));
+		driver.findElement(By.cssSelector("tbody .pointer:nth-of-type(1) .text-start")).click();
 		// [data-cy] tr td:nth-of-type(2)
 
 	}

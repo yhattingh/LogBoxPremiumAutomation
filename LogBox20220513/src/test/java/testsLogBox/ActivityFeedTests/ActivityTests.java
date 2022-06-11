@@ -19,6 +19,7 @@ public class ActivityTests extends BasePageFrameWork{
 	PageObjectsActivityPage pageObjectsActivityPage = new PageObjectsActivityPage();
 	BasePageFrameWork basePageFrameWork = new BasePageFrameWork();
 	
+	//USER STORY 1
 	@Test
 	public void shouldCreateCaseFileForSelectedPatient() throws InterruptedException, IOException {
 		
@@ -36,7 +37,6 @@ public class ActivityTests extends BasePageFrameWork{
 		System.out.println("CURRENT LOCAL TIME" + " " + localDateTime);
 		pageObjectsActivityPage.inputCaseFileProblem("Case file added on" + " " + localDateTime);
 		pageObjectsActivityPage.clickSaveButtonCaseFile();
-		pageObjectsActivityPage.clickCaseFilesDropdown();
 		textFromFirstItemOnCaseFilesList = pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList();
 		System.out.println("The latest item on the list is: " + " " + textFromFirstItemOnCaseFilesList);
 		String feedURL = driver.getCurrentUrl();
@@ -46,10 +46,13 @@ public class ActivityTests extends BasePageFrameWork{
 		Reporter.log("The following file was created successfully: " + pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList());
 	}
 	
+	//USER STORY 2
 	@Test
 	public void shouldCreateActivityForSelectedPatient() throws InterruptedException, IOException {
 		
 		String localDateTime;
+//		String selectedCaseFile = "Initial case file";
+		String selectedCaseFile = "Case file added on 11-06-2022 13:07:29";
 
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();;
@@ -58,7 +61,9 @@ public class ActivityTests extends BasePageFrameWork{
 		pageObjectsHomePage.searchPracticePatientsOnHomePage("John");
 		pageObjectsHomePage.clickOnSearchedPatient();
 		pageObjectsActivityPage.clickCaseFilesDropdown();
-		pageObjectsActivityPage.main1(null);
+		pageObjectsActivityPage.selectItemFromDropdownList(selectedCaseFile);
+		System.out.println("Case File numer selected: " + " " + selectedCaseFile);
+		
 		
 //		String feedURL = driver.getCurrentUrl();
 //		Assert.assertTrue(feedURL.contains("feed"));
