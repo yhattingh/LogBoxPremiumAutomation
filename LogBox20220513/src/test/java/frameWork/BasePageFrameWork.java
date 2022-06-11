@@ -196,6 +196,12 @@ public class BasePageFrameWork {
 		WebDriverWait wait = new WebDriverWait(driver, elementWait);
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(pLocator));
 	}
+	
+	// Method: Wait for Element To No Longer Display
+	public void waitUntilElementNoLongerDisplays(int elementWait, By pLocator) {
+		WebDriverWait wait = new WebDriverWait(driver, elementWait);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(pLocator));
+	}
 
 	// Method: Wait for URL
 	public void waitForUrl(int elementWait, String pLocator) {
