@@ -19,7 +19,7 @@ public class ActivityTests extends BasePageFrameWork{
 	PageObjectsActivityPage pageObjectsActivityPage = new PageObjectsActivityPage();
 	BasePageFrameWork basePageFrameWork = new BasePageFrameWork();
 	
-	//USER STORY 1
+	//User Story One
 	@Test
 	public void shouldCreateCaseFileForSelectedPatient() throws InterruptedException, IOException {
 		
@@ -46,23 +46,35 @@ public class ActivityTests extends BasePageFrameWork{
 		Reporter.log("The following file was created successfully: " + pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList());
 	}
 	
-	//USER STORY 2
+	//User Story Two
 	@Test
 	public void shouldCreateActivityForSelectedPatient() throws InterruptedException, IOException {
 		
 		String localDateTime;
 //		String selectedCaseFile = "Initial case file";
 		String selectedCaseFile = "Case file added on 11-06-2022 13:07:29";
+//		String selectedCaseFile = "test";
+		String textNote = "This is a new activity note";
+	
 
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();;
     	pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
     	pageObjectsHomePage.clickInSearchPracticePatient();
-		pageObjectsHomePage.searchPracticePatientsOnHomePage("John");
+		pageObjectsHomePage.searchPracticePatientsOnHomePage("Jane");
 		pageObjectsHomePage.clickOnSearchedPatient();
 		pageObjectsActivityPage.clickCaseFilesDropdown();
-		pageObjectsActivityPage.selectItemFromDropdownList(selectedCaseFile);
-		System.out.println("Case File numer selected: " + " " + selectedCaseFile);
+		pageObjectsActivityPage.selectAnItemInDropdownList(selectedCaseFile);
+		//pageObjectsActivityPage.selectItemFromDropdownList(selectedCaseFile);
+		System.out.println("Case File number entered: " + " " + selectedCaseFile);
+		pageObjectsActivityPage.clickAddActivityButton();
+		localDateTime = basePageFrameWork.getLocalDateTime();
+		pageObjectsActivityPage.addTextNote(textNote + localDateTime);
+		pageObjectsActivityPage.clickPostButton();
+		System.out.println("Text Note Added= :" + " " + pageObjectsActivityPage.getTextFromActivityNote());
+		Assert.assertTrue(pageObjectsActivityPage.getTextFromActivityNote().equals(textNote + localDateTime));
+		Reporter.log("The following activity was created successfully: " +  pageObjectsActivityPage.getTextFromActivityNote());
+		
 		
 		
 //		String feedURL = driver.getCurrentUrl();
@@ -72,17 +84,10 @@ public class ActivityTests extends BasePageFrameWork{
 //		Reporter.log("The following file was created successfully: " + pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList());
 	}
 	
+	// User Story Three
+	
 	@Test
-	public void yhtestinglists() throws InterruptedException, IOException {
-		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();;
-    	pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		pageObjectsHomePage.searchPracticePatientsOnHomePage("Jane");
-		pageObjectsHomePage.clickOnSearchedPatient();
-		pageObjectsActivityPage.clickCaseFilesDropdown();
-		pageObjectsActivityPage.anotherList(null);
-		//pageObjectsActivityPage.getList();
-		//pageObjectsActivityPage.yhList(null);
+	public void shouldDoSomething() {
 
 	}
 
