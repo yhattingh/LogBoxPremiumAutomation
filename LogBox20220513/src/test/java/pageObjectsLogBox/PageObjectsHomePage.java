@@ -13,6 +13,7 @@ public class PageObjectsHomePage extends BasePageFrameWork {
 
 	public void searchPracticePatientsOnHomePage(String patientname) throws InterruptedException {
 		enterText(By.cssSelector(".v-text-field__slot [type]"), patientname);
+		waitUntilElementNoLongerDisplays(10,By.cssSelector("tbody .pointer:nth-of-type(2) .text-left:nth-of-type(4)"));
 	}
 
 	public void clickOnSearchedPatient() {
@@ -23,14 +24,17 @@ public class PageObjectsHomePage extends BasePageFrameWork {
 	}
 
 	public void clickOnEllipseNextToPatientName() {
-		waitForElement(100, (By.cssSelector(".pa-0.text-right  .v-btn__content")));
-		driver.findElement(By.cssSelector(".pa-0.text-right  .v-btn__content")).click();
-		waitForElement(100, (By.cssSelector("[role] .v-sheet")));
-
+		driver.findElement(By.cssSelector("[class='text-right pa-0'] .material-icons")).click();
+	}
+	
+	public void clickOnPreAdmissionInEllipseMenu() {
+		clickElement(By.cssSelector("[role] .theme--light:nth-of-type(2) .v-list-item__title"));
 	}
 
 	public void clickOnListOptionInEllipseMenu(String listoption) {
-		List<WebElement> listOptions = driver.findElements(By.cssSelector("[role] .v-sheet']"));
+		driver.findElement(By.className("v-menu__content theme--light menuable__content__active"));
+		
+		List<WebElement> listOptions = driver.findElements(By.className("v-menu__content theme--light menuable__content__active"));
 		System.out.println(listOptions.size());
 
 		for (int i = 0; i <= listOptions.size() - 1; i++) {

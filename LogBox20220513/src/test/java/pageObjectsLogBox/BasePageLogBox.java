@@ -17,6 +17,12 @@ public class BasePageLogBox extends BasePageFrameWork {
 		driver.get(homePageURL);
 		waitForUrl(30, "premium");
 	}
+	
+	//Method:Refresh page
+	public void refreshPageOnPatientList() {
+		clickElement(By.xpath("//div[@id='recently-added-patients']/div/div[1]/div//i[.='refresh']"));
+		waitForElement(200, (By.cssSelector("tbody .pointer:nth-of-type(1) .text-start")));
+	}
 
 	// Method: Click Activity Feed main menu item
 
