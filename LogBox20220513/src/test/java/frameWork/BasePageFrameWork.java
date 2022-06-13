@@ -214,13 +214,23 @@ public class BasePageFrameWork {
 		String localTime = localDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
 		return localTime;
 	}
-	//Method:To return the current date and then add 5 min to it
-//	public long getCurrentTime() {
-//	long systemTime = System.currentTimeMillis();
-//	System.out.println("The current system time is " + systemTime);
-//	return systemTime;
-//	}
 	
+	//Method:To return the current date only
+	public String getLocalDate() {
+		LocalDateTime localDateTime = LocalDateTime.now();
+		String localDate = localDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+		return localDate;
+	}
+	
+	//Method to return the time now
+		public String getCurrentTime() {
+			LocalDateTime now = LocalDateTime.now();
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HHmmss");
+			return dtf.format(now);
+		}
+	
+	//Method:To add 5 min to current time
+		
 	//Method:Enter time in timepicker fields
 	public void enterCurrentTimePlus5Min() throws InterruptedException {
 			
