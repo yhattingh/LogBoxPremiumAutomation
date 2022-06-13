@@ -79,14 +79,17 @@ public class PreAdmissionTests extends BasePageFrameWork {
 
 	//User Story Three
 	@Test
-	public void shouldValidateRequiredFieldsWhenCreatingPreAdmissionFromEllipseList()
+	public void shouldValidateRequiredFieldsWhenCreatingPreAdmission()
 			throws IOException, InterruptedException {
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		pageObjectsHomePage.searchPracticePatientsOnHomePage("One");
-		pageObjectsHomePage.clickOnEllipseNextToPatientName();
-		pageObjectsHomePage.clickOnListOptionInEllipseMenu("Create Pre-Admission");
+		pageObjectsPreAdmissionPage.clickOnPreAdmissionButtonInLeftMenu();
+		pageObjectsPreAdmissionPage.clickCreatePreAdmissionButton();
+		pageObjectsPreAdmissionPage.clickPreAdmissionPatientSearchField();
+		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch("One");
+		pageObjectsPreAdmissionPage.selectSearchedPatientOnPreAdmission();
+		pageObjectsPreAdmissionPage.clickSelectAfterPreAdmissionPatientSearch();
 		pageObjectsPreAdmissionPage.clickSaveButton();
 	
 		//Assert: Validation displays
@@ -105,16 +108,22 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		pageObjectsPreAdmissionPage.clickOnPreAdmissionButtonInLeftMenu();
+		//get row count of preadmission before nee is created
+		//nav to home page
 		pageObjectsHomePage.searchPracticePatientsOnHomePage("One");
 		pageObjectsHomePage.clickOnEllipseNextToPatientName();
+		System.out.println("The ellipse is clicked");
 		pageObjectsHomePage.clickOnListOptionInEllipseMenu("Create Pre-Admission");
+		System.out.println("Clicked on Create Pre-Admission");
 		basePageLogBox.enterDate("10-06-2022");
 		basePageLogBox.enterTime("21:00");
 		pageObjectsPreAdmissionPage.enterAndSelectHospitalName("Wits");
 		pageObjectsPreAdmissionPage.clickAndEnterICD10CodeSearchInDialog("Malignant neoplasms follow-up");
 		pageObjectsPreAdmissionPage.clickSaveButton();
+		//get row count after new
 	
-		//Assert: Get row count before creating preadmission and row count after compare after should be plus 1
+		//Assert: row count initial is 1 less than row count after
 
 
 	}
@@ -123,123 +132,41 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	@Test
 	public void shouldCreatePreAdmissionOnCurrentDateTimeFromPatientMenuWithAllFields(String patientName)
 			throws IOException {
-		pageObjectsBrochurePage.loginUsernamePassword("lbPreAdmissionToDischarges", "LogBoxMaster");
-		System.out.println("Logged in successfully using valid username and valid password: "
-				+ "lbPreAdmissionToDischarges" + "," + "LogBoxMaster");
-		// Call method to select preadmission menu item in left pane (from baselogbox)
-
-		// Method to click on create preadmission button
-
-		// Method to add patient name
-
-		// Method to complete all fields - use a constructor here (possibly use excel
-		// for constructor)
-
-		// Verify the preadmission is created with a list
+	
 
 	}
 
 	@Test
 	public void shouldSendPreAdmissionToPatientEmailToComplete(String patientName) throws IOException {
-		pageObjectsBrochurePage.loginUsernamePassword("lbPreAdmissionToDischarges", "LogBoxMaster");
-		System.out.println("Logged in successfully using valid username and valid password: "
-				+ "lbPreAdmissionToDischarges" + "," + "LogBoxMaster");
-		// Call method to select preadmission menu item in left pane (from baselogbox)
-
-		// Method to click on create preadmission button
-
-		// Method to add patient name
-
-		// Method to add a new preadmission (possibly use API here)
-
-		// MEthod to email the preadmission to patient
-
-		// Method to login to mailbox
-
-		// Verify the email success message displays
-		// Verify the email is received in the mailbox
-
+		
 	}
 
 	@Test
 	public void shouldViewPreAdmissionFromPreAdmissionScreen(String patientName) throws IOException {
-		pageObjectsBrochurePage.loginUsernamePassword("lbPreAdmissionToDischarges", "LogBoxMaster");
-		System.out.println("Logged in successfully using valid username and valid password: "
-				+ "lbPreAdmissionToDischarges" + "," + "LogBoxMaster");
-		// Call method to select preadmission menu item in left pane (from baselogbox)
 
-		// Method to click on the preadmission
-
-		// Verify preadmission displays with all required info
 
 	}
 
 	@Test
 	public void shouldEditPreAdmissionFromPreAdmissionScreen(String patientName) throws IOException {
-		pageObjectsBrochurePage.loginUsernamePassword("lbPreAdmissionToDischarges", "LogBoxMaster");
-		System.out.println("Logged in successfully using valid username and valid password: "
-				+ "lbPreAdmissionToDischarges" + "," + "LogBoxMaster");
-		// Call method to select preadmission menu item in left pane (from baselogbox)
-
-		// Method to click on the preadmission
-
-		// Method to edit the preadmission
-
-		// MEthod to save
-
-		// Verify the save success message displays
-
-		// Method to open the preadmission again
-
-		// Verify the changed details display
+	
 	}
 
 	@Test
 	public void shouldPrintPreAdmissionFromPreAdmissionScreen(String patientName) throws IOException {
-		pageObjectsBrochurePage.loginUsernamePassword("lbPreAdmissionToDischarges", "LogBoxMaster");
-		System.out.println("Logged in successfully using valid username and valid password: "
-				+ "lbPreAdmissionToDischarges" + "," + "LogBoxMaster");
-		// Call method to select preadmission menu item in left pane (from baselogbox)
-
-		// Method to click on the print icon in preadmission list
-
-		// Method to click print in print dialog
-
-		// Verify the PDF is in the system (add target for the saved file in the
-		// project)
 
 	}
 
 	@Test
 	public void shouldCompletePreAdmissionViaKiosk(String patientName) throws IOException {
-		pageObjectsBrochurePage.loginUsernamePassword("lbPreAdmissionToDischarges", "LogBoxMaster");
-		System.out.println("Logged in successfully using valid username and valid password: "
-				+ "lbPreAdmissionToDischarges" + "," + "LogBoxMaster");
-		// Call method to select preadmission menu item in left pane (from baselogbox)
 
-		// Method to click on the print icon in preadmission list
-
-		// Method to click print in print dialog
-
-		// Verify the PDF is in the system (add target for the saved file in the
-		// project)
 
 	}
 
 	@Test
 	public void shouldDisplayNotificationInPracticeAfterCompletionOfPreAdmissionByPatient(String patientName)
 			throws IOException {
-		pageObjectsBrochurePage.loginUsernamePassword("lbPreAdmissionToDischarges", "LogBoxMaster");
-		System.out.println("Logged in successfully using valid username and valid password: "
-				+ "lbPreAdmissionToDischarges" + "," + "LogBoxMaster");
-		// Call method to select preadmission menu item in left pane (from baselogbox)
-
-		// Method to click on the print icon in preadmission list
-
-		// Method to click print in print dialog
-
-		// Verify the PDF is in the system (add target for the saved file in the
-		// project)
+	
 
 	}
 
