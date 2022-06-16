@@ -28,7 +28,7 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 		enterText(By.cssSelector("input[name='Presenting Problem']"), presentingproblem);
 	}
 
-	public void clickSaveButtonCaseFile() {
+	public void clickCaseFileDialogSaveButton() {
 		clickElement(By.cssSelector(".v-btn--has-bg.theme--light"));
 	}
 
@@ -60,29 +60,29 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 		}
 	}
 
-	public void selectItemFromDropdownList(String caseFileName) {
-
-		WebElement element = driver.findElement(By.xpath("//*[contains(text(),'" + caseFileName + "')]"));
-
+	//Method:  Select a Case File from Dropdown list
+	public void selectItemFromDropdownList(String caseFileName) throws InterruptedException {
+		
+		WebElement element = driver.findElement(By.cssSelector(".justify-space-between.row"));
+		
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+		
 		clickElement(By.xpath("//*[contains(text(),'" + caseFileName + "')]"));
 
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-
 		System.out.println("Which case file was selected" + " " + getTextFromFirstItemOnCaseFilesList());
-
 	}
 
-	// https://www.tutorialspoint.com/scroll-element-into-view-with-selenium
-
+	//Method:  Click Add Activity Button
 	public void clickAddActivityButton() {
-		clickElement(By
-				.cssSelector(".mx-0.primary--text.theme--light.v-btn.v-btn--outlined.v-size--small > .v-btn__content"));
+		clickElement(By.cssSelector(".mx-0.primary--text.theme--light.v-btn.v-btn--outlined.v-size--small > .v-btn__content"));
 	}
 
+	//Method:  Enter Text in Activity Dialog Box
 	public void addTextNote(String enterTextNote) throws InterruptedException {
 		enterText(By.cssSelector("[rows]"), enterTextNote);
 	}
 
+	//Method:  Click on the Post Button in the Activity Dialog Box
 	public void clickPostButton() {
 		clickElement(By.cssSelector("button#add-activity-submit-btn-id > .v-btn__content"));
 	}
@@ -99,10 +99,6 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 		waitUntilElementNoLongerDisplays(100, By.cssSelector(".success .v-snack__content"));
 	}
 
-	public void clickOnSearchedPatient() {
-		clickElement(By.cssSelector(".justify-center"));
-	}
-
 	public void searchPracticePatientsOnHomePage(String patientname) throws InterruptedException {
 		enterText(By.cssSelector(".v-text-field__slot [type]"), patientname);
 	}
@@ -110,8 +106,9 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 	public void selectCategory(String categorytext) {
 		clickElement(By.xpath("//*[contains(text(),'" + categorytext + "')]"));
 	}
-
-	public void clickDiagnosisButton() {
+	
+	// Method:  Click on the Diagnosis Action Icon at Top of the Page
+	public void clickDiagnosisActionIcon() {
 		clickElement(By.cssSelector(".row > button:nth-of-type(3)"));
 	}
 
@@ -133,6 +130,7 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 	}
 
 	public void removeICD10Code(String selectICD10Code) {
+		waitForElement(100, By.xpath("//div[@role='list']/div[1]/div[3]/button[@type='button']//i[.='close']"));
 		clickElement(By.xpath("//div[@role='list']/div[1]/div[3]/button[@type='button']//i[.='close']"));
 	}
 
@@ -152,5 +150,14 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 				break;
 			}
 		}
+	}
+	
+	public void clickActivityPostButton() {
+		clickElement(By.cssSelector("button#add-activity-submit-btn-id > .v-btn__content"));
+	}
+	
+	//Method:  Click ActivityFeed to Update Activity
+	public void clickActivityFeedToUpdateActivity() {
+		clickElement(By.cssSelector(".col.col-12.text-start > span:nth-of-type(1)"));
 	}
 }

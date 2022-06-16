@@ -1,10 +1,14 @@
 package pageObjectsLogBox;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.hssf.record.RefreshAllRecord;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.testng.annotations.Test;
 
 import frameWork.BasePageFrameWork;
@@ -17,11 +21,12 @@ public class PageObjectsHomePage extends BasePageFrameWork {
 	}
 
 	public void clickOnSearchedPatient() {
-		waitForElement(100, (By.cssSelector("tbody .pointer:nth-of-type(1) .text-start")));
+		//waitForElement(100, (By.cssSelector("tbody .pointer:nth-of-type(1) .text-start")));
+		waitUntilElementNoLongerDisplays(50, By.className(".pageLoadingBar"));
 		driver.findElement(By.cssSelector("tbody .pointer:nth-of-type(1) .text-start")).click();
 		// [data-cy] tr td:nth-of-type(2)
 	}
-
+	
 	public void clickOnEllipseNextToPatientName() {
 		driver.findElement(By.cssSelector("[class='text-right pa-0'] .material-icons")).click();
 	}

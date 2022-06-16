@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testng-results ignored="2" total="3" passed="1" failed="0" skipped="0">
   <reporter-output>
+    <line>
+      <![CDATA[The following activity was created successfully: This is a new activity note created on 16-06-2022 14:08:23]]>
+    </line>
   </reporter-output>
-  <suite started-at="2022-06-13T20:03:46Z" name="Default suite" finished-at="2022-06-13T20:04:11Z" duration-ms="24936">
+  <suite started-at="2022-06-16T12:06:19Z" name="Default suite" finished-at="2022-06-16T12:08:26Z" duration-ms="127003">
     <groups>
     </groups>
-    <test started-at="2022-06-13T20:03:46Z" name="Default test" finished-at="2022-06-13T20:04:11Z" duration-ms="24936">
+    <test started-at="2022-06-16T12:06:19Z" name="Default test" finished-at="2022-06-16T12:08:26Z" duration-ms="127003">
       <class name="testsLogBox.ActivityFeedTests.ActivityTests">
-        <test-method signature="shouldUpdateDiagnosticCodesForAnActivity()[pri:0, instance:testsLogBox.ActivityFeedTests.ActivityTests@75504cef]" started-at="2022-06-13T20:03:46Z" name="shouldUpdateDiagnosticCodesForAnActivity" finished-at="2022-06-13T20:04:11Z" duration-ms="24918" status="PASS">
+        <test-method signature="shouldCreateActivityForSelectedPatient()[pri:0, instance:testsLogBox.ActivityFeedTests.ActivityTests@75504cef]" started-at="2022-06-16T12:06:19Z" name="shouldCreateActivityForSelectedPatient" finished-at="2022-06-16T12:08:26Z" duration-ms="126985" status="PASS">
           <reporter-output>
+            <line>
+              <![CDATA[The following activity was created successfully: This is a new activity note created on 16-06-2022 14:08:23]]>
+            </line>
           </reporter-output>
-        </test-method> <!-- shouldUpdateDiagnosticCodesForAnActivity -->
+        </test-method> <!-- shouldCreateActivityForSelectedPatient -->
       </class> <!-- testsLogBox.ActivityFeedTests.ActivityTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
