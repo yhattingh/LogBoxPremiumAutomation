@@ -63,13 +63,14 @@ public class PageObjectsPreAdmissionPage extends BasePageFrameWork {
 		clickElement(By.cssSelector(".v-btn--has-bg"));
 	}
 
-	public void enterSpecialInstructionsToPatient() throws InterruptedException {
-		enterText(By.cssSelector("[placeholder]"), "test");
+	public void enterSpecialInstructionsToPatient(String instructions) throws InterruptedException {
+		enterText(By.cssSelector("[placeholder]"), instructions);
 	}
 	
 	public void enterAndSelectHospitalName(String hospitalName) throws InterruptedException {
-		enterText(By.cssSelector("div[name='Hospital Name*']  div[role='combobox']"), hospitalName);
-		clickElement(By.className("v-list-item__content"));
+		clickElement(By.cssSelector("[data-cy='lb-hospital-search']"));
+		enterText(By.cssSelector("[data-cy='lb-hospital-search']"), hospitalName);
+		clickElement(By.className("div[role='option']  .v-list-item__title"));
 	}
 	
 	public void clickOnICD10Code() throws InterruptedException {

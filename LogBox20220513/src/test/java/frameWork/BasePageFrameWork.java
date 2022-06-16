@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -71,9 +72,17 @@ public class BasePageFrameWork {
 
 	// Method: Clear text from Field
 	public void clearText(By pLocator) {
-		waitforClick(30, pLocator);
+		waitforClick(50, pLocator);
 		driver.findElement(pLocator).clear();
 	}
+	
+	// Method: Select all text in a field and delete
+		public void deleteText(By pLocator) {
+			waitforClick(50, pLocator);
+			driver.findElement(pLocator).sendKeys(Keys.CONTROL +"a");
+			driver.findElement(pLocator).sendKeys(Keys.DELETE);		
+		}
+
 
 	// Method: Click on an Element
 	public void clickElement(By pLocator) {
@@ -225,7 +234,7 @@ public class BasePageFrameWork {
 	//Method to return the time now
 		public String getCurrentTime() {
 			LocalDateTime now = LocalDateTime.now();
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HHmmss");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
 			return dtf.format(now);
 		}
 	
