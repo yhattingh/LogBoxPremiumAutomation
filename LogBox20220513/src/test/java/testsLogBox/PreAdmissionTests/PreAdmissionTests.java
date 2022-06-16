@@ -14,6 +14,7 @@ import org.testng.asserts.SoftAssert;
 import frameWork.BasePageFrameWork;
 import frameWork.ReadDataFromExcel;
 import pageObjectsLogBox.BasePageLogBox;
+import pageObjectsLogBox.PageObjectsActivityPage;
 import pageObjectsLogBox.PageObjectsBrochurePage;
 import pageObjectsLogBox.PageObjectsHomePage;
 import pageObjectsLogBox.PageObjectsPreAdmissionPage;
@@ -25,6 +26,8 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	PageObjectsPreAdmissionPage pageObjectsPreAdmissionPage = new PageObjectsPreAdmissionPage();
 	ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
 	PageObjectsHomePage pageObjectsHomePage = new PageObjectsHomePage();
+	PageObjectsActivityPage pageObjectsActivityPage = new PageObjectsActivityPage();
+	
 	
 //	@AfterTest
 //	public void cleanUpAfterTest() throws InterruptedException {
@@ -34,20 +37,22 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	//User Story One
 	@Test
 	public void shouldOpenPreAdmissionPageAfterPatientSearch() throws IOException, InterruptedException {
+		String patientName = "One";
+		
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		pageObjectsPreAdmissionPage.clickOnPreAdmissionButtonInLeftMenu();
 		pageObjectsPreAdmissionPage.clickCreatePreAdmissionButton();
 		pageObjectsPreAdmissionPage.clickPreAdmissionPatientSearchField();
-		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch("One");
+		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch(patientName);
 		pageObjectsPreAdmissionPage.selectSearchedPatientOnPreAdmission();
 		pageObjectsPreAdmissionPage.clickSelectAfterPreAdmissionPatientSearch();
 		//Assert
-		String patientName = pageObjectsPreAdmissionPage.getTextFromPreAdmissionPatientHeader();
+		String patientNameHeader = pageObjectsPreAdmissionPage.getTextFromPreAdmissionPatientHeader();
 		String feedURL = driver.getCurrentUrl();
 		Assert.assertTrue(feedURL.contains("preAdmission"));
-		Assert.assertTrue(patientName.contains("One"));
+		Assert.assertTrue(patientNameHeader.contains("One"));
 		Reporter.log("URL contains \"preAdmission\"");
 		Reporter.log("A new PreAdmission page was opened for patient: PreAdmission One");
 	}
@@ -57,13 +62,16 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	@Test
 	public void shouldNotAllowPreadmissionForDraftPatient()
 			throws IOException, InterruptedException {
+		
+		String patientName = "Draft";
+		
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		pageObjectsPreAdmissionPage.clickOnPreAdmissionButtonInLeftMenu();
 		pageObjectsPreAdmissionPage.clickCreatePreAdmissionButton();
 		pageObjectsPreAdmissionPage.clickPreAdmissionPatientSearchField();
-		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch("Draft");
+		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch(patientName);
 		pageObjectsPreAdmissionPage.selectSearchedPatientOnPreAdmission();
 		pageObjectsPreAdmissionPage.clickSelectAfterPreAdmissionPatientSearch();
 	
@@ -81,15 +89,19 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	@Test
 	public void shouldValidateRequiredFieldsWhenCreatingPreAdmission()
 			throws IOException, InterruptedException {
+		String patientName = "One";
+		String instructions = "Test";
+		
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		pageObjectsPreAdmissionPage.clickOnPreAdmissionButtonInLeftMenu();
 		pageObjectsPreAdmissionPage.clickCreatePreAdmissionButton();
 		pageObjectsPreAdmissionPage.clickPreAdmissionPatientSearchField();
-		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch("One");
+		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch(patientName);
 		pageObjectsPreAdmissionPage.selectSearchedPatientOnPreAdmission();
 		pageObjectsPreAdmissionPage.clickSelectAfterPreAdmissionPatientSearch();
+		pageObjectsPreAdmissionPage.enterSpecialInstructionsToPatient(instructions);
 		pageObjectsPreAdmissionPage.clickSaveButton();
 	
 		//Assert: Validation displays
@@ -108,16 +120,16 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		pageObjectsPreAdmissionPage.clickOnPreAdmissionButtonInLeftMenu();
 		//get row count of preadmission before nee is created
 		//nav to home page
 		pageObjectsHomePage.searchPracticePatientsOnHomePage("One");
 		pageObjectsHomePage.clickOnEllipseNextToPatientName();
 		System.out.println("The ellipse is clicked");
-		pageObjectsHomePage.clickOnListOptionInEllipseMenu("Create Pre-Admission");
+		pageObjectsActivityPage.selectOptionFromMoreButtonList("Create Pre-Admission");
+		//pageObjectsHomePage.clickOnListOptionInEllipseMenu("Create Pre-Admission");
 		System.out.println("Clicked on Create Pre-Admission");
-		basePageLogBox.enterDate("10-06-2022");
-		basePageLogBox.enterTime("21:00");
+		basePageLogBox.enterDate("17-06-2022");
+		basePageLogBox.enterTime("2100");
 		pageObjectsPreAdmissionPage.enterAndSelectHospitalName("Wits");
 		pageObjectsPreAdmissionPage.clickAndEnterICD10CodeSearchInDialog("Malignant neoplasms follow-up");
 		pageObjectsPreAdmissionPage.clickSaveButton();
@@ -136,6 +148,7 @@ public class PreAdmissionTests extends BasePageFrameWork {
 
 	}
 
+	//User Story Six
 	@Test
 	public void shouldSendPreAdmissionToPatientEmailToComplete(String patientName) throws IOException {
 		

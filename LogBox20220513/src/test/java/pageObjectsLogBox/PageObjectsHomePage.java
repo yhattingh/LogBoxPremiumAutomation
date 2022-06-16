@@ -31,9 +31,9 @@ public class PageObjectsHomePage extends BasePageFrameWork {
 		driver.findElement(By.cssSelector("[class='text-right pa-0'] .material-icons")).click();
 	}
 	
-	public void clickOnPreAdmissionInEllipseMenu() {
-		clickElement(By.cssSelector("[role] .theme--light:nth-of-type(2) .v-list-item__title"));
-	}
+//	public void clickOnPreAdmissionInEllipseMenu() {
+//		clickElement(By.cssSelector("[role] .theme--light:nth-of-type(2) .v-list-item__title"));
+//	}
 
 	public void clickOnListOptionInEllipseMenu(String listoption) {
 		driver.findElement(By.className("v-menu__content theme--light menuable__content__active"));
