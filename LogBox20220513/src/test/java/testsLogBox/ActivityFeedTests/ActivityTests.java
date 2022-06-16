@@ -37,14 +37,13 @@ public class ActivityTests extends BasePageFrameWork{
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
     	pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		pageObjectsActivityPage.searchPracticePatientsOnHomePage(patientName);
-		pageObjectsHomePage.clickRefreshButton();
-		pageObjectsActivityPage.clickOnSearchedPatient();
+		pageObjectsHomePage.clickOnSearchedPatient();
 		pageObjectsActivityPage.clickMoreButton();
 		pageObjectsActivityPage.selectOptionFromMoreButtonList(selectOptionFromButtonList);
 		localDateTime = basePageFrameWork.getLocalDateTime();
 		System.out.println("CURRENT LOCAL TIME" + " " + localDateTime);
 		pageObjectsActivityPage.inputCaseFileProblem(inputOnCaseFile + " " + localDateTime);
-		pageObjectsActivityPage.clickSaveButtonCaseFile();
+		pageObjectsActivityPage.clickCaseFileDialogSaveButton();
 		pageObjectsActivityPage.waitForCaseFileCreatedSnackContentToNoLongerDisplay();
 		textFromFirstItemOnCaseFilesList = pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList();
 		System.out.println("The latest item on the list is: " + " " + textFromFirstItemOnCaseFilesList);
@@ -60,9 +59,8 @@ public class ActivityTests extends BasePageFrameWork{
 	public void shouldCreateActivityForSelectedPatient() throws InterruptedException, IOException {
 		
 		String localDateTime;
-		String selectedCaseFile = "Initial case file";
-//		String selectedCaseFile = "Case file added on 11-06-2022 13:07:29";
-//		String selectedCaseFile = "test";
+//		String selectedCaseFile = "Initial case file";
+		String selectedCaseFile = "Case file added on 13-06-2022 22:01:43";
 		String textNote = "This is a new activity note created on ";
 		String patientName = "John";
 	
@@ -70,11 +68,10 @@ public class ActivityTests extends BasePageFrameWork{
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
     	pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		pageObjectsActivityPage.searchPracticePatientsOnHomePage(patientName);
-		pageObjectsHomePage.clickRefreshButton();
-		pageObjectsActivityPage.clickOnSearchedPatient();
+		pageObjectsHomePage.clickOnSearchedPatient();
 		pageObjectsActivityPage.clickCaseFilesDropdown();
-		pageObjectsActivityPage.selectCaseFileFromDropdownList(selectedCaseFile);
-		//pageObjectsActivityPage.selectItemFromDropdownList(selectedCaseFile);
+//		pageObjectsActivityPage.selectCaseFileFromDropdownList(selectedCaseFile);
+		pageObjectsActivityPage.selectItemFromDropdownList(selectedCaseFile);
 		System.out.println("Case File number entered: " + " " + selectedCaseFile);
 		pageObjectsActivityPage.clickAddActivityButton();
 		localDateTime = basePageFrameWork.getLocalDateTime();
@@ -87,7 +84,7 @@ public class ActivityTests extends BasePageFrameWork{
 	
 	// User Story Three
 	@Test
-	public void shouldUpdateDiagnosticCodesForAnActivity() throws InterruptedException, IOException {
+	public void shouldRemoveDiagnosticCodeForAnActivity() throws InterruptedException, IOException {
 		String localDateTime;
 		String patientName = "John";
 		String selectOptionFromButtonList = "Create Case File";
@@ -102,30 +99,32 @@ public class ActivityTests extends BasePageFrameWork{
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
     	pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		pageObjectsActivityPage.searchPracticePatientsOnHomePage(patientName);
-		pageObjectsHomePage.clickRefreshButton();
-		pageObjectsActivityPage.clickOnSearchedPatient();
+		pageObjectsHomePage.clickOnSearchedPatient();
 		pageObjectsActivityPage.clickMoreButton();
 		pageObjectsActivityPage.selectOptionFromMoreButtonList(selectOptionFromButtonList);
 		localDateTime = basePageFrameWork.getLocalDateTime();
 		System.out.println("CURRENT LOCAL TIME" + " " + localDateTime);
 		pageObjectsActivityPage.inputCaseFileProblem(inputOnCaseFile + " " + localDateTime);
-		pageObjectsActivityPage.clickSaveButtonCaseFile();
-		pageObjectsActivityPage.waitForCaseFileCreatedSnackContentToNoLongerDisplay();
+		pageObjectsActivityPage.clickCaseFileDialogSaveButton();
+		pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList();
 		pageObjectsActivityPage.clickAddActivityButton();
 		pageObjectsActivityPage.selectCategory(categorytext);
 		localDateTime = basePageFrameWork.getLocalDateTime();
 		pageObjectsActivityPage.addTextNote(textNote + localDateTime);
-		pageObjectsActivityPage.clickDiagnosisButton();
+		pageObjectsActivityPage.clickDiagnosisActionIcon();
 		pageObjectsActivityPage.searchForICD10Code(icd10Code);
 		pageObjectsActivityPage.selectICD10Code(selectICD10Code1);
 		pageObjectsActivityPage.selectICD10Code(selectICD10Code2);
 		pageObjectsActivityPage.clickAddButtonOnICD10CodeDialog();
+		pageObjectsActivityPage.clickActivityPostButton();
 		System.out.println("ICD10 Codes selected :" + " " + selectICD10Code1 + " " +  ";" + " " + selectICD10Code2);
-		pageObjectsActivityPage.removeICD10Code(selectICD10Code2);
+		pageObjectsActivityPage.clickActivityFeedToUpdateActivity();
+		pageObjectsActivityPage.removeICD10Code(selectICD10Code1);
+		pageObjectsActivityPage.clickActivityPostButton();
 		//pageObjectsActivityPage.clickRemoveButton(selectICD10Code2);
 		System.out.println("Codes after remove action: " + " " + pageObjectsActivityPage.getTextForSelectedDiagnosisCodes());
 		Assert.assertTrue(pageObjectsActivityPage.getTextForSelectedDiagnosisCodes().contains(selectICD10Code2));
-		
+		Reporter.log("One diagnosis code removed successfully.  Diagnosis code remaining:" + " " + pageObjectsActivityPage.getTextForSelectedDiagnosisCodes());
 
 	}
 

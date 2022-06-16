@@ -5,7 +5,7 @@
     <classes>
       <class name="testsLogBox.ActivityFeedTests.ActivityTests">
         <methods>
-          <include name="shouldUpdateDiagnosticCodesForAnActivity"/>
+          <include name="shouldCreateActivityForSelectedPatient"/>
         </methods>
       </class> <!-- testsLogBox.ActivityFeedTests.ActivityTests -->
     </classes>
