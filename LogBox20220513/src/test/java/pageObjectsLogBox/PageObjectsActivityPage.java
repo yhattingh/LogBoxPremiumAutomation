@@ -1,47 +1,50 @@
 package pageObjectsLogBox;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import org.hamcrest.core.StringContains;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 import frameWork.BasePageFrameWork;
 
 public class PageObjectsActivityPage extends BasePageFrameWork {
-
+	
+	// Method:  Click on More Button on Activity Feed page
 	public void clickMoreButton() {
 		// waitForElement(50, (By.cssSelector(".v-size--small .theme--light")));
 		clickElement(By.cssSelector(".v-size--small .theme--light"));
 
 	}
 
+	// Method:  Select an Option From an Open Dialog Box
 	public void selectOptionFromMoreButtonList(String optiontext) {
 		clickElement(By.xpath("//*[contains(text(),'" + optiontext + "')]"));
 	}
 
-	public void inputCaseFileProblem(String presentingproblem) throws InterruptedException {
+	// Method:  Add a Presenting Problem on Case File Dialog Box
+	public void inputCaseFilePresentingProblem(String presentingproblem) throws InterruptedException {
 		enterText(By.cssSelector("input[name='Presenting Problem']"), presentingproblem);
 	}
 
+	// Method:  Click SAVE button on Case File Dialog Box
 	public void clickCaseFileDialogSaveButton() {
 		clickElement(By.cssSelector(".v-btn--has-bg.theme--light"));
 	}
 
+	// Method:  Click on the Case Files DropDown Box
 	public void clickCaseFilesDropdown() throws InterruptedException {
 		clickElement(By.cssSelector(".justify-space-between.row"));
 	}
 
+	// Method:  Get the Text From the First Item in the Case Files DropDown Box
 	public String getTextFromFirstItemOnCaseFilesList() {
 		waitUntilElementNoLongerDisplays(50, By.cssSelector(".success .v-snack__content"));
 		String textFromCaseFilesList = getElementText(By.cssSelector(".black--text"));
 		return textFromCaseFilesList;
 	}
 
+	// Method:  Select a Case File From the Case Files DropDown Box
 	public void selectCaseFileFromDropdownList(String caseFileName) {
 
 		// Click on Dropdown
@@ -60,7 +63,7 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 		}
 	}
 
-	//Method:  Select a Case File from Dropdown list
+	//Method:  Select a Case File From the Case Files DropDown Box Using scrollIntoView
 	public void selectItemFromDropdownList(String caseFileName) throws InterruptedException {
 		
 		WebElement element = driver.findElement(By.cssSelector(".justify-space-between.row"));
@@ -87,6 +90,7 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 		clickElement(By.cssSelector("button#add-activity-submit-btn-id > .v-btn__content"));
 	}
 
+	// Method:  Get Text From the Activity Notes
 	public String getTextFromActivityNote() throws InterruptedException {
 		waitForElement(1500, By.cssSelector(
 				"div:nth-of-type(1) > .mb-3.pb-2.theme--light.v-card.v-sheet > .no-gutters.row > .v-card__text  .col.pr-3"));
@@ -95,14 +99,12 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 		return textFromActivityNote;
 	}
 
+	// Method:  Wait for Page Message To No Longer Display
 	public void waitForCaseFileCreatedSnackContentToNoLongerDisplay() {
 		waitUntilElementNoLongerDisplays(100, By.cssSelector(".success .v-snack__content"));
 	}
 
-	public void searchPracticePatientsOnHomePage(String patientname) throws InterruptedException {
-		enterText(By.cssSelector(".v-text-field__slot [type]"), patientname);
-	}
-
+	// Method:  Select the Category for Activity Note
 	public void selectCategory(String categorytext) {
 		clickElement(By.xpath("//*[contains(text(),'" + categorytext + "')]"));
 	}
@@ -112,28 +114,34 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 		clickElement(By.cssSelector(".row > button:nth-of-type(3)"));
 	}
 
+	// Method:  Search for ICD10Code
 	public void searchForICD10Code(String icd10Code) throws InterruptedException {
 		enterText(By.cssSelector("[type='text']"), icd10Code);
 	}
 
+	// Method:  Select a ICD10Code
 	public void selectICD10Code(String selectICD10Code) {
 		clickElement(By.xpath("//*[contains(text(),'" + selectICD10Code + "')]"));
 	}
-
+	
+	// Method:  Select a ICD10Code  
 	public void clickAddButtonOnICD10CodeDialog() {
 		clickElement(By.cssSelector(".primary--text.theme--light.v-btn.v-btn--text.v-size--default > .v-btn__content"));
 	}
 
+	// Method:  Get Text of Selected/Added Diagnosis Codes / ICD10 Code
 	public String getTextForSelectedDiagnosisCodes() {
 		String textFromSelectedDiagnosisCodes = getElementText(By.cssSelector("[class='row mt-1'] .v-list"));
 		return textFromSelectedDiagnosisCodes;
 	}
 
+	// Method:  Remove one of the Diagnosis Codes / ICD10 Code
 	public void removeICD10Code(String selectICD10Code) {
 		waitForElement(100, By.xpath("//div[@role='list']/div[1]/div[3]/button[@type='button']//i[.='close']"));
 		clickElement(By.xpath("//div[@role='list']/div[1]/div[3]/button[@type='button']//i[.='close']"));
 	}
 
+	// Method:  Remove selected Diagnosis Codes / ICD10 Code
 	public void clickRemoveButton(String selectICD10Code) {
 
 		// driver.findElement(By.className("v-select__selections"));
@@ -152,12 +160,13 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 		}
 	}
 	
+	// Method:  Click the Post Button on the Activity Dialog
 	public void clickActivityPostButton() {
 		clickElement(By.cssSelector("button#add-activity-submit-btn-id > .v-btn__content"));
 	}
 	
-	//Method:  Click ActivityFeed to Update Activity
-	public void clickActivityFeedToUpdateActivity() {
+	// Method:  Click ActivityFeed to Update Activity
+	public void clickOnActivityFeedToUpdateActivity() {
 		clickElement(By.cssSelector(".col.col-12.text-start > span:nth-of-type(1)"));
 	}
 }

@@ -7,7 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.Properties;
@@ -244,5 +246,35 @@ public class BasePageFrameWork {
 	public void enterCurrentTimePlus5Min() throws InterruptedException {
 			
 			}
+	
+	// Method:  Add or substract n days from LocalDate
+	public LocalDate getDateWithAddSubstractDays(int numberofdays) {
+		LocalDate localDate = LocalDate.now();
+		LocalDate newDate = localDate.plusDays(numberofdays);
+		return newDate;
+	}
+	
+	// Method:  Add or substract n months from LocalDate
+	public LocalDate getDateWithAddSubstractMonths(int numberofmonths) {
+		LocalDate localDate = LocalDate.now();
+		LocalDate newDate = localDate.plusMonths(numberofmonths);
+		return newDate;
+	}
+	
+	// Method:  Add or substract n minutes from LocalDate
+	public String getTimeWithAddSubstractMinutes(int numberofminutes) {
+		LocalTime localTime = LocalTime.now();
+		LocalTime newMinutes = localTime.plusMinutes(numberofminutes);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+		return dtf.format(newMinutes);
+	}
+	
+	// Method:  Add or substract n minutes from LocalDate
+	public String getTimeWithAddSubstractHours(int numberofhours) {
+		LocalTime localTime = LocalTime.now();
+		LocalTime newMinutes = localTime.plusHours(numberofhours);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+		return dtf.format(newMinutes);
+	}
 
 }
