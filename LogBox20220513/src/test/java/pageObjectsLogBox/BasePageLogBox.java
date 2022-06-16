@@ -1,6 +1,7 @@
 package pageObjectsLogBox;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 import org.openqa.selenium.By;
@@ -18,13 +19,10 @@ public class BasePageLogBox extends BasePageFrameWork {
 		waitForUrl(30, "premium");
 	}
 
-	// Method:Refresh page
-	public void refreshPageOnPatientList() {
-		clickElement(By.xpath("//div[@id='recently-added-patients']/div/div[1]/div//i[.='refresh']"));
-		waitForElement(200, (By.cssSelector("tbody .pointer:nth-of-type(1) .text-start")));
+	// Method: Click Activity Feed Main Menu Item
+	public void clickActivityMainMenuItem() {
+		clickElement(By.cssSelector("a:nth-of-type(2) > .v-btn__content"));
 	}
-
-	// Method: Click Activity Feed main menu item
 
 	// Method: Click Practice main menu item
 
@@ -45,5 +43,4 @@ public class BasePageLogBox extends BasePageFrameWork {
 		deleteText(By.cssSelector(timeSelector));
 		enterText(By.cssSelector(timeSelector), desiredTime);
 	}
-
 }
