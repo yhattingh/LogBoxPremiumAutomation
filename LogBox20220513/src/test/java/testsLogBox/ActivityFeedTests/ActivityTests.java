@@ -1,10 +1,9 @@
 package testsLogBox.ActivityFeedTests;
 
-import static org.testng.Assert.assertTrue;
+//import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
@@ -104,7 +103,6 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		pageObjectsHomePage.searchPracticePatientsOnHomePage(patientName);
-		// pageObjectsActivityPage.searchPracticePatientsOnHomePage(patientName);
 		pageObjectsHomePage.clickOnSearchedPatient();
 		pageObjectsActivityPage.clickMoreButton();
 		pageObjectsActivityPage.selectOptionFromMoreButtonList(selectOptionFromButtonList);
@@ -125,9 +123,9 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsActivityPage.clickActivityPostButton();
 		System.out.println("ICD10 Codes selected :" + " " + selectICD10Code1 + " " + ";" + " " + selectICD10Code2);
 		pageObjectsActivityPage.clickOnActivityFeedToUpdateActivity();
-		pageObjectsActivityPage.removeICD10Code(selectICD10Code1);
+		pageObjectsActivityPage.clickRemoveButton(selectICD10Code1);
 		pageObjectsActivityPage.clickActivityPostButton();
-		// pageObjectsActivityPage.clickRemoveButton(selectICD10Code2);
+		//pageObjectsActivityPage.clickRemoveButton(selectICD10Code2);
 		System.out.println(
 				"Codes after remove action: " + " " + pageObjectsActivityPage.getTextForSelectedDiagnosisCodes());
 		Assert.assertTrue(pageObjectsActivityPage.getTextForSelectedDiagnosisCodes().contains(selectICD10Code2));
@@ -137,9 +135,9 @@ public class ActivityTests extends BasePageFrameWork {
 
 	// User story four
 	@Test
-	public void shouldChangeDateOnActivity() throws InterruptedException, IOException {
+	public void shouldSelectInpatientLocation() throws InterruptedException, IOException {
 
-		String searchedActivity = "Jane";
+		String searchedActivity = "Case file added on 14-06-2022 08:28:34";
 
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
@@ -148,10 +146,25 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsActivityFeedPage.searchForActivity(searchedActivity);
 		pageObjectsActivityFeedPage.clickActivity();
 		pageObjectsActivityFeedPage.clickToEditActivity();
-		pageObjectsActivityFeedPage.clickDateTimeButton();
+		pageObjectsActivityFeedPage.clickInpatientButton();
+		pageObjectsActivityFeedPage.clickLocationDialog();
+		//pageObjectsActivityFeedPage.selectInpatientRadio();
+		pageObjectsActivityFeedPage.clickSetButtonOnLocationDialogBox();
 
 	}
+	
+	// User story five
+	@Test
+	public void shouldSelectCheckBox() throws InterruptedException, IOException {
 
+		String searchedActivity = "Case file added on 14-06-2022 08:28:34";
+
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		basePageLogBox.clickMDTMeetings();
+	}
+	
 	// Test to change dates
 	@Test
 	public void shouldSelectDifferentDates() {
@@ -161,7 +174,4 @@ public class ActivityTests extends BasePageFrameWork {
 		System.out.println("Time with changed hours:" + " " + basePageFrameWork.getTimeWithAddSubstractHours(3));
 
 	}
-
-	// BasePageFrameWork: Added methods to change date and time; ActivityTests and
-	// PageObjectsActivityPage: Added user story 4 with methods
 }

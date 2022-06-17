@@ -23,6 +23,11 @@ public class BasePageLogBox extends BasePageFrameWork {
 	public void clickActivityMainMenuItem() {
 		clickElement(By.cssSelector("a:nth-of-type(2) > .v-btn__content"));
 	}
+	
+	// Method:  Click on MDT Meeting in Quick Links Bar
+	public void clickMDTMeetings() {
+		clickElement(By.xpath("//div[@id='app']/div[@class='v-application--wrap']/div[1]/nav//a[@href='#/mdt-meeting']//i[.='groups']"));
+	}
 
 	// Method: Click Practice main menu item
 
