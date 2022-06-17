@@ -43,4 +43,32 @@ public class BasePageLogBox extends BasePageFrameWork {
 		deleteText(By.cssSelector(timeSelector));
 		enterText(By.cssSelector(timeSelector), desiredTime);
 	}
+
+	public void enterHospitalName(String hospitalName) throws InterruptedException {
+		clickElement(By.cssSelector("[data-cy='lb-hospital-search']"));
+		enterText(By.cssSelector("[data-cy='lb-hospital-search']"), hospitalName);
+	}
+
+	public void SelectHospitalName(String hospitalName) throws InterruptedException {
+		waitForElement(50, (By.cssSelector("div[role='option']  .v-list-item__title")));
+		clickElement(By.cssSelector("div[role='option']  .v-list-item__title"));
+	}
+
+	// Method: Search for ICD10Code
+	public void searchForICD10Code(String icd10Code) throws InterruptedException {
+		waitForElement(100, (By.cssSelector("[data-cy] .v-toolbar__title")));
+		clickElement(By.cssSelector(".v-input--hide-details [type]"));
+		enterText(By.cssSelector(".v-input--hide-details [type]"), icd10Code);
+	}
+
+	// Method: Select an ICD10Code
+	public void selectICD10Code(String selectICD10Code) {
+		clickElement(By.xpath("//*[contains(text(),'" + selectICD10Code + "')]"));
+	}
+
+	// Method: Add an ICD10Code
+	public void clickAddButtonOnICD10CodeDialog() {
+		clickElement(By.cssSelector(".primary--text.theme--light.v-btn.v-btn--text.v-size--default > .v-btn__content"));
+	}
+
 }

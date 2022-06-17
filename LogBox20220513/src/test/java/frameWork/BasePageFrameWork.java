@@ -77,14 +77,13 @@ public class BasePageFrameWork {
 		waitforClick(50, pLocator);
 		driver.findElement(pLocator).clear();
 	}
-	
-	// Method: Select all text in a field and delete
-		public void deleteText(By pLocator) {
-			waitforClick(50, pLocator);
-			driver.findElement(pLocator).sendKeys(Keys.CONTROL +"a");
-			driver.findElement(pLocator).sendKeys(Keys.DELETE);		
-		}
 
+	// Method: Select all text in a field and delete
+	public void deleteText(By pLocator) {
+		waitforClick(50, pLocator);
+		driver.findElement(pLocator).sendKeys(Keys.CONTROL + "a");
+		driver.findElement(pLocator).sendKeys(Keys.DELETE);
+	}
 
 	// Method: Click on an Element
 	public void clickElement(By pLocator) {
@@ -207,7 +206,7 @@ public class BasePageFrameWork {
 		WebDriverWait wait = new WebDriverWait(driver, elementWait);
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(pLocator));
 	}
-	
+
 	// Method: Wait for Element To No Longer Display
 	public void waitUntilElementNoLongerDisplays(int elementWait, By pLocator) {
 		WebDriverWait wait = new WebDriverWait(driver, elementWait);
@@ -220,56 +219,50 @@ public class BasePageFrameWork {
 		wait.until(ExpectedConditions.urlContains(pLocator));
 	}
 
+	//Method:To return the formatted current date and time
 	public String getLocalDateTime() {
 		LocalDateTime localDateTime = LocalDateTime.now();
-		String localTime = localDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
-		return localTime;
+		String localDateTimeString = localDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+		return localDateTimeString;
 	}
-	
-	//Method:To return the current date only
+
+	// Method:To return the formatted current date only
 	public String getLocalDate() {
 		LocalDateTime localDateTime = LocalDateTime.now();
 		String localDate = localDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 		return localDate;
 	}
-	
-	//Method to return the time now
-		public String getCurrentTime() {
-			LocalDateTime now = LocalDateTime.now();
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
-			return dtf.format(now);
-		}
-	
-	//Method:To add 5 min to current time
-		
-	//Method:Enter time in timepicker fields
-	public void enterCurrentTimePlus5Min() throws InterruptedException {
-			
-			}
-	
-	// Method:  Add or substract n days from LocalDate
+
+	// Method to return the formatted current time only
+	public String getCurrentTime() {
+		LocalDateTime localDateTime = LocalDateTime.now();
+		String localTime = localDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+		return localTime;
+	}
+
+	// Method: Add or substract n days from LocalDate
 	public LocalDate getDateWithAddSubstractDays(int numberofdays) {
 		LocalDate localDate = LocalDate.now();
 		LocalDate newDate = localDate.plusDays(numberofdays);
 		return newDate;
 	}
-	
-	// Method:  Add or substract n months from LocalDate
+
+	// Method: Add or substract n months from LocalDate
 	public LocalDate getDateWithAddSubstractMonths(int numberofmonths) {
 		LocalDate localDate = LocalDate.now();
 		LocalDate newDate = localDate.plusMonths(numberofmonths);
 		return newDate;
 	}
-	
-	// Method:  Add or substract n minutes from LocalDate
+
+	// Method: Add or substract n minutes from LocalDate
 	public String getTimeWithAddSubstractMinutes(int numberofminutes) {
 		LocalTime localTime = LocalTime.now();
 		LocalTime newMinutes = localTime.plusMinutes(numberofminutes);
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
 		return dtf.format(newMinutes);
 	}
-	
-	// Method:  Add or substract n minutes from LocalDate
+
+	// Method: Add or substract n minutes from LocalDate
 	public String getTimeWithAddSubstractHours(int numberofhours) {
 		LocalTime localTime = LocalTime.now();
 		LocalTime newMinutes = localTime.plusHours(numberofhours);

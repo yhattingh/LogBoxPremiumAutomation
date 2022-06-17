@@ -104,7 +104,7 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		pageObjectsHomePage.searchPracticePatientsOnHomePage(patientName);
-		//pageObjectsActivityPage.searchPracticePatientsOnHomePage(patientName);
+		// pageObjectsActivityPage.searchPracticePatientsOnHomePage(patientName);
 		pageObjectsHomePage.clickOnSearchedPatient();
 		pageObjectsActivityPage.clickMoreButton();
 		pageObjectsActivityPage.selectOptionFromMoreButtonList(selectOptionFromButtonList);
@@ -118,10 +118,10 @@ public class ActivityTests extends BasePageFrameWork {
 		localDateTime = basePageFrameWork.getLocalDateTime();
 		pageObjectsActivityPage.addTextNote(textNote + localDateTime);
 		pageObjectsActivityPage.clickDiagnosisActionIcon();
-		pageObjectsActivityPage.searchForICD10Code(icd10Code);
-		pageObjectsActivityPage.selectICD10Code(selectICD10Code1);
-		pageObjectsActivityPage.selectICD10Code(selectICD10Code2);
-		pageObjectsActivityPage.clickAddButtonOnICD10CodeDialog();
+		basePageLogBox.searchForICD10Code(icd10Code);
+		basePageLogBox.selectICD10Code(selectICD10Code1);
+		basePageLogBox.selectICD10Code(selectICD10Code2);
+		basePageLogBox.clickAddButtonOnICD10CodeDialog();
 		pageObjectsActivityPage.clickActivityPostButton();
 		System.out.println("ICD10 Codes selected :" + " " + selectICD10Code1 + " " + ";" + " " + selectICD10Code2);
 		pageObjectsActivityPage.clickOnActivityFeedToUpdateActivity();
@@ -138,9 +138,9 @@ public class ActivityTests extends BasePageFrameWork {
 	// User story four
 	@Test
 	public void shouldChangeDateOnActivity() throws InterruptedException, IOException {
-		
+
 		String searchedActivity = "Jane";
-		
+
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
@@ -161,6 +161,7 @@ public class ActivityTests extends BasePageFrameWork {
 		System.out.println("Time with changed hours:" + " " + basePageFrameWork.getTimeWithAddSubstractHours(3));
 
 	}
-	
-	//BasePageFrameWork:  Added methods to change date and time; ActivityTests and PageObjectsActivityPage:  Added user story 4 with methods
+
+	// BasePageFrameWork: Added methods to change date and time; ActivityTests and
+	// PageObjectsActivityPage: Added user story 4 with methods
 }

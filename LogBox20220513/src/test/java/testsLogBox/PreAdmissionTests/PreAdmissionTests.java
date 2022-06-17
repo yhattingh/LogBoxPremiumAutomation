@@ -117,6 +117,11 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	@Test
 	public void shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields()
 			throws IOException, InterruptedException {
+		
+		String icd10code = "malignant";
+		String icd10code1 = "Follow-up examination after chemotherapy for malignant neoplasm";
+		String hospitalName = "Wits Donald Gordon Medical Centre";
+		
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
@@ -130,8 +135,12 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		System.out.println("Clicked on Create Pre-Admission");
 		basePageLogBox.enterDate("17-06-2022");
 		basePageLogBox.enterTime("2100");
-		pageObjectsPreAdmissionPage.enterAndSelectHospitalName("Wits");
-		pageObjectsPreAdmissionPage.clickAndEnterICD10CodeSearchInDialog("Malignant neoplasms follow-up");
+		basePageLogBox.enterHospitalName(hospitalName);
+		basePageLogBox.SelectHospitalName(hospitalName);
+		pageObjectsPreAdmissionPage.clickOnAddICD10CodesButton();
+		basePageLogBox.searchForICD10Code(icd10code);
+		basePageLogBox.selectICD10Code(icd10code1);
+		basePageLogBox.clickAddButtonOnICD10CodeDialog();
 		pageObjectsPreAdmissionPage.clickSaveButton();
 		//get row count after new
 	
