@@ -39,7 +39,7 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 
 	// Method: Get the Text From the First Item in the Case Files DropDown Box
 	public String getTextFromFirstItemOnCaseFilesList() {
-		waitUntilElementNoLongerDisplays(50, By.cssSelector(".success .v-snack__content"));
+		waitUntilElementNoLongerDisplays(100, By.cssSelector(".success .v-snack__content"));
 		String textFromCaseFilesList = getElementText(By.cssSelector(".black--text"));
 		return textFromCaseFilesList;
 	}
@@ -130,15 +130,14 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 
 	// Method: Remove selected Diagnosis Codes / ICD10 Code
 	public void clickRemoveButton(String selectICD10Code) {
-		// driver.findElement(By.className("v-select__selections"));
-		List<WebElement> selectedICD10Codes = driver.findElements(By.cssSelector("[class='row mt-1'] .v-list"));
+		List<WebElement> selectedICD10Codes = driver.findElements(By.cssSelector("div[role='list']"));
 		System.out.println("number of returned rows: " + " " + selectedICD10Codes.size());
 		for (int i = 0; i <= selectedICD10Codes.size() - 1; i++) {
 			System.out.println(selectedICD10Codes.get(i).getText());
 			if (selectedICD10Codes.get(i).getText().contains(selectICD10Code)) {
 				clickElement(By.cssSelector(
 						"div:nth-of-type(1)  .theme--light.v-btn.v-btn--icon.v-btn--round.v-size--small  .material-icons.notranslate.theme--light.v-icon"));
-				// selectedICD10Codes.get(i).click();
+				 selectedICD10Codes.get(i).click();
 				break;
 			}
 		}

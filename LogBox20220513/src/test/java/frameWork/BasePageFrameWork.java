@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -219,7 +220,7 @@ public class BasePageFrameWork {
 		wait.until(ExpectedConditions.urlContains(pLocator));
 	}
 
-	//Method:To return the formatted current date and time
+	// Method:To return the formatted current date and time
 	public String getLocalDateTime() {
 		LocalDateTime localDateTime = LocalDateTime.now();
 		String localDateTimeString = localDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
@@ -270,4 +271,11 @@ public class BasePageFrameWork {
 		return dtf.format(newMinutes);
 	}
 
+	// Method: If radio button is not selected, click radio button
+	public void isRadioButtonSelected(By pLocator) {
+		WebElement radioButton = driver.findElement(pLocator);
+		if (radioButton.isSelected()) {
+		} else
+			radioButton.click();
+	}
 }
