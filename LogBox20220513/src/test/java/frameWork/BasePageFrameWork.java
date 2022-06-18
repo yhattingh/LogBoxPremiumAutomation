@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -242,26 +243,36 @@ public class BasePageFrameWork {
 	}
 
 	// Method: Add or substract n days from LocalDate
-	public LocalDate getDateWithAddSubstractDays(int numberofdays) {
+	public String getDateWithAddSubstractDays(int numberofdays) {
 		LocalDate localDate = LocalDate.now();
 		LocalDate newDate = localDate.plusDays(numberofdays);
-		return newDate;
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		return dtf.format(newDate);
 	}
 
 	// Method: Add or substract n months from LocalDate
-	public LocalDate getDateWithAddSubstractMonths(int numberofmonths) {
+	public String getDateWithAddSubstractMonths(int numberofmonths) {
 		LocalDate localDate = LocalDate.now();
 		LocalDate newDate = localDate.plusMonths(numberofmonths);
-		return newDate;
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		return dtf.format(newDate);
 	}
 
 	// Method: Add or substract n minutes from LocalDate
-	public String getTimeWithAddSubstractMinutes(int numberofminutes) {
+	public String getTimeWithAddSubstractMinutesUsedByStartTime(int numberofminutes) {
 		LocalTime localTime = LocalTime.now();
 		LocalTime newMinutes = localTime.plusMinutes(numberofminutes);
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HHmm");
 		return dtf.format(newMinutes);
 	}
+	
+	// Method: Add or substract n minutes from LocalDate
+		public String getTimeWithAddSubstractMinutes(int numberofminutes) {
+			LocalTime localTime = LocalTime.now();
+			LocalTime newMinutes = localTime.plusMinutes(numberofminutes);
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+			return dtf.format(newMinutes);
+		}
 
 	// Method: Add or substract n minutes from LocalDate
 	public String getTimeWithAddSubstractHours(int numberofhours) {

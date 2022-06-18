@@ -1,12 +1,9 @@
 package pageObjectsLogBox;
 
-import java.io.File;
-import java.time.LocalDate;
-import java.util.Calendar;
-
 import org.openqa.selenium.By;
 
 import frameWork.BasePageFrameWork;
+
 
 public class BasePageLogBox extends BasePageFrameWork {
 
@@ -23,25 +20,25 @@ public class BasePageLogBox extends BasePageFrameWork {
 	public void clickActivityMainMenuItem() {
 		clickElement(By.cssSelector("a:nth-of-type(2) > .v-btn__content"));
 	}
-	
-	// Method:  Click on MDT Meeting in Quick Links Bar
+
+	// Method: Click on MDT Meeting in Quick Links Bar
 	public void clickMDTMeetings() {
-		clickElement(By.xpath("//div[@id='app']/div[@class='v-application--wrap']/div[1]/nav//a[@href='#/mdt-meeting']//i[.='groups']"));
+		waitForElement(100, (By.xpath(
+				"//div[@id='app']/div[@class='v-application--wrap']/div[1]/nav//a[@href='#/mdt-meeting']//i[.='groups']")));
+		clickElement(By.xpath(
+				"//div[@id='app']/div[@class='v-application--wrap']/div[1]/nav//a[@href='#/mdt-meeting']//i[.='groups']"));
 	}
 
-	// Method: Click Practice main menu item
-
-	// Method:Enter current date in datepicker fields
+	// Method:Enter Current Date in Datepicker Fields
 	public void enterDate(String desiredDate) throws InterruptedException {
 		String dateSelector = "[data-cy='date-picker']";
 		waitForElement(50, (By.cssSelector(dateSelector)));
 		clickElement(By.cssSelector(dateSelector));
 		clickElement(By.cssSelector("div:nth-of-type(2) .v-toolbar__content"));
 		enterText(By.cssSelector(dateSelector), desiredDate);
-
 	}
 
-	// Method:Enter time in timepicker fields
+	// Method:  Enter Time in Timepicker Fields
 	public void enterTime(String desiredTime) throws InterruptedException {
 		String timeSelector = "[data-cy='time-picker']";
 		waitForElement(50, (By.cssSelector(timeSelector)));
@@ -49,12 +46,14 @@ public class BasePageLogBox extends BasePageFrameWork {
 		enterText(By.cssSelector(timeSelector), desiredTime);
 	}
 
+	// Method:  Enter a Hospital Name
 	public void enterHospitalName(String hospitalName) throws InterruptedException {
 		clickElement(By.cssSelector("[data-cy='lb-hospital-search']"));
 		enterText(By.cssSelector("[data-cy='lb-hospital-search']"), hospitalName);
 	}
 
-	public void SelectHospitalName(String hospitalName) throws InterruptedException {
+	// Method:  Select a Hospital from List
+	public void selectHospitalName(String hospitalName) throws InterruptedException {
 		waitForElement(50, (By.cssSelector("div[role='option']  .v-list-item__title")));
 		clickElement(By.cssSelector("div[role='option']  .v-list-item__title"));
 	}
@@ -75,5 +74,4 @@ public class BasePageLogBox extends BasePageFrameWork {
 	public void clickAddButtonOnICD10CodeDialog() {
 		clickElement(By.cssSelector(".primary--text.theme--light.v-btn.v-btn--text.v-size--default > .v-btn__content"));
 	}
-
 }

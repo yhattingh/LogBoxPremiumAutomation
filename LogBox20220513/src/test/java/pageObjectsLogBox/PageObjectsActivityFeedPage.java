@@ -1,9 +1,6 @@
 package pageObjectsLogBox;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import frameWork.BasePageFrameWork;
 
@@ -39,30 +36,21 @@ public class PageObjectsActivityFeedPage extends BasePageFrameWork {
 	}
 
 	// Method: Click Inpatient/Outpatient button
-	public void clickInpatientButton() {
-		waitForElement(100, (By.cssSelector("[class='col-md-9 col-12'] .activity-meta-button-text")));
-		clickElement(By.cssSelector("[class='col-md-9 col-12'] .activity-meta-button-text"));
+	public void clickInpatientOutpatientButton() {
+		waitUntilElementNoLongerDisplays(100, By.className(".pageLoadingBar"));
+		clickElement(By.xpath("//*[contains(text(),'Inpatient/Outpatient')]"));
 	}
 
 	// Method: Verify if radio button is selected
 	public void clickInpatientRadioButton() {
-		waitForElement(100, (By.cssSelector("[type='text']")));
-		isRadioButtonSelected(By.className("v-input--selection-controls__ripple primary--text"));
+		clickElement(By.className(".v-input--radio-group__input .theme--light:nth-of-type(1) .v-input--selection-controls__ripple"));
 	}
 	
 	public void selectInpatientRadioButton() throws InterruptedException {
-//		waitForElement(100, (By.cssSelector("#app [role='dialog']:nth-of-type(4) [type='text']")));
-//		clickElement(By.xpath("//*[contains(text(),'" + "INPATIENT" + "')]"));
-		clickElement(By.cssSelector("#app [role='dialog']:nth-of-type(4) [type='text']"));
-		enterText((By.cssSelector("#app [role='dialog']:nth-of-type(4) [type='text']")), "Test");
+		clickElement(By.xpath("//*[contains(text(),'INPATIENT')]"));
 	}
 	
 	public void clickSetButtonOnLocationDialogBox() {
-		waitforClick(100, By.className("v-btn__content"));
-		clickElement(By.className("v-btn__content"));
-	}
-	
-	public void clickLocationDialog() {
-		clickElement(By.cssSelector("v-text-field__slot"));
-	}
+		clickElement(By.xpath("//*[contains(text(),'Set')]"));
+	}	
 }

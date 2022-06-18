@@ -136,7 +136,7 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		basePageLogBox.enterDate("17-06-2022");
 		basePageLogBox.enterTime("2100");
 		basePageLogBox.enterHospitalName(hospitalName);
-		basePageLogBox.SelectHospitalName(hospitalName);
+		basePageLogBox.selectHospitalName(hospitalName);
 		pageObjectsPreAdmissionPage.clickOnAddICD10CodesButton();
 		basePageLogBox.searchForICD10Code(icd10code);
 		basePageLogBox.selectICD10Code(icd10code1);

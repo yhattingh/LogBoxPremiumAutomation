@@ -14,7 +14,6 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 	public void clickMoreButton() {
 		// waitForElement(50, (By.cssSelector(".v-size--small .theme--light")));
 		clickElement(By.cssSelector(".v-size--small .theme--light"));
-
 	}
 
 	// Method: Select an Option From an Open Dialog Box
@@ -47,7 +46,6 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 	// Method: Select a Case File From the Case Files DropDown Box
 	public void selectCaseFileFromDropdownList(String caseFileName) {
 
-		// Click on Dropdown
 		driver.findElement(By.className("v-select__selections"));
 
 		List<WebElement> allOptions = driver.findElements(By.className("selectCaseFileListItem"));
@@ -63,8 +61,7 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 		}
 	}
 
-	// Method: Select a Case File From the Case Files DropDown Box Using
-	// scrollIntoView
+	// Method: Select a Case File From the Case Files DropDown Box Using scrollIntoView
 	public void selectItemFromDropdownList(String caseFileName) throws InterruptedException {
 
 		WebElement element = driver.findElement(By.cssSelector(".justify-space-between.row"));
@@ -137,7 +134,7 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 			if (selectedICD10Codes.get(i).getText().contains(selectICD10Code)) {
 				clickElement(By.cssSelector(
 						"div:nth-of-type(1)  .theme--light.v-btn.v-btn--icon.v-btn--round.v-size--small  .material-icons.notranslate.theme--light.v-icon"));
-				 selectedICD10Codes.get(i).click();
+				selectedICD10Codes.get(i).click();
 				break;
 			}
 		}
