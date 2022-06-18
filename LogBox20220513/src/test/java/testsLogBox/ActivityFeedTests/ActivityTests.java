@@ -1,7 +1,5 @@
 package testsLogBox.ActivityFeedTests;
 
-//import static org.testng.Assert.assertTrue;
-
 import java.io.IOException;
 
 import org.testng.Assert;
@@ -62,7 +60,6 @@ public class ActivityTests extends BasePageFrameWork {
 	public void shouldCreateActivityForSelectedPatient() throws InterruptedException, IOException {
 
 		String localDateTime;
-//		String selectedCaseFile = "Initial case file";
 		String selectedCaseFile = "Case file added on 13-06-2022 22:01:43";
 		String textNote = "This is a new activity note created on ";
 		String patientName = "John";
@@ -73,7 +70,6 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsHomePage.searchPracticePatientsOnHomePage(patientName);
 		pageObjectsHomePage.clickOnSearchedPatient();
 		pageObjectsActivityPage.clickCaseFilesDropdown();
-//		pageObjectsActivityPage.selectCaseFileFromDropdownList(selectedCaseFile);
 		pageObjectsActivityPage.selectItemFromDropdownList(selectedCaseFile);
 		System.out.println("Case File number entered: " + " " + selectedCaseFile);
 		pageObjectsActivityPage.clickAddActivityButton();
@@ -125,7 +121,6 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsActivityPage.clickOnActivityFeedToUpdateActivity();
 		pageObjectsActivityPage.clickRemoveButton(selectICD10Code1);
 		pageObjectsActivityPage.clickActivityPostButton();
-		//pageObjectsActivityPage.clickRemoveButton(selectICD10Code2);
 		System.out.println(
 				"Codes after remove action: " + " " + pageObjectsActivityPage.getTextForSelectedDiagnosisCodes());
 		Assert.assertTrue(pageObjectsActivityPage.getTextForSelectedDiagnosisCodes().contains(selectICD10Code2));
@@ -138,7 +133,7 @@ public class ActivityTests extends BasePageFrameWork {
 	public void shouldSelectInpatientLocation() throws InterruptedException, IOException {
 
 		String searchedActivity = "Case file added on 14-06-2022 08:28:34";
-
+		
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
@@ -146,32 +141,10 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsActivityFeedPage.searchForActivity(searchedActivity);
 		pageObjectsActivityFeedPage.clickActivity();
 		pageObjectsActivityFeedPage.clickToEditActivity();
-		pageObjectsActivityFeedPage.clickInpatientButton();
-		pageObjectsActivityFeedPage.clickLocationDialog();
-		//pageObjectsActivityFeedPage.selectInpatientRadio();
+		pageObjectsActivityFeedPage.clickInpatientOutpatientButton();
+//		pageObjectsActivityFeedPage.selectInpatientRadioButton();
+		pageObjectsActivityFeedPage.clickInpatientRadioButton();
 		pageObjectsActivityFeedPage.clickSetButtonOnLocationDialogBox();
-
-	}
-	
-	// User story five
-	@Test
-	public void shouldSelectCheckBox() throws InterruptedException, IOException {
-
-		String searchedActivity = "Case file added on 14-06-2022 08:28:34";
-
-		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
-		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		basePageLogBox.clickMDTMeetings();
-	}
-	
-	// Test to change dates
-	@Test
-	public void shouldSelectDifferentDates() {
-		System.out.println("Date with changed days:" + " " + basePageFrameWork.getDateWithAddSubstractDays(-2));
-		System.out.println("Date with changed months:" + " " + basePageFrameWork.getDateWithAddSubstractMonths(-2));
-		System.out.println("Time with changed minutes:" + " " + basePageFrameWork.getTimeWithAddSubstractMinutes(5));
-		System.out.println("Time with changed hours:" + " " + basePageFrameWork.getTimeWithAddSubstractHours(3));
 
 	}
 }
