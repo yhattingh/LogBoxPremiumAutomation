@@ -128,7 +128,7 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 	// Method: Remove selected Diagnosis Codes / ICD10 Code
 	public void clickRemoveButton(String selectICD10Code) {
 		List<WebElement> selectedICD10Codes = driver.findElements(By.cssSelector("div[role='list']"));
-		System.out.println("number of returned rows: " + " " + selectedICD10Codes.size());
+		//System.out.println("number of returned rows: " + " " + selectedICD10Codes.size());
 		for (int i = 0; i <= selectedICD10Codes.size() - 1; i++) {
 			System.out.println(selectedICD10Codes.get(i).getText());
 			if (selectedICD10Codes.get(i).getText().contains(selectICD10Code)) {
