@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import frameWork.BasePageFrameWork;
@@ -17,6 +18,11 @@ public class MDTMeetingsTests extends BasePageFrameWork{
 	BasePageFrameWork basePageFrameWork = new BasePageFrameWork();
 	BasePageLogBox basePageLogBox = new BasePageLogBox();
 	PageObjectsMDTPage pageObjectsMDTPage = new PageObjectsMDTPage();
+	
+	@AfterTest
+	public void  cleanUp() {
+		basePageFrameWork.cleanUp();
+	}
 	
 	// User story five
 	@Test

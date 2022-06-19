@@ -21,10 +21,8 @@ public class PageObjectsHomePage extends BasePageFrameWork {
 	}
 
 	public void clickOnSearchedPatient() {
-		//waitForElement(100, (By.cssSelector("tbody .pointer:nth-of-type(1) .text-start")));
 		waitUntilElementNoLongerDisplays(50, By.className(".pageLoadingBar"));
 		driver.findElement(By.cssSelector("tbody .pointer:nth-of-type(1) .text-start")).click();
-		// [data-cy] tr td:nth-of-type(2)
 	}
 	
 	public void clickOnEllipseNextToPatientName() {

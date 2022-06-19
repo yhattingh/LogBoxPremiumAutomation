@@ -4,9 +4,12 @@ import java.io.IOException;
 
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import frameWork.BasePageFrameWork;
+import frameWork.FileUtilities;
 import pageObjectsLogBox.BasePageLogBox;
 import pageObjectsLogBox.PageObjectsActivityFeedPage;
 import pageObjectsLogBox.PageObjectsActivityPage;
@@ -22,13 +25,18 @@ public class ActivityTests extends BasePageFrameWork {
 	BasePageLogBox basePageLogBox = new BasePageLogBox();
 	PageObjectsActivityFeedPage pageObjectsActivityFeedPage = new PageObjectsActivityFeedPage();
 
+//	@AfterTest
+//	public void  cleanUp() {
+//		basePageFrameWork.cleanUp();
+//	}
+	
 	// User Story One
 	@Test
 	public void shouldCreateCaseFileForSelectedPatient() throws InterruptedException, IOException {
 
 		String textFromFirstItemOnCaseFilesList;
 		String localDateTime;
-		String patientName = "John";
+		String patientName = "Peter";
 		String selectOptionFromButtonList = "Create Case File";
 		String inputOnCaseFile = "Case file added on";
 
@@ -60,9 +68,9 @@ public class ActivityTests extends BasePageFrameWork {
 	public void shouldCreateActivityForSelectedPatient() throws InterruptedException, IOException {
 
 		String localDateTime;
-		String selectedCaseFile = "Case file added on 13-06-2022 22:01:43";
+		String selectedCaseFile = "Initial case file";
 		String textNote = "This is a new activity note created on ";
-		String patientName = "John";
+		String patientName = "Peter";
 
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
@@ -83,10 +91,11 @@ public class ActivityTests extends BasePageFrameWork {
 	}
 
 	// User Story Three
+//	@Test (dataProvider = "Activity")
 	@Test
 	public void shouldRemoveDiagnosticCodeForAnActivity() throws InterruptedException, IOException {
 		String localDateTime;
-		String patientName = "John";
+		String patientName = "Peter";
 		String selectOptionFromButtonList = "Create Case File";
 		String inputOnCaseFile = "Case file added on";
 		String textNote = "Add diagnostic codes for theater @";
@@ -129,7 +138,7 @@ public class ActivityTests extends BasePageFrameWork {
 	}
 
 	// User story four
-	@Test
+	@Test(enabled=true)
 	public void shouldSelectInpatientLocation() throws InterruptedException, IOException {
 
 		String searchedActivity = "Case file added on 14-06-2022 08:28:34";
@@ -143,8 +152,26 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsActivityFeedPage.clickToEditActivity();
 		pageObjectsActivityFeedPage.clickInpatientOutpatientButton();
 //		pageObjectsActivityFeedPage.selectInpatientRadioButton();
-		pageObjectsActivityFeedPage.clickInpatientRadioButton();
+//		pageObjectsActivityFeedPage.clickInpatientRadioButton();
 		pageObjectsActivityFeedPage.clickSetButtonOnLocationDialogBox();
-
+		System.out.println("Option selected: " + " " + pageObjectsActivityFeedPage.getTextForInOutPatient());
+		Assert.assertTrue(pageObjectsActivityFeedPage.getTextForInOutPatient().equals("Outpatient"));
+		Reporter.log("Patient Location successfully selected as:" + " "
+				+ pageObjectsActivityFeedPage.getTextForInOutPatient());
+	}
+	
+	
+	FileUtilities fileUtilities = new FileUtilities();
+	
+	@Test (dataProvider = "Activity")
+	public void searchItem(String patientName) {
+		System.out.println("Patient name read form Excel sheet: " + " " + patientName);
+	}
+	
+	@DataProvider(name = "Activity")
+	public Object[][] getDataFromExcelTakeALot() {
+		String excelDirectory = fileUtilities.getDataConfigProperties("inputDir");
+		Object[][] errObj = fileUtilities.getExcelData(excelDirectory + "Activity.xlsx", "Sheet1");
+		return errObj;
 	}
 }

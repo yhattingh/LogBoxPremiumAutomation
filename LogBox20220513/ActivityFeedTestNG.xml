@@ -8,6 +8,7 @@
 	<test thread-count="5" name="Activity Feed">
 		<packages>
 			<package name="testsLogBox.ActivityFeedTests" />
+			<package name="testsLogBox.MDTMeetingsTests" />
 		</packages>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
