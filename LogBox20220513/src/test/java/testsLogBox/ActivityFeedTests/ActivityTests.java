@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 
 import frameWork.BasePageFrameWork;
 import frameWork.FileUtilities;
+import frameWork.WriteDataToFile;
 import pageObjectsLogBox.BasePageLogBox;
 import pageObjectsLogBox.PageObjectsActivityFeedPage;
 import pageObjectsLogBox.PageObjectsActivityPage;
@@ -25,10 +26,11 @@ public class ActivityTests extends BasePageFrameWork {
 	BasePageLogBox basePageLogBox = new BasePageLogBox();
 	PageObjectsActivityFeedPage pageObjectsActivityFeedPage = new PageObjectsActivityFeedPage();
 
-//	@AfterTest
-//	public void  cleanUp() {
-//		basePageFrameWork.cleanUp();
-//	}
+	
+	@AfterTest
+	public void  cleanUp() {
+		basePageFrameWork.cleanUp();
+	}
 	
 	// User Story One
 	@Test
@@ -91,8 +93,7 @@ public class ActivityTests extends BasePageFrameWork {
 	}
 
 	// User Story Three
-//	@Test (dataProvider = "Activity")
-	@Test
+	@Test 
 	public void shouldRemoveDiagnosticCodeForAnActivity() throws InterruptedException, IOException {
 		String localDateTime;
 		String patientName = "Peter";
@@ -103,7 +104,7 @@ public class ActivityTests extends BasePageFrameWork {
 		String icd10Code = "hip";
 		String selectICD10Code1 = "Clicking hip";
 		String selectICD10Code2 = "Congenital subluxation of hip, bilateral";
-
+		
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
@@ -158,20 +159,5 @@ public class ActivityTests extends BasePageFrameWork {
 		Assert.assertTrue(pageObjectsActivityFeedPage.getTextForInOutPatient().equals("Outpatient"));
 		Reporter.log("Patient Location successfully selected as:" + " "
 				+ pageObjectsActivityFeedPage.getTextForInOutPatient());
-	}
-	
-	
-	FileUtilities fileUtilities = new FileUtilities();
-	
-	@Test (dataProvider = "Activity")
-	public void searchItem(String patientName) {
-		System.out.println("Patient name read form Excel sheet: " + " " + patientName);
-	}
-	
-	@DataProvider(name = "Activity")
-	public Object[][] getDataFromExcelTakeALot() {
-		String excelDirectory = fileUtilities.getDataConfigProperties("inputDir");
-		Object[][] errObj = fileUtilities.getExcelData(excelDirectory + "Activity.xlsx", "Sheet1");
-		return errObj;
 	}
 }

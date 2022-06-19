@@ -5,9 +5,12 @@ import java.io.IOException;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import frameWork.BasePageFrameWork;
+import frameWork.FileUtilities;
+import frameWork.WriteDataToFile;
 import pageObjectsLogBox.BasePageLogBox;
 import pageObjectsLogBox.PageObjectsBrochurePage;
 import pageObjectsLogBox.PageObjectsMDTPage;
@@ -18,6 +21,7 @@ public class MDTMeetingsTests extends BasePageFrameWork{
 	BasePageFrameWork basePageFrameWork = new BasePageFrameWork();
 	BasePageLogBox basePageLogBox = new BasePageLogBox();
 	PageObjectsMDTPage pageObjectsMDTPage = new PageObjectsMDTPage();
+	WriteDataToFile writeDataToFile = new WriteDataToFile();
 	
 	@AfterTest
 	public void  cleanUp() {
@@ -25,19 +29,23 @@ public class MDTMeetingsTests extends BasePageFrameWork{
 	}
 	
 	// User story five
-	@Test
-	public void shouldNotBeAllowedToSaveAMDTMeetingWithoutMeetingCoordinator() throws InterruptedException, IOException {
+	@Test (dataProvider = "MDTMeetings")
+	public void shouldNotBeAllowedToSaveAMDTMeetingWithoutMeetingCoordinator(String doctorName, String doctorPhone, String meetingNotes) throws InterruptedException, IOException {
+		System.out.println("What am I reading from excel?" + " " + doctorName + " " + doctorPhone + " " + meetingNotes);
+//	public void shouldNotBeAllowedToSaveAMDTMeetingWithoutMeetingCoordinator() throws InterruptedException, IOException {
 		
 		String hospitalName = "Wits Donald Gordon Medical Centre";
 		int dateAdjustment = 2;
 		int timeAdjustment = 30;
 		String meetingDate; 
 		String meetingTime;
-		String meetingNotes = "Notes for Dr Terreblanche regarding appointment";
-		String doctorName = "Dr Terreblanche";
-		String docphonenumber = "021-555-8888";
+		String meetingNotesInput = meetingNotes;
+		String doctorNameInput = doctorName;
+		String docPhoneNumberInput = doctorPhone;
 		String recurringDateType = "Weekly";
 		String expectedError = "Failed to save Meeting: Please fill in the form correctly";
+		
+//		writeDataToFile.writingToFile(doctorName);
 	
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
@@ -55,12 +63,26 @@ public class MDTMeetingsTests extends BasePageFrameWork{
 		pageObjectsMDTPage.selectRepeatMeetingScheduleCheckBox();
 		pageObjectsMDTPage.selectRecurringDateType(recurringDateType);
 		pageObjectsMDTPage.clickDoneButtonOnRepeatDialog();
-		pageObjectsMDTPage.enterMeetingNotes(meetingNotes);
-		pageObjectsMDTPage.enterDoctorName(doctorName);
-		pageObjectsMDTPage.enterDoctorPhoneNumber(docphonenumber);
+		pageObjectsMDTPage.enterMeetingNotes(meetingNotesInput);
+		pageObjectsMDTPage.enterDoctorName(doctorNameInput);
+		pageObjectsMDTPage.enterDoctorPhoneNumber(docPhoneNumberInput);
 		pageObjectsMDTPage.clickSaveButtonOnMDTMeetingList();
 		System.out.println("Error message displayed : " + " " + pageObjectsMDTPage.getErrorMsgOnSave());
 		Assert.assertTrue(pageObjectsMDTPage.getErrorMsgOnSave().equals(expectedError));
 		Reporter.log("Validation passed:  User is not allowed to save a MDT meeting without a Coordinator");
+	}
+	
+	FileUtilities fileUtilities = new FileUtilities();
+	
+	@Test (dataProvider = "MDTMeetings")
+	public void searchItem(String patientName) {
+		System.out.println("Patient name read form Excel sheet: " + " " + patientName);
+	}
+	
+	@DataProvider(name = "MDTMeetings")
+	public Object[][] getDataFromExcelTakeALot() {
+		String excelDirectory = fileUtilities.getDataConfigProperties("inputDir");
+		Object[][] errObj = fileUtilities.getExcelData(excelDirectory + "MDTMeetings.xlsx", "Sheet1");
+		return errObj;
 	}
 }
