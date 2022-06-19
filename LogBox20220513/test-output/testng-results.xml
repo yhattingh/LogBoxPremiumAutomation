@@ -1,84 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="3" total="4" passed="0" failed="1" skipped="0">
+<testng-results ignored="4" total="5" passed="1" failed="0" skipped="0">
   <reporter-output>
+    <line>
+      <![CDATA[Patient Location successfully selected as: Outpatient]]>
+    </line>
   </reporter-output>
-  <suite started-at="2022-06-18T16:20:48Z" name="Default suite" finished-at="2022-06-18T16:25:54Z" duration-ms="305126">
+  <suite started-at="2022-06-19T12:46:32Z" name="Default suite" finished-at="2022-06-19T12:49:37Z" duration-ms="185103">
     <groups>
     </groups>
-    <test started-at="2022-06-18T16:20:48Z" name="Default test" finished-at="2022-06-18T16:25:54Z" duration-ms="305126">
+    <test started-at="2022-06-19T12:46:32Z" name="Default test" finished-at="2022-06-19T12:49:37Z" duration-ms="185103">
       <class name="testsLogBox.ActivityFeedTests.ActivityTests">
-        <test-method signature="shouldSelectInpatientLocation()[pri:0, instance:testsLogBox.ActivityFeedTests.ActivityTests@31611954]" started-at="2022-06-18T16:20:48Z" name="shouldSelectInpatientLocation" finished-at="2022-06-18T16:25:54Z" duration-ms="305109" status="FAIL">
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for element to be clickable: By.className: .v-input--radio-group__input .theme--light:nth-of-type(1) .v-input--selection-controls__ripple (tried for 100 second(s) with 500 milliseconds interval)]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.className: .v-input--radio-group__input .theme--light:nth-of-type(1) .v-input--selection-controls__ripple (tried for 100 second(s) with 500 milliseconds interval)
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
-at frameWork.BasePageFrameWork.waitforClick(BasePageFrameWork.java:203)
-at frameWork.BasePageFrameWork.clickElement(BasePageFrameWork.java:92)
-at pageObjectsLogBox.PageObjectsActivityFeedPage.clickInpatientRadioButton(PageObjectsActivityFeedPage.java:46)
-at testsLogBox.ActivityFeedTests.ActivityTests.shouldSelectInpatientLocation(ActivityTests.java:146)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
-at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
-at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
-at org.testng.TestRunner.privateRun(TestRunner.java:648)
-at org.testng.TestRunner.run(TestRunner.java:505)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
-at org.testng.SuiteRunner.run(SuiteRunner.java:364)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
-at org.testng.TestNG.runSuites(TestNG.java:1049)
-at org.testng.TestNG.run(TestNG.java:1017)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":".\.v\-input\-\-radio\-group__input\ \.theme\-\-light\:nth\-of\-type\(1\)\ \.v\-input\-\-selection\-controls__ripple"}
-  (Session info: chrome=102.0.5005.115)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'YOLANDEH-DELL2', ip: '192.168.0.104', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 102.0.5005.115, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\Yolande\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:53216}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 79415f8d9d8095cfd75a67109d7a94ae
-*** Element info: {Using=class name, value=.v-input--radio-group__input .theme--light:nth-of-type(1) .v-input--selection-controls__ripple}
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:412)
-at org.openqa.selenium.By$ByClassName.findElement(By.java:389)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
-at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
-at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:641)
-at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:638)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
-... 29 more
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
+        <test-method signature="shouldSelectInpatientLocation()[pri:0, instance:testsLogBox.ActivityFeedTests.ActivityTests@4fcc529]" started-at="2022-06-19T12:46:32Z" name="shouldSelectInpatientLocation" finished-at="2022-06-19T12:49:37Z" duration-ms="185089" status="PASS">
           <reporter-output>
+            <line>
+              <![CDATA[Patient Location successfully selected as: Outpatient]]>
+            </line>
           </reporter-output>
         </test-method> <!-- shouldSelectInpatientLocation -->
       </class> <!-- testsLogBox.ActivityFeedTests.ActivityTests -->

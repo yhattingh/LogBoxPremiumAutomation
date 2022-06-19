@@ -43,7 +43,7 @@ public class PageObjectsActivityFeedPage extends BasePageFrameWork {
 
 	// Method: Verify if radio button is selected
 	public void clickInpatientRadioButton() {
-		clickElement(By.className(".v-input--radio-group__input .theme--light:nth-of-type(1) .v-input--selection-controls__ripple"));
+		clickElement(By.cssSelector(".v-input--radio-group__input .theme--light:nth-of-type(1) .v-input--selection-controls__ripple"));
 	}
 	
 	public void selectInpatientRadioButton() throws InterruptedException {
@@ -53,4 +53,11 @@ public class PageObjectsActivityFeedPage extends BasePageFrameWork {
 	public void clickSetButtonOnLocationDialogBox() {
 		clickElement(By.xpath("//*[contains(text(),'Set')]"));
 	}	
+	
+	// Method: Get Text of Inpatient / Outpatient button
+	public String getTextForInOutPatient() {
+		String InOutPatient = getElementText(By.xpath("//div[@id='app']/div[@class='v-application--wrap']/div[1]/main[@class='v-main']"
+				+ "/div[@class='v-main__wrap']/div[@class='container container--fluid']/div/div[2]/div/div[2]/div[@class='row']/div[1]/div[1]/button[@type='button']//span[@class='activity-meta-button-text']"));
+		return InOutPatient;
+	}
 }
