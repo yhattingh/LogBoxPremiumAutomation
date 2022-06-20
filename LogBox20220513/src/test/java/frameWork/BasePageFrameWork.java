@@ -13,10 +13,12 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.ss.usermodel.Table;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
@@ -265,14 +267,14 @@ public class BasePageFrameWork {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HHmm");
 		return dtf.format(newMinutes);
 	}
-	
+
 	// Method: Add or substract n minutes from LocalDate
-		public String getTimeWithAddSubstractMinutes(int numberofminutes) {
-			LocalTime localTime = LocalTime.now();
-			LocalTime newMinutes = localTime.plusMinutes(numberofminutes);
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
-			return dtf.format(newMinutes);
-		}
+	public String getTimeWithAddSubstractMinutes(int numberofminutes) {
+		LocalTime localTime = LocalTime.now();
+		LocalTime newMinutes = localTime.plusMinutes(numberofminutes);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+		return dtf.format(newMinutes);
+	}
 
 	// Method: Add or substract n minutes from LocalDate
 	public String getTimeWithAddSubstractHours(int numberofhours) {
@@ -289,4 +291,17 @@ public class BasePageFrameWork {
 		} else
 			radioButton.click();
 	}
+
+	public int getNumberOfTableRows(By pLocator, By pLocatorRow) {
+		WebElement webElement = driver.findElement(pLocator);
+		List<WebElement> rows = webElement.findElements(pLocatorRow);
+		return rows.size();
+	}
+
+	public boolean checkIfTableIsEmpty(By pLocator, By pLocatorRow) {
+		WebElement webElement = driver.findElement(pLocator);
+		List<WebElement> rows = webElement.findElements(pLocatorRow);
+		return rows.isEmpty();
+	}
+
 }

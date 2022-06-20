@@ -15,18 +15,23 @@ import frameWork.BasePageFrameWork;
 
 public class PageObjectsHomePage extends BasePageFrameWork {
 
-	public void searchPracticePatientsOnHomePage(String patientname) throws InterruptedException {
+	public void searchPracticePatientsInSearchBar(String patientname) throws InterruptedException {
 		enterText(By.cssSelector(".v-text-field__slot [type]"), patientname);
 		waitUntilElementNoLongerDisplays(10,By.cssSelector("tbody .pointer:nth-of-type(2) .text-left:nth-of-type(4)"));
 	}
 
 	public void clickOnSearchedPatient() {
 		waitUntilElementNoLongerDisplays(50, By.className(".pageLoadingBar"));
-		driver.findElement(By.cssSelector("tbody .pointer:nth-of-type(1) .text-start")).click();
+		clickElement(By.cssSelector("tbody .pointer:nth-of-type(1) .text-start"));
 	}
 	
 	public void clickOnEllipseNextToPatientName() {
-		driver.findElement(By.cssSelector("[class='text-right pa-0'] .material-icons")).click();
+		clickElement(By.cssSelector("[class='text-right pa-0'] .material-icons"));
+	}
+	
+	public void clickOnPreAdmissionButtonInLeftMenu() {
+		clickElement(By.cssSelector("[data-cy='lb-practice-nav-drawer-pre-admission'] .material-icons"));
+		//waitForUrl(100," https://qa.logbox.co.za/premium/#/pre-admission/?context=pre-admissions");
 	}
 	
 //	public void clickOnPreAdmissionInEllipseMenu() {
@@ -50,12 +55,11 @@ public class PageObjectsHomePage extends BasePageFrameWork {
 		}
 	}
 
-	public void clickInSearchPracticePatient() {
-		clickElement(By.cssSelector(".v-text-field__slot [type]"));
-	}
-	
 	public void clickRefreshButton() {
 		clickElement(By.cssSelector(".order-first .material-icons"));
 	}
 
+	public void getRowCountPatients() {
+		
+	}
 }

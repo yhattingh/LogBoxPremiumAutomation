@@ -45,7 +45,7 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		pageObjectsHomePage.searchPracticePatientsOnHomePage(patientName);
+		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
 		pageObjectsHomePage.clickOnSearchedPatient();
 		pageObjectsActivityPage.clickMoreButton();
 		pageObjectsActivityPage.selectOptionFromMoreButtonList(selectOptionFromButtonList);
@@ -77,7 +77,7 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		pageObjectsHomePage.searchPracticePatientsOnHomePage(patientName);
+		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
 		pageObjectsHomePage.clickOnSearchedPatient();
 		pageObjectsActivityPage.clickCaseFilesDropdown();
 		pageObjectsActivityPage.selectItemFromDropdownList(selectedCaseFile);
@@ -108,7 +108,7 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		pageObjectsHomePage.searchPracticePatientsOnHomePage(patientName);
+		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
 		pageObjectsHomePage.clickOnSearchedPatient();
 		pageObjectsActivityPage.clickMoreButton();
 		pageObjectsActivityPage.selectOptionFromMoreButtonList(selectOptionFromButtonList);
