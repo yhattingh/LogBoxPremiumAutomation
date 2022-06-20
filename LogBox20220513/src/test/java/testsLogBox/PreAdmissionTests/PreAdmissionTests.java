@@ -27,28 +27,27 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
 	PageObjectsHomePage pageObjectsHomePage = new PageObjectsHomePage();
 	PageObjectsActivityPage pageObjectsActivityPage = new PageObjectsActivityPage();
-	
-	
+
 //	@AfterTest
 //	public void cleanUpAfterTest() throws InterruptedException {
 //		cleanUp();
 //	}
 
-	//User Story One
+	// User Story One
 	@Test
 	public void shouldOpenPreAdmissionPageAfterPatientSearch() throws IOException, InterruptedException {
 		String patientName = "One";
-		
+
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		pageObjectsPreAdmissionPage.clickOnPreAdmissionButtonInLeftMenu();
+		pageObjectsHomePage.clickOnPreAdmissionButtonInLeftMenu();
 		pageObjectsPreAdmissionPage.clickCreatePreAdmissionButton();
 		pageObjectsPreAdmissionPage.clickPreAdmissionPatientSearchField();
 		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch(patientName);
 		pageObjectsPreAdmissionPage.selectSearchedPatientOnPreAdmission();
 		pageObjectsPreAdmissionPage.clickSelectAfterPreAdmissionPatientSearch();
-		//Assert
+		// Assert
 		String patientNameHeader = pageObjectsPreAdmissionPage.getTextFromPreAdmissionPatientHeader();
 		String feedURL = driver.getCurrentUrl();
 		Assert.assertTrue(feedURL.contains("preAdmission"));
@@ -56,26 +55,24 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		Reporter.log("URL contains \"preAdmission\"");
 		Reporter.log("A new PreAdmission page was opened for patient: PreAdmission One");
 	}
-	
-	
-	//User Story Two
+
+	// User Story Two
 	@Test
-	public void shouldNotAllowPreadmissionForDraftPatient()
-			throws IOException, InterruptedException {
-		
+	public void shouldNotAllowPreadmissionForDraftPatient() throws IOException, InterruptedException {
+
 		String patientName = "Draft";
-		
+
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		pageObjectsPreAdmissionPage.clickOnPreAdmissionButtonInLeftMenu();
+		pageObjectsHomePage.clickOnPreAdmissionButtonInLeftMenu();
 		pageObjectsPreAdmissionPage.clickCreatePreAdmissionButton();
 		pageObjectsPreAdmissionPage.clickPreAdmissionPatientSearchField();
 		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch(patientName);
 		pageObjectsPreAdmissionPage.selectSearchedPatientOnPreAdmission();
 		pageObjectsPreAdmissionPage.clickSelectAfterPreAdmissionPatientSearch();
-	
-		//Assert: Validation displays
+
+		// Assert: Validation displays
 		String validationError = pageObjectsPreAdmissionPage.getTextfromDraftPatientErrorMessageOnPreadmission();
 		Assert.assertTrue(validationError.contains("Cannot create pre-admission for a draft patient"));
 		System.out.println(validationError);
@@ -85,17 +82,16 @@ public class PreAdmissionTests extends BasePageFrameWork {
 
 	}
 
-	//User Story Three
+	// User Story Three
 	@Test
-	public void shouldValidateRequiredFieldsWhenCreatingPreAdmission()
-			throws IOException, InterruptedException {
+	public void shouldValidateRequiredFieldsWhenCreatingPreAdmission() throws IOException, InterruptedException {
 		String patientName = "One";
 		String instructions = "Test";
-		
+
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		pageObjectsPreAdmissionPage.clickOnPreAdmissionButtonInLeftMenu();
+		pageObjectsHomePage.clickOnPreAdmissionButtonInLeftMenu();
 		pageObjectsPreAdmissionPage.clickCreatePreAdmissionButton();
 		pageObjectsPreAdmissionPage.clickPreAdmissionPatientSearchField();
 		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch(patientName);
@@ -103,75 +99,112 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		pageObjectsPreAdmissionPage.clickSelectAfterPreAdmissionPatientSearch();
 		pageObjectsPreAdmissionPage.enterSpecialInstructionsToPatient(instructions);
 		pageObjectsPreAdmissionPage.clickSaveButton();
-	
-		//Assert: Validation displays
-		String validationError = pageObjectsPreAdmissionPage.getTextFromPreAdmissionRequiredFieldsValidationPageMessage();
+
+		// Assert: Validation displays
+		String validationError = pageObjectsPreAdmissionPage
+				.getTextFromPreAdmissionRequiredFieldsValidationPageMessage();
 		Assert.assertTrue(validationError.contains("fill in the form"));
 		String pageValidation = pageObjectsPreAdmissionPage.getTextFromPreAdmissionRequiredFieldsValidationErrorText();
 		Assert.assertEquals(pageValidation, "The Expected Date of Admission is required.");
 		Reporter.log("The Preadmission is validated on required fields");
 
 	}
-	
-	//User Story Four
+
+	// User Story Four
 	@Test
 	public void shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields()
 			throws IOException, InterruptedException {
-		
-		String icd10code = "malignant";
+
+		String partialicd10code = "malignant";
 		String icd10code1 = "Follow-up examination after chemotherapy for malignant neoplasm";
 		String hospitalName = "Wits Donald Gordon Medical Centre";
-		
+		By pLocator = By.cssSelector("table");
+		By pLocatorRow = By.cssSelector("table > tbody");
+		String localDate;
+		String localTimePlusTwoMinutes;
+		String patientName = "PreAdmission One";
+
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		//get row count of preadmission before nee is created
-		//nav to home page
-		pageObjectsHomePage.searchPracticePatientsOnHomePage("One");
+		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
 		pageObjectsHomePage.clickOnEllipseNextToPatientName();
-		System.out.println("The ellipse is clicked");
 		pageObjectsActivityPage.selectOptionFromMoreButtonList("Create Pre-Admission");
-		//pageObjectsHomePage.clickOnListOptionInEllipseMenu("Create Pre-Admission");
 		System.out.println("Clicked on Create Pre-Admission");
-		basePageLogBox.enterDate("17-06-2022");
-		basePageLogBox.enterTime("2100");
+		localDate = getLocalDate();
+		localTimePlusTwoMinutes = getTimeWithAddSubstractMinutesUsedByStartTime(2);
+		basePageLogBox.enterDate(localDate);
+		basePageLogBox.enterTime(localTimePlusTwoMinutes);
 		basePageLogBox.enterHospitalName(hospitalName);
 		basePageLogBox.selectHospitalName(hospitalName);
 		pageObjectsPreAdmissionPage.clickOnAddICD10CodesButton();
-		basePageLogBox.searchForICD10Code(icd10code);
+		basePageLogBox.searchForICD10Code(partialicd10code);
 		basePageLogBox.selectICD10Code(icd10code1);
 		basePageLogBox.clickAddButtonOnICD10CodeDialog();
 		pageObjectsPreAdmissionPage.clickSaveButton();
-		//get row count after new
-	
-		//Assert: row count initial is 1 less than row count after
-
-
+		pageObjectsPreAdmissionPage.clickCloseButton();
+		String preAdmissionTitle = pageObjectsPreAdmissionPage.getPreAdmissionTitle();
+		Assert.assertEquals(preAdmissionTitle, "Pre-Admission for " + patientName);
+		String admissionDetailsHeader = pageObjectsPreAdmissionPage.getAdmissionDetailsHeader();
+		Assert.assertEquals(admissionDetailsHeader,"Admission Details");
+		Reporter.log("The PreAdmission was created successfully");
 	}
-	
-	//User Story Five
+
+	// User Story Five
 	@Test
-	public void shouldCreatePreAdmissionOnCurrentDateTimeFromPatientMenuWithAllFields(String patientName)
-			throws IOException {
-	
+	public void shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName() throws IOException, InterruptedException {
+		String partialicd10code = "malignant";
+		String icd10code1 = "Follow-up examination after chemotherapy for malignant neoplasm";
+		String hospitalName = "Wits Donald Gordon Medical Centre";
+		By pLocator = By.cssSelector("table");
+		By pLocatorRow = By.cssSelector("table > tbody");
+		String localDate;
+		String localTimePlusTwoMinutes;
+		String patientname = "PreAdmission Two";
 
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientname);
+		pageObjectsHomePage.clickOnEllipseNextToPatientName();
+		pageObjectsActivityPage.selectOptionFromMoreButtonList("Create Pre-Admission");
+		localDate = getLocalDate();
+		localTimePlusTwoMinutes = getTimeWithAddSubstractMinutesUsedByStartTime(2);
+		basePageLogBox.enterDate(localDate);
+		basePageLogBox.enterTime(localTimePlusTwoMinutes);
+		basePageLogBox.enterHospitalName(hospitalName);
+		basePageLogBox.selectHospitalName(hospitalName);
+		pageObjectsPreAdmissionPage.clickOnAddICD10CodesButton();
+		basePageLogBox.searchForICD10Code(partialicd10code);
+		basePageLogBox.selectICD10Code(icd10code1);
+		basePageLogBox.clickAddButtonOnICD10CodeDialog();
+		pageObjectsPreAdmissionPage.clickSaveButton();
+		pageObjectsPreAdmissionPage.clickCloseButton();
+		System.out.println("Pre-Admission created");
+		basePageLogBox.clickHomeMainMenuItem();
+		pageObjectsHomePage.clickOnPreAdmissionButtonInLeftMenu();
+		pageObjectsPreAdmissionPage.filterOnPatientInPreadmissionList(patientname);
+		//int numberOfPreAdmissionRowsBefore = basePageLogBox.getNumberOfTableRows(pLocator, pLocatorRow);
+		pageObjectsPreAdmissionPage.deletePreAdmission();
+		int numberOfPreAdmissionRowsAfter = basePageLogBox.getNumberOfTableRows(pLocator, pLocatorRow);
+		//Assert.assertTrue(numberOfPreAdmissionRowsAfter < numberOfPreAdmissionRowsBefore);
+		Assert.assertEquals(numberOfPreAdmissionRowsAfter, 0);
+		Reporter.log("The PreAdmission was deleted successfully");
 	}
 
-	//User Story Six
 	@Test
 	public void shouldSendPreAdmissionToPatientEmailToComplete(String patientName) throws IOException {
-		
+
 	}
 
 	@Test
 	public void shouldViewPreAdmissionFromPreAdmissionScreen(String patientName) throws IOException {
 
-
 	}
 
 	@Test
 	public void shouldEditPreAdmissionFromPreAdmissionScreen(String patientName) throws IOException {
-	
+
 	}
 
 	@Test
@@ -182,13 +215,11 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	@Test
 	public void shouldCompletePreAdmissionViaKiosk(String patientName) throws IOException {
 
-
 	}
 
 	@Test
 	public void shouldDisplayNotificationInPracticeAfterCompletionOfPreAdmissionByPatient(String patientName)
 			throws IOException {
-	
 
 	}
 

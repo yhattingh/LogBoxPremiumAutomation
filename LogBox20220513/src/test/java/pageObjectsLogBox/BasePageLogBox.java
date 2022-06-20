@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 
 import frameWork.BasePageFrameWork;
 
-
 public class BasePageLogBox extends BasePageFrameWork {
 
 	// Declare Homepage Url
@@ -16,9 +15,16 @@ public class BasePageLogBox extends BasePageFrameWork {
 		waitForUrl(30, "premium");
 	}
 
-	// Method: Click Activity Feed Main Menu Item
+	// Method: Click Activity Feed Main Menu Item "This should stay in
+	// BasePageLogBox as it is the main menu
 	public void clickActivityMainMenuItem() {
 		clickElement(By.cssSelector("a:nth-of-type(2) > .v-btn__content"));
+	}
+
+	// Method: Click Activity Feed Main Menu Item "This should stay in
+	// BasePageLogBox as it is the main menu
+	public void clickHomeMainMenuItem() {
+		clickElement(By.cssSelector("[data-cy='lb-toolbar-item-home'] .v-btn__content"));
 	}
 
 	// Method: Click on MDT Meeting in Quick Links Bar
@@ -38,7 +44,7 @@ public class BasePageLogBox extends BasePageFrameWork {
 		enterText(By.cssSelector(dateSelector), desiredDate);
 	}
 
-	// Method:  Enter Time in Timepicker Fields
+	// Method: Enter Time in Timepicker Fields
 	public void enterTime(String desiredTime) throws InterruptedException {
 		String timeSelector = "[data-cy='time-picker']";
 		waitForElement(50, (By.cssSelector(timeSelector)));
@@ -46,13 +52,13 @@ public class BasePageLogBox extends BasePageFrameWork {
 		enterText(By.cssSelector(timeSelector), desiredTime);
 	}
 
-	// Method:  Enter a Hospital Name
+	// Method: Enter a Hospital Name
 	public void enterHospitalName(String hospitalName) throws InterruptedException {
 		clickElement(By.cssSelector("[data-cy='lb-hospital-search']"));
 		enterText(By.cssSelector("[data-cy='lb-hospital-search']"), hospitalName);
 	}
 
-	// Method:  Select a Hospital from List
+	// Method: Select a Hospital from List
 	public void selectHospitalName(String hospitalName) throws InterruptedException {
 		waitForElement(50, (By.cssSelector("div[role='option']  .v-list-item__title")));
 		clickElement(By.cssSelector("div[role='option']  .v-list-item__title"));
@@ -74,4 +80,5 @@ public class BasePageLogBox extends BasePageFrameWork {
 	public void clickAddButtonOnICD10CodeDialog() {
 		clickElement(By.cssSelector(".primary--text.theme--light.v-btn.v-btn--text.v-size--default > .v-btn__content"));
 	}
+
 }

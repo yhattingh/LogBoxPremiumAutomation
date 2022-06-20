@@ -25,7 +25,7 @@ public class HomePageTests extends BasePageFrameWork{
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertUsernameAndPasswordFromExcel(1,1,2);
     	pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		pageObjectsHomePage.searchPracticePatientsOnHomePage("John");
+		pageObjectsHomePage.searchPracticePatientsInSearchBar("John");
 		WebElement searchedPatient = driver.findElement(By.cssSelector("[data-cy] tr td:nth-of-type(2)"));
 		//searchedPatient.toString();
 		//Assert.assertTrue(searchedPatient.contains("John"));
