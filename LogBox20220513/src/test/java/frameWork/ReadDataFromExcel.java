@@ -27,5 +27,13 @@ public class ReadDataFromExcel extends BasePageFrameWork {
 		Object[][] errObj = fileUtilities.getExcelData(excelDirectory + "MDTMeetings.xlsx", "Sheet1");
 		return errObj;
 	}
+	
+	@DataProvider(name = "PreAdmissionPatients")
+	public Object[][] getDataFromExcelPreAdmissionPatient() throws IOException {
+		String inputDirectory = getDataConfigProperties("inputDir");
+		Object[][] errObj = fileUtilities.getExcelData(inputDirectory + "PreAdmissionPatients.xlsx", "Sheet1");
+		return errObj;
+
+	}
 
 }

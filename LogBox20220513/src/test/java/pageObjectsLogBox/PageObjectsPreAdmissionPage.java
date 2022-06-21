@@ -38,9 +38,9 @@ public class PageObjectsPreAdmissionPage extends BasePageFrameWork {
 		String patientName = getElementText(By.cssSelector(".mt-1.title"));
 		return patientName;
 	}
-	
+
 	public String getPreAdmissionTitle() {
-		String preAdmissionTitle = getElementText(By.cssSelector(" .col .v-toolbar__title" ));
+		String preAdmissionTitle = getElementText(By.cssSelector(" .col .v-toolbar__title"));
 		return preAdmissionTitle;
 	}
 
@@ -59,19 +59,19 @@ public class PageObjectsPreAdmissionPage extends BasePageFrameWork {
 				By.xpath("//div[contains(text(),'The Expected Date of Admission is required.')]"));
 		return validationErrorText;
 	}
-	
+
 	public String getAdmissionDetailsHeader() {
-		String admissionHeaderText = getElementText(
-				By.xpath("//div[contains(text(),'Admission Details')]"));
+		String admissionHeaderText = getElementText(By.xpath("//div[contains(text(),'Admission Details')]"));
 		return admissionHeaderText;
 	}
 
 	public void clickSaveButton() throws InterruptedException {
 		clickElement(By.cssSelector(".v-btn--has-bg"));
+		//waitUntilElementNoLongerDisplays(150, (By.cssSelector(".success .v-snack__content")));
 	}
-	
+
 	public void clickCloseButton() {
-		clickElement(By.cssSelector(".v-card__actions .v-btn__content"));
+		clickElement(By.xpath("//*[contains(text(),'Close')]"));
 	}
 
 	public void enterSpecialInstructionsToPatient(String instructions) throws InterruptedException {
@@ -82,24 +82,32 @@ public class PageObjectsPreAdmissionPage extends BasePageFrameWork {
 		clickElement(By.cssSelector(".theme--dark.primary--text .v-btn__content"));
 		// waitForElement(100, (By.cssSelector("[type='text']")));
 	}
-	
+
 	public String getPatientNameInPreAdmissionList() {
 		String patientName = getElementText(By.xpath(".pointer > td:nth-of-type(1)"));
 		return patientName;
 	}
-	
-	public void deletePreAdmission() {
-		waitForElement(50, (By.cssSelector("tr:nth-of-type(1) > .text-right > div > button:nth-of-type(3)  .material-icons.notranslate.theme--light.v-icon")));
-		clickElement(By.cssSelector("tr:nth-of-type(1) > .text-right > div > button:nth-of-type(3)  .material-icons.notranslate.theme--light.v-icon"));
-		clickElement(By.cssSelector(" .error--text .v-btn__content"));
-		waitUntilElementNoLongerDisplays( 50, By.cssSelector(".v-snack.v-snack--has-background.v-snack--top  div[role='status']"));
+
+	public void deletePreAdmission() throws InterruptedException {
+		waitForElement(100, (By.cssSelector(
+				"tr:nth-of-type(1) > .text-right > div > button:nth-of-type(3)  .material-icons.notranslate.theme--light.v-icon")));
+		clickElement(By.xpath(
+				"//div[@id='pre-admissions']/div/div[@class='text-center']/div//table/tbody/tr[1]/td[@class='text-right']/div/button[3]//i[.='delete']"));
+		clickElement(By.cssSelector(".v-size--default.error--text .v-btn__content"));
+		waitUntilElementNoLongerDisplays(100, By.cssSelector(".success .v-snack__content"));
+		Thread.sleep(100);
 	}
-	
+
 	public void filterOnPatientInPreadmissionList(String patientname) throws InterruptedException {
 		waitForElement(100, (By.cssSelector(".v-text-field__slot [type]")));
+		clickElement(By.cssSelector(".v-text-field__slot [type]"));
 		enterText(By.cssSelector(".v-text-field__slot [type]"), patientname);
 	}
-	
-	
+
+	public String getTextFromSuccessMessage() {
+		String successMessage = getElementText(
+				By.cssSelector(".success .v-snack__content"));
+		return successMessage;
+	}
 
 }

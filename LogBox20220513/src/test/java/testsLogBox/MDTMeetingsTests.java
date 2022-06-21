@@ -1,4 +1,4 @@
-package testsLogBox.MDTMeetings;
+package testsLogBox;
 
 import java.io.IOException;
 

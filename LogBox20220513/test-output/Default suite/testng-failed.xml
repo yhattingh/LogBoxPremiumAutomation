@@ -3,12 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testsLogBox.ActivityFeedTests.ActivityTests">
+      <class name="testsLogBox.PreAdmissionTests">
         <methods>
-          <include name="shouldSelectInpatientLocation"/>
-          <include name="cleanUp"/>
+          <include name="shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName"/>
         </methods>
-      </class> <!-- testsLogBox.ActivityFeedTests.ActivityTests -->
+      </class> <!-- testsLogBox.PreAdmissionTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

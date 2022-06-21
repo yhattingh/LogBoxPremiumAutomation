@@ -1,4 +1,4 @@
-package testsLogBox.HomePageTests;
+package testsLogBox;
 
 import static org.testng.Assert.assertTrue;
 
@@ -22,14 +22,14 @@ public class HomePageTests extends BasePageFrameWork{
 	
 	@Test
 	public void shouldSearchForPatient() throws InterruptedException, IOException {
+	
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertUsernameAndPasswordFromExcel(1,1,2);
     	pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		pageObjectsHomePage.searchPracticePatientsInSearchBar("John");
-		WebElement searchedPatient = driver.findElement(By.cssSelector("[data-cy] tr td:nth-of-type(2)"));
-		//searchedPatient.toString();
-		//Assert.assertTrue(searchedPatient.contains("John"));
-		
+//		WebElement searchedPatient = driver.findElement(By.cssSelector("[data-cy] tr td:nth-of-type(2)").toString());
+//		Assert.assertTrue(searchedPatient.contains("John"));
+//		
 	}
 	
 }
