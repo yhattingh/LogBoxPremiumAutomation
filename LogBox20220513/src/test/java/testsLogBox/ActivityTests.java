@@ -1,4 +1,4 @@
-package testsLogBox.ActivityFeedTests;
+package testsLogBox;
 
 import java.io.IOException;
 

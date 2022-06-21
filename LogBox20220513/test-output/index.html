@@ -49,7 +49,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\Yolande\AppData\Local\Temp\testng-eclipse--418766543\testng-customsuite.xml</span>
+                    <span>C:\Users\27823\AppData\Local\Temp\testng-eclipse-1697464766\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -102,7 +102,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="testsLogBox.ActivityFeedTests.ActivityTests" class="method navigator-link" hash-for-method="shouldSelectInpatientLocation">shouldSelectInpatientLocation</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="testsLogBox.PreAdmissionTests" class="method navigator-link" hash-for-method="shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName">shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -120,21 +120,22 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">testsLogBox.ActivityFeedTests.ActivityTests</span>
+              <span class="class-name">testsLogBox.PreAdmissionTests</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="shouldSelectInpatientLocation">
-                  </a> <!-- shouldSelectInpatientLocation -->
-                  <span class="method-name">shouldSelectInpatientLocation</span>
-                  <div class="stack-trace">org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;span class=&quot;v-btn__content&quot;&gt;...&lt;/span&gt; is not clickable at point (935, 472). Other element would receive the click: &lt;button type=&quot;button&quot; class=&quot;v-btn v-btn--text theme--light v-size--default primary--text&quot;&gt;...&lt;/button&gt;
+                  <a name="shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName">
+                  </a> <!-- shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName -->
+                  <span class="method-name">shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName</span>
+                  <div class="stack-trace">org.openqa.selenium.StaleElementReferenceException: stale element reference: element is not attached to the page document
   (Session info: chrome=102.0.5005.115)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/stale_element_reference.html
 Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;YOLANDEH-DELL2&apos;, ip: &apos;192.168.0.104&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.2&apos;
+System info: host: &apos;DESKTOP-CVKJJ5N&apos;, ip: &apos;10.199.123.167&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.2&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 102.0.5005.115, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\Yolande\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:62065}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 5124f23e7e72e13d5112eaafe1b72f2f
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 102.0.5005.115, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\27823\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:61139}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 69abd863adf2f383a1be8252edff72a7
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -149,8 +150,8 @@ Session ID: 5124f23e7e72e13d5112eaafe1b72f2f
 	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
 	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
 	at frameWork.BasePageFrameWork.clickElement(BasePageFrameWork.java:95)
-	at pageObjectsLogBox.PageObjectsActivityFeedPage.clickSetButtonOnLocationDialogBox(PageObjectsActivityFeedPage.java:54)
-	at testsLogBox.ActivityFeedTests.ActivityTests.shouldSelectInpatientLocation(ActivityTests.java:153)
+	at pageObjectsLogBox.PageObjectsPreAdmissionPage.filterOnPatientInPreadmissionList(PageObjectsPreAdmissionPage.java:103)
+	at testsLogBox.PreAdmissionTests.shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName(PreAdmissionTests.java:191)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -185,7 +186,7 @@ Session ID: 5124f23e7e72e13d5112eaafe1b72f2f
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\Yolande\AppData\Local\Temp\testng-eclipse--418766543\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\27823\AppData\Local\Temp\testng-eclipse-1697464766\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -194,11 +195,11 @@ Session ID: 5124f23e7e72e13d5112eaafe1b72f2f
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;testsLogBox.ActivityFeedTests.ActivityTests&quot;&gt;
+      &lt;class name=&quot;testsLogBox.PreAdmissionTests&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;shouldSelectInpatientLocation&quot;/&gt;
+          &lt;include name=&quot;shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- testsLogBox.ActivityFeedTests.ActivityTests --&gt;
+      &lt;/class&gt; &lt;!-- testsLogBox.PreAdmissionTests --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -240,14 +241,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'shouldSelectInpatientLocation')
-data.setCell(0, 2, 'testsLogBox.ActivityFeedTests.ActivityTests')
-data.setCell(0, 3, 185919);
+data.setCell(0, 1, 'shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName')
+data.setCell(0, 2, 'testsLogBox.PreAdmissionTests')
+data.setCell(0, 3, 73621);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 3 minutes</span>
+              <span class="suite-total-time">Total running time: 1 minutes</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -262,17 +263,31 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">3 ignored methods</span>
+            <span class="header-content">10 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">testsLogBox.ActivityFeedTests.ActivityTests</span>
+              <span class="ignored-class-name">testsLogBox.PreAdmissionTests</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">shouldCreateActivityForSelectedPatient</span>
+                <span class="ignored-method-name">shouldCompletePreAdmissionViaKiosk</span>
                 <br/>
-                <span class="ignored-method-name">shouldRemoveDiagnosticCodeForAnActivity</span>
+                <span class="ignored-method-name">shouldEditPreAdmissionFromPreAdmissionScreen</span>
                 <br/>
-                <span class="ignored-method-name">shouldCreateCaseFileForSelectedPatient</span>
+                <span class="ignored-method-name">shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields</span>
+                <br/>
+                <span class="ignored-method-name">shouldOpenPreAdmissionPageAfterPatientSearch</span>
+                <br/>
+                <span class="ignored-method-name">shouldViewPreAdmissionFromPreAdmissionScreen</span>
+                <br/>
+                <span class="ignored-method-name">shouldDisplayNotificationInPracticeAfterCompletionOfPreAdmissionByPatient</span>
+                <br/>
+                <span class="ignored-method-name">shouldPrintPreAdmissionFromPreAdmissionScreen</span>
+                <br/>
+                <span class="ignored-method-name">shouldValidateRequiredFieldsWhenCreatingPreAdmission</span>
+                <br/>
+                <span class="ignored-method-name">shouldNotAllowPreadmissionForDraftPatient</span>
+                <br/>
+                <span class="ignored-method-name">shouldSendPreAdmissionToPatientEmailToComplete</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -284,17 +299,13 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">testsLogBox.ActivityFeedTests.ActivityTests</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">testsLogBox.PreAdmissionTests</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">shouldSelectInpatientLocation</span>
+                <span class="method-name">shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-test after">
-                <span class="method-name">cleanUp</span>
-                <span class="method-start">185922 ms</span>
-              </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

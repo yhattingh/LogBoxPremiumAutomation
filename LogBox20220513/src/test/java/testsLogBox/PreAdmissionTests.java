@@ -1,4 +1,4 @@
-package testsLogBox.PreAdmissionTests;
+package testsLogBox;
 
 import java.io.IOException;
 
@@ -37,17 +37,18 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	@Test
 	public void shouldOpenPreAdmissionPageAfterPatientSearch() throws IOException, InterruptedException {
 		String patientName = "One";
-
+		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		// WHEN
 		pageObjectsHomePage.clickOnPreAdmissionButtonInLeftMenu();
 		pageObjectsPreAdmissionPage.clickCreatePreAdmissionButton();
 		pageObjectsPreAdmissionPage.clickPreAdmissionPatientSearchField();
 		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch(patientName);
 		pageObjectsPreAdmissionPage.selectSearchedPatientOnPreAdmission();
 		pageObjectsPreAdmissionPage.clickSelectAfterPreAdmissionPatientSearch();
-		// Assert
+		// THEN
 		String patientNameHeader = pageObjectsPreAdmissionPage.getTextFromPreAdmissionPatientHeader();
 		String feedURL = driver.getCurrentUrl();
 		Assert.assertTrue(feedURL.contains("preAdmission"));
@@ -61,18 +62,18 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	public void shouldNotAllowPreadmissionForDraftPatient() throws IOException, InterruptedException {
 
 		String patientName = "Draft";
-
+		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		// WHEN
 		pageObjectsHomePage.clickOnPreAdmissionButtonInLeftMenu();
 		pageObjectsPreAdmissionPage.clickCreatePreAdmissionButton();
 		pageObjectsPreAdmissionPage.clickPreAdmissionPatientSearchField();
 		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch(patientName);
 		pageObjectsPreAdmissionPage.selectSearchedPatientOnPreAdmission();
 		pageObjectsPreAdmissionPage.clickSelectAfterPreAdmissionPatientSearch();
-
-		// Assert: Validation displays
+		// THEN
 		String validationError = pageObjectsPreAdmissionPage.getTextfromDraftPatientErrorMessageOnPreadmission();
 		Assert.assertTrue(validationError.contains("Cannot create pre-admission for a draft patient"));
 		System.out.println(validationError);
@@ -83,24 +84,25 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	}
 
 	// User Story Three
-	@Test
-	public void shouldValidateRequiredFieldsWhenCreatingPreAdmission() throws IOException, InterruptedException {
-		String patientName = "One";
+	@Test(dataProvider = "PreAdmissionPatients", dataProviderClass = ReadDataFromExcel.class)
+	public void shouldValidateRequiredFieldsWhenCreatingPreAdmission(String patientName)
+			throws IOException, InterruptedException {
+		String patientNameInput = patientName;
 		String instructions = "Test";
-
+		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		// WHEN
 		pageObjectsHomePage.clickOnPreAdmissionButtonInLeftMenu();
 		pageObjectsPreAdmissionPage.clickCreatePreAdmissionButton();
 		pageObjectsPreAdmissionPage.clickPreAdmissionPatientSearchField();
-		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch(patientName);
+		pageObjectsPreAdmissionPage.enterPreAdmissionPatientNameToSearch(patientNameInput);
 		pageObjectsPreAdmissionPage.selectSearchedPatientOnPreAdmission();
 		pageObjectsPreAdmissionPage.clickSelectAfterPreAdmissionPatientSearch();
 		pageObjectsPreAdmissionPage.enterSpecialInstructionsToPatient(instructions);
 		pageObjectsPreAdmissionPage.clickSaveButton();
-
-		// Assert: Validation displays
+		// THEN
 		String validationError = pageObjectsPreAdmissionPage
 				.getTextFromPreAdmissionRequiredFieldsValidationPageMessage();
 		Assert.assertTrue(validationError.contains("fill in the form"));
@@ -118,15 +120,14 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		String partialicd10code = "malignant";
 		String icd10code1 = "Follow-up examination after chemotherapy for malignant neoplasm";
 		String hospitalName = "Wits Donald Gordon Medical Centre";
-		By pLocator = By.cssSelector("table");
-		By pLocatorRow = By.cssSelector("table > tbody");
 		String localDate;
 		String localTimePlusTwoMinutes;
 		String patientName = "PreAdmission One";
-
+		//GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		//WHEN
 		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
 		pageObjectsHomePage.clickOnEllipseNextToPatientName();
 		pageObjectsActivityPage.selectOptionFromMoreButtonList("Create Pre-Admission");
@@ -143,28 +144,34 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		basePageLogBox.clickAddButtonOnICD10CodeDialog();
 		pageObjectsPreAdmissionPage.clickSaveButton();
 		pageObjectsPreAdmissionPage.clickCloseButton();
+		//THEN
+		String successToastText = pageObjectsPreAdmissionPage.getTextFromSuccessMessage();
+		Assert.assertTrue(successToastText.contains("Pre-Admission has been created"));
 		String preAdmissionTitle = pageObjectsPreAdmissionPage.getPreAdmissionTitle();
 		Assert.assertEquals(preAdmissionTitle, "Pre-Admission for " + patientName);
 		String admissionDetailsHeader = pageObjectsPreAdmissionPage.getAdmissionDetailsHeader();
-		Assert.assertEquals(admissionDetailsHeader,"Admission Details");
+		Assert.assertEquals(admissionDetailsHeader, "Admission Details");
 		Reporter.log("The PreAdmission was created successfully");
 	}
 
 	// User Story Five
 	@Test
-	public void shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName() throws IOException, InterruptedException {
-		String partialicd10code = "malignant";
-		String icd10code1 = "Follow-up examination after chemotherapy for malignant neoplasm";
+	public void shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName()
+			throws IOException, InterruptedException {
+		String partialicd10code = "bladder";
+		String icd10code1 = "Malignant neoplasm, trigone of bladder";
 		String hospitalName = "Wits Donald Gordon Medical Centre";
 		By pLocator = By.cssSelector("table");
 		By pLocatorRow = By.cssSelector("table > tbody");
 		String localDate;
 		String localTimePlusTwoMinutes;
-		String patientname = "PreAdmission Two";
+		String patientname = "Two";
 
+		//GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		//WHEN
 		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientname);
 		pageObjectsHomePage.clickOnEllipseNextToPatientName();
 		pageObjectsActivityPage.selectOptionFromMoreButtonList("Create Pre-Admission");
@@ -180,14 +187,15 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		basePageLogBox.clickAddButtonOnICD10CodeDialog();
 		pageObjectsPreAdmissionPage.clickSaveButton();
 		pageObjectsPreAdmissionPage.clickCloseButton();
-		System.out.println("Pre-Admission created");
-		basePageLogBox.clickHomeMainMenuItem();
 		pageObjectsHomePage.clickOnPreAdmissionButtonInLeftMenu();
 		pageObjectsPreAdmissionPage.filterOnPatientInPreadmissionList(patientname);
-		//int numberOfPreAdmissionRowsBefore = basePageLogBox.getNumberOfTableRows(pLocator, pLocatorRow);
+		// int numberOfPreAdmissionRowsBefore =
+		// basePageLogBox.getNumberOfTableRows(pLocator, pLocatorRow);
 		pageObjectsPreAdmissionPage.deletePreAdmission();
+		//THEN
 		int numberOfPreAdmissionRowsAfter = basePageLogBox.getNumberOfTableRows(pLocator, pLocatorRow);
-		//Assert.assertTrue(numberOfPreAdmissionRowsAfter < numberOfPreAdmissionRowsBefore);
+		// Assert.assertTrue(numberOfPreAdmissionRowsAfter >
+		// numberOfPreAdmissionRowsBefore);
 		Assert.assertEquals(numberOfPreAdmissionRowsAfter, 0);
 		Reporter.log("The PreAdmission was deleted successfully");
 	}
