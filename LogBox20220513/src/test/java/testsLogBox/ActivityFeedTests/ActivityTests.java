@@ -5,12 +5,9 @@ import java.io.IOException;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import frameWork.BasePageFrameWork;
-import frameWork.FileUtilities;
-import frameWork.WriteDataToFile;
 import pageObjectsLogBox.BasePageLogBox;
 import pageObjectsLogBox.PageObjectsActivityFeedPage;
 import pageObjectsLogBox.PageObjectsActivityPage;
@@ -26,12 +23,11 @@ public class ActivityTests extends BasePageFrameWork {
 	BasePageLogBox basePageLogBox = new BasePageLogBox();
 	PageObjectsActivityFeedPage pageObjectsActivityFeedPage = new PageObjectsActivityFeedPage();
 
-	
 	@AfterTest
-	public void  cleanUp() {
+	public void cleanUp() {
 		basePageFrameWork.cleanUp();
 	}
-	
+
 	// User Story One
 	@Test
 	public void shouldCreateCaseFileForSelectedPatient() throws InterruptedException, IOException {
@@ -93,7 +89,7 @@ public class ActivityTests extends BasePageFrameWork {
 	}
 
 	// User Story Three
-	@Test 
+	@Test
 	public void shouldRemoveDiagnosticCodeForAnActivity() throws InterruptedException, IOException {
 		String localDateTime;
 		String patientName = "Peter";
@@ -104,7 +100,7 @@ public class ActivityTests extends BasePageFrameWork {
 		String icd10Code = "hip";
 		String selectICD10Code1 = "Clicking hip";
 		String selectICD10Code2 = "Congenital subluxation of hip, bilateral";
-		
+
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
@@ -139,17 +135,17 @@ public class ActivityTests extends BasePageFrameWork {
 	}
 
 	// User story four
-	@Test(enabled=true)
+	@Test(enabled = true)
 	public void shouldSelectInpatientLocation() throws InterruptedException, IOException {
 
 		String searchedActivity = "Case file added on 14-06-2022 08:28:34";
-		
+
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		basePageLogBox.clickActivityMainMenuItem();
 		pageObjectsActivityFeedPage.searchForActivity(searchedActivity);
-		pageObjectsActivityFeedPage.clickActivity();
+		pageObjectsActivityFeedPage.clickSearchedActivity();
 		pageObjectsActivityFeedPage.clickToEditActivity();
 		pageObjectsActivityFeedPage.clickInpatientOutpatientButton();
 //		pageObjectsActivityFeedPage.selectInpatientRadioButton();
