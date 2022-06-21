@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Mon Jun 20 15:23:38 SAST 2022</td>
+<td>Started on:</td><td>Tue Jun 21 09:22:45 SAST 2022</td>
 </tr>
-<tr><td>Total time:</td><td>138 seconds (138331 ms)</td>
+<tr><td>Total time:</td><td>186 seconds (186098 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -75,18 +75,30 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='testsLogBox.PreAdmissionTests.PreAdmissionTests.shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName()'><b>shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName</b><br>Test class: testsLogBox.PreAdmissionTests.PreAdmissionTests</td>
-<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of all elements located by By.cssSelector: tr:nth-of-type(1) &gt; .text-right &gt; div &gt; button:nth-of-type(3)  .material-icons.notranslate.theme--light.v-icon (tried for 50 second(s) with 500 milliseconds interval)
+<td title='testsLogBox.ActivityFeedTests.ActivityTests.shouldSelectInpatientLocation()'><b>shouldSelectInpatientLocation</b><br>Test class: testsLogBox.ActivityFeedTests.ActivityTests</td>
+<td><div><pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;span class=&quot;v-btn__content&quot;&gt;...&lt;/span&gt; is not clickable at point (935, 472). Other element would receive the click: &lt;button type=&quot;button&quot; class=&quot;v-btn v-btn--text theme--light v-size--default primary--text&quot;&gt;...&lt;/button&gt;
+  (Session info: chrome=102.0.5005.115)
 Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;DESKTOP-CVKJJ5N&apos;, ip: &apos;10.199.123.167&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.2&apos;
+System info: host: &apos;YOLANDEH-DELL2&apos;, ip: &apos;192.168.0.104&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.2&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 102.0.5005.115, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\27823\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:59730}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 4014287032cfa4d35d4818d8f0167435
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
-	at frameWork.BasePageFrameWork.waitForElement(BasePageFrameWork.java:211)
-	at pageObjectsLogBox.PageObjectsPreAdmissionPage.deletePreAdmission(PageObjectsPreAdmissionPage.java:92)
-	at testsLogBox.PreAdmissionTests.PreAdmissionTests.shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName(PreAdmissionTests.java:188)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 102.0.5005.115, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\Yolande\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:62065}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 5124f23e7e72e13d5112eaafe1b72f2f
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
+	at frameWork.BasePageFrameWork.clickElement(BasePageFrameWork.java:95)
+	at pageObjectsLogBox.PageObjectsActivityFeedPage.clickSetButtonOnLocationDialogBox(PageObjectsActivityFeedPage.java:54)
+	at testsLogBox.ActivityFeedTests.ActivityTests.shouldSelectInpatientLocation(ActivityTests.java:153)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -112,18 +124,30 @@ Session ID: 4014287032cfa4d35d4818d8f0167435
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div><a href='#' onClick='toggleBox("stack-trace658781536", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace658781536'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of all elements located by By.cssSelector: tr:nth-of-type(1) &gt; .text-right &gt; div &gt; button:nth-of-type(3)  .material-icons.notranslate.theme--light.v-icon (tried for 50 second(s) with 500 milliseconds interval)
+</pre></div><a href='#' onClick='toggleBox("stack-trace818010696", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace818010696'><pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;span class=&quot;v-btn__content&quot;&gt;...&lt;/span&gt; is not clickable at point (935, 472). Other element would receive the click: &lt;button type=&quot;button&quot; class=&quot;v-btn v-btn--text theme--light v-size--default primary--text&quot;&gt;...&lt;/button&gt;
+  (Session info: chrome=102.0.5005.115)
 Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;DESKTOP-CVKJJ5N&apos;, ip: &apos;10.199.123.167&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.2&apos;
+System info: host: &apos;YOLANDEH-DELL2&apos;, ip: &apos;192.168.0.104&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.2&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 102.0.5005.115, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\27823\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:59730}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 4014287032cfa4d35d4818d8f0167435
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
-	at frameWork.BasePageFrameWork.waitForElement(BasePageFrameWork.java:211)
-	at pageObjectsLogBox.PageObjectsPreAdmissionPage.deletePreAdmission(PageObjectsPreAdmissionPage.java:92)
-	at testsLogBox.PreAdmissionTests.PreAdmissionTests.shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName(PreAdmissionTests.java:188)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 102.0.5005.115, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\Yolande\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:62065}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 5124f23e7e72e13d5112eaafe1b72f2f
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
+	at frameWork.BasePageFrameWork.clickElement(BasePageFrameWork.java:95)
+	at pageObjectsLogBox.PageObjectsActivityFeedPage.clickSetButtonOnLocationDialogBox(PageObjectsActivityFeedPage.java:54)
+	at testsLogBox.ActivityFeedTests.ActivityTests.shouldSelectInpatientLocation(ActivityTests.java:153)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -150,8 +174,8 @@ Session ID: 4014287032cfa4d35d4818d8f0167435
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 </pre></div></td>
-<td>138</td>
-<td>testsLogBox.PreAdmissionTests.PreAdmissionTests@1b812421</td></tr>
+<td>185</td>
+<td>testsLogBox.ActivityFeedTests.ActivityTests@3887cf88</td></tr>
 </table><p>
 </body>
 </html>

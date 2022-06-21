@@ -13,7 +13,7 @@ public class PageObjectsActivityFeedPage extends BasePageFrameWork {
 	}
 
 	// Method: Click Activity on Activity Feed Page
-	public void clickActivity() {
+	public void clickSearchedActivity() {
 		waitUntilElementNoLongerDisplays(100, By.className(".pageLoadingBar"));
 		clickElement(By.cssSelector("div:nth-of-type(1) > .mb-3.pb-2.theme--light.v-card.v-sheet"));
 	}
