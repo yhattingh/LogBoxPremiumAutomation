@@ -12,11 +12,9 @@ public class PageObjectsPreAdmissionPage extends BasePageFrameWork {
 
 	public void enterPreAdmissionPatientNameToSearch(String patientname) throws InterruptedException {
 		enterText(By.cssSelector("[class='py-1 col col-12'] [type='text']"), patientname);
-//		Thread.sleep(100);
 	}
 
 	public void clickPreAdmissionPatientSearchField() {
-		// waitForElement(30,By.cssSelector("[class='py-1 col col-12'] [type='text']"));
 		clickElement(By.cssSelector("[class='py-1 col col-12'] [type='text']"));
 	}
 
@@ -60,6 +58,11 @@ public class PageObjectsPreAdmissionPage extends BasePageFrameWork {
 		return validationErrorText;
 	}
 
+	public String getTextFromTableFirstRow() {
+		String firstRowText = getElementText(By.cssSelector("[colspan]"));
+		return firstRowText;
+	}
+
 	public String getAdmissionDetailsHeader() {
 		String admissionHeaderText = getElementText(By.xpath("//div[contains(text(),'Admission Details')]"));
 		return admissionHeaderText;
@@ -67,7 +70,8 @@ public class PageObjectsPreAdmissionPage extends BasePageFrameWork {
 
 	public void clickSaveButton() throws InterruptedException {
 		clickElement(By.cssSelector(".v-btn--has-bg"));
-		//waitUntilElementNoLongerDisplays(150, (By.cssSelector(".success .v-snack__content")));
+		// waitUntilElementNoLongerDisplays(150, (By.cssSelector(".success
+		// .v-snack__content")));
 	}
 
 	public void clickCloseButton() {
@@ -93,9 +97,12 @@ public class PageObjectsPreAdmissionPage extends BasePageFrameWork {
 				"tr:nth-of-type(1) > .text-right > div > button:nth-of-type(3)  .material-icons.notranslate.theme--light.v-icon")));
 		clickElement(By.xpath(
 				"//div[@id='pre-admissions']/div/div[@class='text-center']/div//table/tbody/tr[1]/td[@class='text-right']/div/button[3]//i[.='delete']"));
+	}
+
+	public void confirmPreAdmissionDelete() throws InterruptedException {
 		clickElement(By.cssSelector(".v-size--default.error--text .v-btn__content"));
-		waitUntilElementNoLongerDisplays(100, By.cssSelector(".success .v-snack__content"));
-		Thread.sleep(100);
+		waitUntilElementNoLongerDisplays(200, By.cssSelector(".success .v-snack__content"));
+
 	}
 
 	public void filterOnPatientInPreadmissionList(String patientname) throws InterruptedException {
@@ -105,9 +112,17 @@ public class PageObjectsPreAdmissionPage extends BasePageFrameWork {
 	}
 
 	public String getTextFromSuccessMessage() {
-		String successMessage = getElementText(
-				By.cssSelector(".success .v-snack__content"));
+		String successMessage = getElementText(By.cssSelector(".success .v-snack__content"));
 		return successMessage;
+	}
+	
+	public void waitForTableToBeEmpty() {
+		Boolean isTableEmpty = checkIfTableIsEmpty(By.cssSelector("table"), By.cssSelector("table > tbody"));
+		if (isTableEmpty.equals(true)) {
+			System.out.println("Table is empty");
+		} else {
+			System.out.println("Table is not empty");
+			waitUntilElementNoLongerDisplays(10, By.className(".pageLoadingBar"));}
 	}
 
 }
