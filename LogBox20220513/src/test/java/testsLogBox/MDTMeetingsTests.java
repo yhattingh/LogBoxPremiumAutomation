@@ -29,10 +29,10 @@ public class MDTMeetingsTests extends BasePageFrameWork {
 	
 
 
-	@AfterTest
-	public void cleanUp() {
-		basePageFrameWork.cleanUp();
-	}
+//	@AfterTest
+//	public void cleanUp() {
+//		basePageFrameWork.cleanUp();
+//	}
 
 	// User story five
 	@Test(dataProvider = "MDTMeetings",dataProviderClass = ReadDataFromExcel.class)
@@ -52,11 +52,14 @@ public class MDTMeetingsTests extends BasePageFrameWork {
 		String recurringDateType = "Weekly";
 		String expectedError = "Failed to save Meeting: Please fill in the form correctly";
 
-		writeDataToFile.writingToFile(doctorName);
+		writeDataToFile.writingToFile(doctorName, meetingNotes);
 
+		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		
+		// WHEN
 		pageObjectsHomePage.clickMDTMeetings();
 		pageObjectsMDTPage.clickAddNewMDTMeetingButton();
 		basePageLogBox.enterHospitalName(hospitalName);
@@ -75,6 +78,8 @@ public class MDTMeetingsTests extends BasePageFrameWork {
 		pageObjectsMDTPage.enterDoctorPhoneNumber(docPhoneNumberInput);
 		pageObjectsMDTPage.clickSaveButtonOnMDTMeetingList();
 		System.out.println("Error message displayed : " + " " + pageObjectsMDTPage.getErrorMsgOnSave());
+	
+		// THEN
 		Assert.assertTrue(pageObjectsMDTPage.getErrorMsgOnSave().equals(expectedError));
 		Reporter.log("Validation passed:  User is not allowed to save a MDT meeting without a Coordinator");
 	}

@@ -38,7 +38,7 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 
 	// Method: Get the Text From the First Item in the Case Files DropDown Box
 	public String getTextFromFirstItemOnCaseFilesList() {
-		waitUntilElementNoLongerDisplays(100, By.cssSelector(".success .v-snack__content"));
+		waitUntilElementNoLongerDisplays(50, By.cssSelector(".success .v-snack__content"));
 		String textFromCaseFilesList = getElementText(By.cssSelector(".black--text"));
 		return textFromCaseFilesList;
 	}
@@ -61,16 +61,13 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 		}
 	}
 
-	// Method: Select a Case File From the Case Files DropDown Box Using scrollIntoView
+	// Method: Select a Case File From the Case Files DropDown Box Using
+	// scrollIntoView method
 	public void selectItemFromDropdownList(String caseFileName) throws InterruptedException {
-
-		WebElement element = driver.findElement(By.cssSelector(".justify-space-between.row"));
-
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-
+		scrollIntoView(By.cssSelector(".justify-space-between.row"));
 		clickElement(By.xpath("//*[contains(text(),'" + caseFileName + "')]"));
-
 		System.out.println("Which case file was selected" + " " + getTextFromFirstItemOnCaseFilesList());
+
 	}
 
 	// Method: Click Add Activity Button
@@ -91,7 +88,7 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 
 	// Method: Get Text From the Activity Notes
 	public String getTextFromActivityNote() throws InterruptedException {
-		waitForElement(1500, By.cssSelector(
+		waitForElement(200, By.cssSelector(
 				"div:nth-of-type(1) > .mb-3.pb-2.theme--light.v-card.v-sheet > .no-gutters.row > .v-card__text  .col.pr-3"));
 		String textFromActivityNote = getElementText(By.cssSelector(
 				"div:nth-of-type(1) > .mb-3.pb-2.theme--light.v-card.v-sheet > .no-gutters.row > .v-card__text  .col.pr-3"));
@@ -128,7 +125,8 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 	// Method: Remove selected Diagnosis Codes / ICD10 Code
 	public void clickRemoveButton(String selectICD10Code) {
 		List<WebElement> selectedICD10Codes = driver.findElements(By.cssSelector("div[role='list']"));
-		//System.out.println("number of returned rows: " + " " + selectedICD10Codes.size());
+		// System.out.println("number of returned rows: " + " " +
+		// selectedICD10Codes.size());
 		for (int i = 0; i <= selectedICD10Codes.size() - 1; i++) {
 			System.out.println(selectedICD10Codes.get(i).getText());
 			if (selectedICD10Codes.get(i).getText().contains(selectICD10Code)) {

@@ -22,7 +22,7 @@ public class ReadDataFromExcel extends BasePageFrameWork {
 	}
 	
 	@DataProvider(name = "MDTMeetings")
-	public Object[][] getDataFromExcelTakeALot() {
+	public Object[][] getDataFromExcelMDTMeetings() {
 		String excelDirectory = fileUtilities.getDataConfigProperties("inputDir");
 		Object[][] errObj = fileUtilities.getExcelData(excelDirectory + "MDTMeetings.xlsx", "Sheet1");
 		return errObj;
