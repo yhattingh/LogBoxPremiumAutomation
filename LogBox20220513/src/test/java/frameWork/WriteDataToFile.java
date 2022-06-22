@@ -22,7 +22,7 @@ public class WriteDataToFile {
 	}
 
 	// Method:  To read from the Excel file in the ReadDataFromExcel class and writes to output.txt file
-	public void writingToFile(String doctorName) {
+	public void writingToFile(String string1, String string2) {
 
 		boolean bool = true;
 
@@ -33,7 +33,7 @@ public class WriteDataToFile {
 			result = " This is the incorrect result";
 		}
 
-		String content = doctorName + result;
+		String content = result + ":" + " " + string1 + " " + "," + " " + string2;
 
 		try {
 			Files.write(Paths.get(outputFile), (content + System.lineSeparator()).getBytes(), StandardOpenOption.CREATE,

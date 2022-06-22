@@ -8,20 +8,32 @@ public class PageObjectsActivityFeedPage extends BasePageFrameWork {
 
 	// Method: Click Search Activities
 	public void searchForActivity(String searchedactivity) throws InterruptedException {
-		waitForElement(100, By.cssSelector("input"));
+		waitForElement(50, By.cssSelector("input"));
 		enterText(By.cssSelector("input"), searchedactivity);
 	}
 
 	// Method: Click Activity on Activity Feed Page
-	public void clickSearchedActivity() {
-		waitUntilElementNoLongerDisplays(100, By.className(".pageLoadingBar"));
-		clickElement(By.cssSelector("div:nth-of-type(1) > .mb-3.pb-2.theme--light.v-card.v-sheet"));
+	public void clickSearchedActivity(String searchedactivity) {
+		String returnedActivity = getElementText(
+				By.cssSelector("[class='col col-12']:nth-of-type(1) span:nth-of-type(2)"));
+		if (returnedActivity.contains(searchedactivity)) {
+			clickElement(By.cssSelector("div:nth-of-type(1) > .mb-3.pb-2.theme--light.v-card.v-sheet"));
+		} else {
+			waitUntilElementNoLongerDisplays(5, By.className(".pageLoadingBar"));
+			clickElement(By.cssSelector("div:nth-of-type(1) > .mb-3.pb-2.theme--light.v-card.v-sheet"));
+		}
 	}
 
 	// Method: Click on Activity to Edit
 	public void clickToEditActivity() {
-		waitUntilElementNoLongerDisplays(100, By.className(".pageLoadingBar"));
-		clickElement(By.cssSelector("[class] [class='col col-12']:nth-of-type(3) [class] .small-flex-child:nth-of-type(1)"));
+		String returnedActivityFeed = getElementText(
+				By.cssSelector("[class] [class='col col-12']:nth-of-type(1) [class] .small-flex-child:nth-of-type(1)"));
+		if (returnedActivityFeed.contains("ActivityFeed")) {
+			clickElement(By.cssSelector("[class] [class='col col-12']:nth-of-type(1) [class] .small-flex-child:nth-of-type(1)"));
+		} else {
+			waitUntilElementNoLongerDisplays(5, By.className(".pageLoadingBar"));
+			clickElement(By.cssSelector("[class] [class='col col-12']:nth-of-type(1) [class] .small-flex-child:nth-of-type(1)"));
+		}
 	}
 
 	// Method: Click DateTime
@@ -37,7 +49,7 @@ public class PageObjectsActivityFeedPage extends BasePageFrameWork {
 
 	// Method: Click Inpatient/Outpatient button
 	public void clickInpatientOutpatientButton() {
-		waitUntilElementNoLongerDisplays(100, By.className(".pageLoadingBar"));
+		waitforClick(200, By.cssSelector("[class='col-md-9 col-12'] .v-btn__content"));
 		clickElement(By.xpath("//*[contains(text(),'Inpatient/Outpatient')]"));
 	}
 

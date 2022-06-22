@@ -38,9 +38,12 @@ public class ActivityTests extends BasePageFrameWork {
 		String selectOptionFromButtonList = "Create Case File";
 		String inputOnCaseFile = "Case file added on";
 
+		//GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		
+		//WHEN
 		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
 		pageObjectsHomePage.clickOnSearchedPatient(patientName);
 		pageObjectsActivityPage.clickMoreButton();
@@ -53,6 +56,8 @@ public class ActivityTests extends BasePageFrameWork {
 		textFromFirstItemOnCaseFilesList = pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList();
 		System.out.println("The latest item on the list is: " + " " + textFromFirstItemOnCaseFilesList);
 		String feedURL = driver.getCurrentUrl();
+		
+		//THEN
 		Assert.assertTrue(feedURL.contains("feed"));
 		Assert.assertTrue(pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList()
 				.equals("Case file added on" + " " + localDateTime));
@@ -70,9 +75,12 @@ public class ActivityTests extends BasePageFrameWork {
 		String textNote = "This is a new activity note created on ";
 		String patientName = "Peter";
 
+		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		
+		// WHEN
 		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
 		pageObjectsHomePage.clickOnSearchedPatient(patientName);
 		pageObjectsActivityPage.clickCaseFilesDropdown();
@@ -83,6 +91,8 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsActivityPage.addTextNote(textNote + localDateTime);
 		pageObjectsActivityPage.clickPostButton();
 		System.out.println("Text Note Added = :" + " " + pageObjectsActivityPage.getTextFromActivityNote());
+		
+		// THEN
 		Assert.assertTrue(pageObjectsActivityPage.getTextFromActivityNote().equals(textNote + localDateTime));
 		Reporter.log("The following activity was created successfully: "
 				+ pageObjectsActivityPage.getTextFromActivityNote());
@@ -101,9 +111,12 @@ public class ActivityTests extends BasePageFrameWork {
 		String selectICD10Code1 = "Clicking hip";
 		String selectICD10Code2 = "Congenital subluxation of hip, bilateral";
 
+		// GIVEN 
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		
+		// WHEN
 		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
 		pageObjectsHomePage.clickOnSearchedPatient(patientName);
 		pageObjectsActivityPage.clickMoreButton();
@@ -129,6 +142,8 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsActivityPage.clickActivityPostButton();
 		System.out.println(
 				"Codes after remove action: " + " " + pageObjectsActivityPage.getTextForSelectedDiagnosisCodes());
+		
+		// THEN
 		Assert.assertTrue(pageObjectsActivityPage.getTextForSelectedDiagnosisCodes().contains(selectICD10Code2));
 		Reporter.log("One diagnosis code removed successfully.  Diagnosis code remaining:" + " "
 				+ pageObjectsActivityPage.getTextForSelectedDiagnosisCodes());
@@ -140,18 +155,21 @@ public class ActivityTests extends BasePageFrameWork {
 
 		String searchedActivity = "Case file added on 14-06-2022 08:28:34";
 
+		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		
+		// WHEN
 		basePageLogBox.clickActivityMainMenuItem();
 		pageObjectsActivityFeedPage.searchForActivity(searchedActivity);
-		pageObjectsActivityFeedPage.clickSearchedActivity();
+		pageObjectsActivityFeedPage.clickSearchedActivity(searchedActivity);
 		pageObjectsActivityFeedPage.clickToEditActivity();
 		pageObjectsActivityFeedPage.clickInpatientOutpatientButton();
-//		pageObjectsActivityFeedPage.selectInpatientRadioButton();
-//		pageObjectsActivityFeedPage.clickInpatientRadioButton();
 		pageObjectsActivityFeedPage.clickSetButtonOnLocationDialogBox();
 		System.out.println("Option selected: " + " " + pageObjectsActivityFeedPage.getTextForInOutPatient());
+		
+		// THEN
 		Assert.assertTrue(pageObjectsActivityFeedPage.getTextForInOutPatient().equals("Outpatient"));
 		Reporter.log("Patient Location successfully selected as:" + " "
 				+ pageObjectsActivityFeedPage.getTextForInOutPatient());

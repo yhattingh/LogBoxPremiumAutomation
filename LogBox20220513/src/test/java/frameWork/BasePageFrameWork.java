@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.ss.usermodel.Table;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -304,4 +305,8 @@ public class BasePageFrameWork {
 		return rows.isEmpty();
 	}
 
+	public void scrollIntoView(By pLocator) {
+		WebElement element = driver.findElement(pLocator);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+	}
 }
