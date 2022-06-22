@@ -28,10 +28,10 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	PageObjectsHomePage pageObjectsHomePage = new PageObjectsHomePage();
 	PageObjectsActivityPage pageObjectsActivityPage = new PageObjectsActivityPage();
 
-//	@AfterTest
-//	public void cleanUpAfterTest() throws InterruptedException {
-//		cleanUp();
-//	}
+	@AfterTest
+	public void cleanUp() {
+		driver.quit();
+	}
 
 	// User Story One
 	@Test
@@ -161,7 +161,7 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		String partialicd10code = "bladder";
 		String icd10code1 = "Malignant neoplasm, trigone of bladder";
 		String hospitalName = "Wits Donald Gordon Medical Centre";
-		By pLocator = By.cssSelector("table");
+		By pLocatorTable = By.cssSelector("table");
 		By pLocatorRow = By.cssSelector("table > tbody");
 		String localDate;
 		String localTimePlusTwoMinutes;
@@ -189,14 +189,17 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		pageObjectsPreAdmissionPage.clickCloseButton();
 		pageObjectsHomePage.clickOnPreAdmissionButtonInLeftMenu();
 		pageObjectsPreAdmissionPage.filterOnPatientInPreadmissionList(patientname);
-		// int numberOfPreAdmissionRowsBefore =
-		// basePageLogBox.getNumberOfTableRows(pLocator, pLocatorRow);
+		int numberOfPreAdmissionRowsBefore = basePageLogBox.getNumberOfTableRows(pLocatorTable, pLocatorRow);
+		Assert.assertEquals(numberOfPreAdmissionRowsBefore, 1);
 		pageObjectsPreAdmissionPage.deletePreAdmission();
+		pageObjectsPreAdmissionPage.confirmPreAdmissionDelete();
 		//THEN
-		int numberOfPreAdmissionRowsAfter = basePageLogBox.getNumberOfTableRows(pLocator, pLocatorRow);
-		// Assert.assertTrue(numberOfPreAdmissionRowsAfter >
-		// numberOfPreAdmissionRowsBefore);
-		Assert.assertEquals(numberOfPreAdmissionRowsAfter, 0);
+		//int numberOfPreAdmissionRowsAfter = basePageLogBox.getNumberOfTableRows(pLocatorTable, pLocatorRow);
+//		 Assert.assertTrue(numberOfPreAdmissionRowsAfter.contains() );
+//		 numberOfPreAdmissionRowsBefore);
+		//Assert.assertEquals(numberOfPreAdmissionRowsAfter, 0);
+		String rowText = pageObjectsPreAdmissionPage.getTextFromTableFirstRow();
+		Assert.assertEquals(rowText,"No data available");
 		Reporter.log("The PreAdmission was deleted successfully");
 	}
 

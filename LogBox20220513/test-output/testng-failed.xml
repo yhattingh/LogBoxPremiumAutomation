@@ -5,6 +5,7 @@
     <classes>
       <class name="testsLogBox.PreAdmissionTests">
         <methods>
+          <include name="cleanUp"/>
           <include name="shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName"/>
         </methods>
       </class> <!-- testsLogBox.PreAdmissionTests -->

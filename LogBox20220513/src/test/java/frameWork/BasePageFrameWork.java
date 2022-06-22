@@ -91,7 +91,7 @@ public class BasePageFrameWork {
 
 	// Method: Click on an Element
 	public void clickElement(By pLocator) {
-		waitforClick(100, pLocator);
+		waitforClick(50, pLocator);
 		getElement(pLocator).click();
 	}
 
@@ -292,8 +292,8 @@ public class BasePageFrameWork {
 			radioButton.click();
 	}
 
-	public int getNumberOfTableRows(By pLocator, By pLocatorRow) {
-		WebElement webElement = driver.findElement(pLocator);
+	public int getNumberOfTableRows(By pLocatorTable, By pLocatorRow) {
+		WebElement webElement = driver.findElement(pLocatorTable);
 		List<WebElement> rows = webElement.findElements(pLocatorRow);
 		return rows.size();
 	}

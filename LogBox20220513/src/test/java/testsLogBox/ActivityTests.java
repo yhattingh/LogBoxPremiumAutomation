@@ -42,7 +42,7 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
-		pageObjectsHomePage.clickOnSearchedPatient();
+		pageObjectsHomePage.clickOnSearchedPatient(patientName);
 		pageObjectsActivityPage.clickMoreButton();
 		pageObjectsActivityPage.selectOptionFromMoreButtonList(selectOptionFromButtonList);
 		localDateTime = basePageFrameWork.getLocalDateTime();
@@ -74,7 +74,7 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
-		pageObjectsHomePage.clickOnSearchedPatient();
+		pageObjectsHomePage.clickOnSearchedPatient(patientName);
 		pageObjectsActivityPage.clickCaseFilesDropdown();
 		pageObjectsActivityPage.selectItemFromDropdownList(selectedCaseFile);
 		System.out.println("Case File number entered: " + " " + selectedCaseFile);
@@ -105,7 +105,7 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
-		pageObjectsHomePage.clickOnSearchedPatient();
+		pageObjectsHomePage.clickOnSearchedPatient(patientName);
 		pageObjectsActivityPage.clickMoreButton();
 		pageObjectsActivityPage.selectOptionFromMoreButtonList(selectOptionFromButtonList);
 		localDateTime = basePageFrameWork.getLocalDateTime();

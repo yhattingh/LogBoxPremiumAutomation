@@ -13,6 +13,7 @@ import frameWork.FileUtilities;
 import frameWork.WriteDataToFile;
 import pageObjectsLogBox.BasePageLogBox;
 import pageObjectsLogBox.PageObjectsBrochurePage;
+import pageObjectsLogBox.PageObjectsHomePage;
 import pageObjectsLogBox.PageObjectsMDTPage;
 import frameWork.ReadDataFromExcel;
 
@@ -24,6 +25,8 @@ public class MDTMeetingsTests extends BasePageFrameWork {
 	PageObjectsMDTPage pageObjectsMDTPage = new PageObjectsMDTPage();
 	WriteDataToFile writeDataToFile = new WriteDataToFile();
 	ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
+	PageObjectsHomePage pageObjectsHomePage = new PageObjectsHomePage();
+	
 
 
 	@AfterTest
@@ -54,7 +57,7 @@ public class MDTMeetingsTests extends BasePageFrameWork {
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		basePageLogBox.clickMDTMeetings();
+		pageObjectsHomePage.clickMDTMeetings();
 		pageObjectsMDTPage.clickAddNewMDTMeetingButton();
 		basePageLogBox.enterHospitalName(hospitalName);
 		basePageLogBox.selectHospitalName(hospitalName);

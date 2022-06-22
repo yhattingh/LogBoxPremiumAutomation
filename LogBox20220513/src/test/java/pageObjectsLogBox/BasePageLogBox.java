@@ -15,24 +15,14 @@ public class BasePageLogBox extends BasePageFrameWork {
 		waitForUrl(30, "premium");
 	}
 
-	// Method: Click Activity Feed Main Menu Item "This should stay in
-	// BasePageLogBox as it is the main menu
+	// Method: Click Activity Feed Main Menu Item
 	public void clickActivityMainMenuItem() {
 		clickElement(By.cssSelector("a:nth-of-type(2) > .v-btn__content"));
 	}
 
-	// Method: Click Activity Feed Main Menu Item "This should stay in
-	// BasePageLogBox as it is the main menu
+	// Method: Click Activity Feed Main Menu Item
 	public void clickHomeMainMenuItem() {
 		clickElement(By.cssSelector("[data-cy='lb-toolbar-item-home'] .v-btn__content"));
-	}
-
-	// Method: Click on MDT Meeting in Quick Links Bar
-	public void clickMDTMeetings() {
-		waitForElement(100, (By.xpath(
-				"//div[@id='app']/div[@class='v-application--wrap']/div[1]/nav//a[@href='#/mdt-meeting']//i[.='groups']")));
-		clickElement(By.xpath(
-				"//div[@id='app']/div[@class='v-application--wrap']/div[1]/nav//a[@href='#/mdt-meeting']//i[.='groups']"));
 	}
 
 	// Method:Enter Current Date in Datepicker Fields
