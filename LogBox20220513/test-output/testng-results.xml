@@ -5,12 +5,12 @@
       <![CDATA[Validation passed:  User is not allowed to save a MDT meeting without a Coordinator]]>
     </line>
   </reporter-output>
-  <suite started-at="2022-06-23T09:51:47Z" name="Default suite" finished-at="2022-06-23T09:51:57Z" duration-ms="9621">
+  <suite started-at="2022-06-23T10:56:33Z" name="Default suite" finished-at="2022-06-23T10:56:49Z" duration-ms="15973">
     <groups>
     </groups>
-    <test started-at="2022-06-23T09:51:47Z" name="Default test" finished-at="2022-06-23T09:51:57Z" duration-ms="9621">
+    <test started-at="2022-06-23T10:56:33Z" name="Default test" finished-at="2022-06-23T10:56:49Z" duration-ms="15973">
       <class name="testsLogBox.MDTMeetingsTests">
-        <test-method signature="shouldNotBeAllowedToSaveAMDTMeetingWithoutMeetingCoordinator(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testsLogBox.MDTMeetingsTests@55120f99]" started-at="2022-06-23T09:51:48Z" name="shouldNotBeAllowedToSaveAMDTMeetingWithoutMeetingCoordinator" data-provider="MDTMeetings" finished-at="2022-06-23T09:51:57Z" duration-ms="8949" status="PASS">
+        <test-method signature="shouldNotBeAllowedToSaveAMDTMeetingWithoutMeetingCoordinator(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testsLogBox.MDTMeetingsTests@55120f99]" started-at="2022-06-23T10:56:35Z" name="shouldNotBeAllowedToSaveAMDTMeetingWithoutMeetingCoordinator" data-provider="MDTMeetings" finished-at="2022-06-23T10:56:49Z" duration-ms="13994" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -34,7 +34,7 @@
             </line>
           </reporter-output>
         </test-method> <!-- shouldNotBeAllowedToSaveAMDTMeetingWithoutMeetingCoordinator -->
-        <test-method is-config="true" signature="cleanUpAfterTest()[pri:0, instance:testsLogBox.MDTMeetingsTests@55120f99]" started-at="2022-06-23T09:51:57Z" name="cleanUpAfterTest" finished-at="2022-06-23T09:51:57Z" duration-ms="177" status="PASS">
+        <test-method is-config="true" signature="cleanUpAfterTest()[pri:0, instance:testsLogBox.MDTMeetingsTests@55120f99]" started-at="2022-06-23T10:56:49Z" name="cleanUpAfterTest" finished-at="2022-06-23T10:56:49Z" duration-ms="387" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cleanUpAfterTest -->
