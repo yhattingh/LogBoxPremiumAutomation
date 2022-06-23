@@ -45,7 +45,7 @@
 						<configuration>
 							<reportsDirectory>${project.build.directory}/surefire-reports-${maven.build.timestamp}</reportsDirectory>
 							<suiteXmlFiles>
-								<suiteXmlFile>PreAdmissionAdmissionDischargeTestNG.xml</suiteXmlFile>
+								<suiteXmlFile>PreAdmissionsTestNG.xml</suiteXmlFile>
 							</suiteXmlFiles>
 						</configuration>
 					</plugin>
@@ -90,14 +90,6 @@
 			</build>
 		</profile>
 	</profiles>
-
-	<repositories>
-		<repository>
-			<id>AsposeJavaAPI</id>
-			<name>Aspose Java API</name>
-			<url>http://repository.aspose.com/repo/</url>
-		</repository>
-	</repositories>
 
 	<dependencies>
 		<dependency>

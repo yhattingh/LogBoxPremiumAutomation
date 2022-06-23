@@ -6,7 +6,7 @@ import frameWork.BasePageFrameWork;
 
 public class BasePageLogBox extends BasePageFrameWork {
 
-	// Declare Homepage Url
+	// Declare Homepage URL
 	String homePageURL = "https://qa.logbox.co.za/premium/#/";
 
 	// Method: Navigate Home
@@ -70,5 +70,4 @@ public class BasePageLogBox extends BasePageFrameWork {
 	public void clickAddButtonOnICD10CodeDialog() {
 		clickElement(By.cssSelector(".primary--text.theme--light.v-btn.v-btn--text.v-size--default > .v-btn__content"));
 	}
-
 }

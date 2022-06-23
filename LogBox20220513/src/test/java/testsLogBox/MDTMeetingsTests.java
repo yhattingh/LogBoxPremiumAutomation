@@ -5,11 +5,9 @@ import java.io.IOException;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import frameWork.BasePageFrameWork;
-import frameWork.FileUtilities;
 import frameWork.WriteDataToFile;
 import pageObjectsLogBox.BasePageLogBox;
 import pageObjectsLogBox.PageObjectsBrochurePage;
@@ -26,20 +24,19 @@ public class MDTMeetingsTests extends BasePageFrameWork {
 	WriteDataToFile writeDataToFile = new WriteDataToFile();
 	ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
 	PageObjectsHomePage pageObjectsHomePage = new PageObjectsHomePage();
-	
 
+	@AfterTest
+	public void cleanUpAfterTest() {
+		cleanUp();
+	}
 
-//	@AfterTest
-//	public void cleanUp() {
-//		basePageFrameWork.cleanUp();
-//	}
-
-	// User story five
-	@Test(dataProvider = "MDTMeetings",dataProviderClass = ReadDataFromExcel.class)
+	// User story five: YH
+	@Test(dataProvider = "MDTMeetings", dataProviderClass = ReadDataFromExcel.class)
 	public void shouldNotBeAllowedToSaveAMDTMeetingWithoutMeetingCoordinator(String doctorName, String doctorPhone,
 			String meetingNotes) throws InterruptedException, IOException {
-		
-		System.out.println("Excel data" + " " + "Doctor: " + doctorName + " " + "Phone:" + " " + doctorPhone + "Notes: " + " " + meetingNotes);
+
+		System.out.println("Excel data" + " " + "Doctor: " + doctorName + " " + "Phone:" + " " + doctorPhone + "Notes: "
+				+ " " + meetingNotes);
 
 		String hospitalName = "Wits Donald Gordon Medical Centre";
 		int dateAdjustment = 2;
@@ -58,7 +55,7 @@ public class MDTMeetingsTests extends BasePageFrameWork {
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		
+
 		// WHEN
 		pageObjectsHomePage.clickMDTMeetings();
 		pageObjectsMDTPage.clickAddNewMDTMeetingButton();
@@ -78,7 +75,7 @@ public class MDTMeetingsTests extends BasePageFrameWork {
 		pageObjectsMDTPage.enterDoctorPhoneNumber(docPhoneNumberInput);
 		pageObjectsMDTPage.clickSaveButtonOnMDTMeetingList();
 		System.out.println("Error message displayed : " + " " + pageObjectsMDTPage.getErrorMsgOnSave());
-	
+
 		// THEN
 		Assert.assertTrue(pageObjectsMDTPage.getErrorMsgOnSave().equals(expectedError));
 		Reporter.log("Validation passed:  User is not allowed to save a MDT meeting without a Coordinator");

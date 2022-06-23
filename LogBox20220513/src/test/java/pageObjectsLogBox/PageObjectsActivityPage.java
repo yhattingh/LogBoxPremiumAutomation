@@ -3,7 +3,6 @@ package pageObjectsLogBox;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import frameWork.BasePageFrameWork;
@@ -12,7 +11,6 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 
 	// Method: Click on More Button on Activity Feed page
 	public void clickMoreButton() {
-		// waitForElement(50, (By.cssSelector(".v-size--small .theme--light")));
 		clickElement(By.cssSelector(".v-size--small .theme--light"));
 	}
 
@@ -45,15 +43,11 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 
 	// Method: Select a Case File From the Case Files DropDown Box
 	public void selectCaseFileFromDropdownList(String caseFileName) {
-
 		driver.findElement(By.className("v-select__selections"));
-
 		List<WebElement> allOptions = driver.findElements(By.className("selectCaseFileListItem"));
 		System.out.println("number of returned rows: " + " " + allOptions.size());
-
 		for (int i = 0; i <= allOptions.size() - 1; i++) {
 			System.out.println(allOptions.get(i).getText());
-
 			if (allOptions.get(i).getText().contains(caseFileName)) {
 				allOptions.get(i).click();
 				break;
@@ -67,7 +61,6 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 		scrollIntoView(By.cssSelector(".justify-space-between.row"));
 		clickElement(By.xpath("//*[contains(text(),'" + caseFileName + "')]"));
 		System.out.println("Which case file was selected" + " " + getTextFromFirstItemOnCaseFilesList());
-
 	}
 
 	// Method: Click Add Activity Button
@@ -125,8 +118,6 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 	// Method: Remove selected Diagnosis Codes / ICD10 Code
 	public void clickRemoveButton(String selectICD10Code) {
 		List<WebElement> selectedICD10Codes = driver.findElements(By.cssSelector("div[role='list']"));
-		// System.out.println("number of returned rows: " + " " +
-		// selectedICD10Codes.size());
 		for (int i = 0; i <= selectedICD10Codes.size() - 1; i++) {
 			System.out.println(selectedICD10Codes.get(i).getText());
 			if (selectedICD10Codes.get(i).getText().contains(selectICD10Code)) {

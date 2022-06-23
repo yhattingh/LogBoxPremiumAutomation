@@ -1,9 +1,9 @@
 package frameWork;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.net.URL;
@@ -19,14 +19,15 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.pdfbox.pdmodel.PDDocument;
 import org.pdfbox.util.PDFTextStripper;
 import org.testng.Assert;
+
 public class FileUtilities extends BasePageFrameWork {
-	
-	
+
 	private static XSSFWorkbook xssfWorkbook;
 	private static XSSFSheet xssfSheet;
 	private static XSSFRow xssfRow;
 	private static XSSFCell xssfcell;
-	// Method: To read data from Excel
+
+	// Method: To Read Data from Excel
 	public String[][] getExcelData(String fileName, String sheetName) {
 		String[][] data = null;
 		try {
@@ -45,13 +46,13 @@ public class FileUtilities extends BasePageFrameWork {
 					xssfWorkbook.close();
 				}
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("The exception is: " + e.getMessage());
 		}
 		return data;
 	}
-	
+
+	// Method: Set Excel File Detail
 	public void setExcelFile(String excelFilePath, String sheetName) throws IOException {
 		// Create an object of File class to open xls file
 		File file = new File(excelFilePath);
@@ -62,25 +63,29 @@ public class FileUtilities extends BasePageFrameWork {
 		// creating a Sheet object
 		xssfSheet = xssfWorkbook.getSheet(sheetName);
 	}
+
+	// Method: Get Cell Data
 	public String getCellData(int rowNumber, int cellNumber) {
 		// getting the cell value from rowNumber and cell Number
 		xssfcell = xssfSheet.getRow(rowNumber).getCell(cellNumber);
 		// returning the cell value as string
 		return xssfcell.getStringCellValue();
 	}
-	//Method:  Get RowCount in Sheet
+
+	// Method: Get RowCount in Sheet
 	public int getRowCountInSheet() {
 		int rowcount = xssfSheet.getLastRowNum() - xssfSheet.getFirstRowNum();
 		return rowcount;
 	}
-	//Method:  Set the Cell Value
+
+	// Method: Set the Cell Value
 	public void setCellValue(int rowNum, int cellNum, String cellValue, String excelFilePath) throws IOException {
 		// creating a new cell in row and setting value to it
 		xssfSheet.getRow(rowNum).createCell(cellNum).setCellValue(cellValue);
 		FileOutputStream outputStream = new FileOutputStream(excelFilePath);
 		xssfWorkbook.write(outputStream);
 	}
-		
+
 	// Method: Read from a PDF Document
 	public String readPDFContent(String appUrl, int expectedNoPages) throws Exception {
 		URL url = new URL(appUrl);
@@ -103,11 +108,14 @@ public class FileUtilities extends BasePageFrameWork {
 		}
 		return output;
 	}
+
+	// Method: To Get the Page Count of Document
 	public int getPageCount(PDDocument document) {
 		int pageCount = document.getNumberOfPages();
 		return pageCount;
 	}
-	// Method: Reset an output file in case it is corrupted or still open - A new conflict created here
+
+	// Method: Reset an Output file in case it is corrupted or still open
 	public void resetOutPutFile(String OutputFileName) {
 		try {
 			FileWriter fileWriter = new FileWriter(OutputFileName, false);
@@ -116,10 +124,11 @@ public class FileUtilities extends BasePageFrameWork {
 			e.printStackTrace();
 		}
 	}
+
 	String outputDirectory = getDataConfigProperties("outputDir");
 	String outputFile = outputDirectory + "OutputFile.txt";
+
 	// Method: Write to file
-	//Creating a new conflict here
 	public void writingToFile(String column1, String column2) {
 		boolean bool = true;
 		String result;

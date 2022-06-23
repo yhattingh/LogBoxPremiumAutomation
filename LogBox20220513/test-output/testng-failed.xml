@@ -5,8 +5,10 @@
     <classes>
       <class name="testsLogBox.ActivityTests">
         <methods>
-          <include name="shouldSelectInpatientLocation"/>
-          <include name="cleanUp"/>
+          <include name="shouldRemoveDiagnosticCodeForAnActivity"/>
+          <include name="cleanUpAfterTest"/>
+          <include name="shouldCreateCaseFileForSelectedPatient"/>
+          <include name="shouldCreateActivityForSelectedPatient"/>
         </methods>
       </class> <!-- testsLogBox.ActivityTests -->
     </classes>

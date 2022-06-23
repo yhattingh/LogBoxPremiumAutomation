@@ -21,11 +21,10 @@ public class WriteDataToFile {
 		fileUtilities.resetOutPutFile(outputFile);
 	}
 
-	// Method:  To read from the Excel file in the ReadDataFromExcel class and writes to output.txt file
+	// Method: To read from the Excel file in the ReadDataFromExcel class and writes
+	// to output.txt file
 	public void writingToFile(String string1, String string2) {
-
 		boolean bool = true;
-
 		String result;
 		if (bool) {
 			result = " This is the correct result";
@@ -34,7 +33,6 @@ public class WriteDataToFile {
 		}
 
 		String content = result + ":" + " " + string1 + " " + "," + " " + string2;
-
 		try {
 			Files.write(Paths.get(outputFile), (content + System.lineSeparator()).getBytes(), StandardOpenOption.CREATE,
 					StandardOpenOption.APPEND);
