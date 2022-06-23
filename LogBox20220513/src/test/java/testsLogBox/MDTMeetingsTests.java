@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
@@ -28,6 +29,11 @@ public class MDTMeetingsTests extends BasePageFrameWork {
 	@AfterTest
 	public void cleanUpAfterTest() {
 		cleanUp();
+	}
+	
+	@AfterMethod
+	public void logOut() {
+		basePageLogBox.logOutOfLogBox();
 	}
 
 	// User story five: YH

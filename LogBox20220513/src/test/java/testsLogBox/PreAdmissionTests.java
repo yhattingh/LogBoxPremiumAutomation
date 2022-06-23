@@ -26,15 +26,15 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	PageObjectsHomePage pageObjectsHomePage = new PageObjectsHomePage();
 	PageObjectsActivityPage pageObjectsActivityPage = new PageObjectsActivityPage();
 
-//	@AfterMethod
-//	public void cleanUpAfterTest() {
-//		cleanUp();
-//	}
-//	
-//	@AfterTest
-//	public void cleanUpAfterTestSuite() {
-//		cleanUp();
-//	}
+	@AfterTest
+	public void cleanUpAfterTest() {
+		cleanUp();
+	}
+	
+	@AfterMethod
+	public void logOut() {
+		basePageLogBox.logOutOfLogBox();
+	}
 
 	// User Story One: CH
 	@Test

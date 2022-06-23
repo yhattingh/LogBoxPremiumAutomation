@@ -70,4 +70,11 @@ public class BasePageLogBox extends BasePageFrameWork {
 	public void clickAddButtonOnICD10CodeDialog() {
 		clickElement(By.cssSelector(".primary--text.theme--light.v-btn.v-btn--text.v-size--default > .v-btn__content"));
 	}
+	
+	// Method:  To Logout of LogBox
+	public void logOutOfLogBox() {
+		clickElement(By.cssSelector(".v-icon--right"));
+		clickElement(By.xpath("//*[contains(text(),'" + "Logout" + "')]"));
+		
+	}
 }

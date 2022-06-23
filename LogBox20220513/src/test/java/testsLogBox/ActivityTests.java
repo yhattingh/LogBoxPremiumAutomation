@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
@@ -13,6 +14,7 @@ import pageObjectsLogBox.PageObjectsActivityFeedPage;
 import pageObjectsLogBox.PageObjectsActivityPage;
 import pageObjectsLogBox.PageObjectsBrochurePage;
 import pageObjectsLogBox.PageObjectsHomePage;
+
 
 public class ActivityTests extends BasePageFrameWork {
 
@@ -25,6 +27,11 @@ public class ActivityTests extends BasePageFrameWork {
 	@AfterTest
 	public void cleanUpAfterTest() {
 		cleanUp();
+	}
+	
+	@AfterMethod
+	public void logOut() {
+		basePageLogBox.logOutOfLogBox();
 	}
 
 	// User Story One:  YH
