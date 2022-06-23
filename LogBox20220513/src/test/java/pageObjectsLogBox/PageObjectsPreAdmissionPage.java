@@ -144,4 +144,10 @@ public class PageObjectsPreAdmissionPage extends BasePageFrameWork {
 			waitUntilElementNoLongerDisplays(10, By.className(".pageLoadingBar"));
 		}
 	}
+	
+	public boolean preAdmissionsAfterIsGreaterThanBefore(int BeforeValue, int AfterValue) {
+		boolean checkAfterIsGreater = (AfterValue>BeforeValue);
+		return checkAfterIsGreater;
+		
+	}
 }

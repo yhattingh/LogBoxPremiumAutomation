@@ -3,14 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testsLogBox.ActivityTests">
+      <class name="testsLogBox.PreAdmissionTests">
         <methods>
-          <include name="shouldRemoveDiagnosticCodeForAnActivity"/>
-          <include name="cleanUpAfterTest"/>
-          <include name="shouldCreateCaseFileForSelectedPatient"/>
-          <include name="shouldCreateActivityForSelectedPatient"/>
+          <include name="shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields"/>
         </methods>
-      </class> <!-- testsLogBox.ActivityTests -->
+      </class> <!-- testsLogBox.PreAdmissionTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

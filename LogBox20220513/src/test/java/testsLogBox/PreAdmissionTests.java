@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
@@ -25,10 +26,15 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	PageObjectsHomePage pageObjectsHomePage = new PageObjectsHomePage();
 	PageObjectsActivityPage pageObjectsActivityPage = new PageObjectsActivityPage();
 
-	@AfterTest
-	public void cleanUpAfterTest() {
-		cleanUp();
-	}
+//	@AfterMethod
+//	public void cleanUpAfterTest() {
+//		cleanUp();
+//	}
+//	
+//	@AfterTest
+//	public void cleanUpAfterTestSuite() {
+//		cleanUp();
+//	}
 
 	// User Story One: CH
 	@Test
@@ -124,13 +130,19 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		String localDate;
 		String localTimePlusTwoMinutes;
 		String patientName = "PreAdmission One";
+		By pLocatorTable = By.cssSelector("table");
+		By pLocatorRow = By.xpath("//tbody/tr");
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
+		pageObjectsHomePage.clickOnPreAdmissionButtonInLeftMenu();
+		int numberOfPreAdmissionRowsBefore = basePageLogBox.getNumberOfTableRows(pLocatorTable, pLocatorRow);
+		basePageLogBox.navigateToHomePage();
 		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
+		Thread.sleep(1000);
 		pageObjectsHomePage.clickOnEllipseNextToPatientName();
 		pageObjectsActivityPage.selectOptionFromMoreButtonList("Create Pre-Admission");
 		System.out.println("Clicked on Create Pre-Admission");
@@ -146,13 +158,19 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		basePageLogBox.clickAddButtonOnICD10CodeDialog();
 		pageObjectsPreAdmissionPage.clickSaveButton();
 		pageObjectsPreAdmissionPage.clickCloseButton();
+		pageObjectsHomePage.clickOnPreAdmissionButtonInLeftMenu();
+		Thread.sleep(1000);
+		pageObjectsHomePage.clickRefreshButton();
+		int numberOfPreAdmissionRowsAfter = basePageLogBox.getNumberOfTableRows(pLocatorTable, pLocatorRow);
+		boolean checkRowsAfterGreaterThanBefore = pageObjectsPreAdmissionPage.preAdmissionsAfterIsGreaterThanBefore(numberOfPreAdmissionRowsBefore, numberOfPreAdmissionRowsAfter);
 		// THEN
-		String successToastText = pageObjectsPreAdmissionPage.getTextFromSuccessMessage();
-		Assert.assertTrue(successToastText.contains("Pre-Admission has been created"));
-		String preAdmissionTitle = pageObjectsPreAdmissionPage.getPreAdmissionTitle();
-		Assert.assertEquals(preAdmissionTitle, "Pre-Admission for " + patientName);
-		String admissionDetailsHeader = pageObjectsPreAdmissionPage.getAdmissionDetailsHeader();
-		Assert.assertEquals(admissionDetailsHeader, "Admission Details");
+		Assert.assertEquals(checkRowsAfterGreaterThanBefore, true);
+//		String successToastText = pageObjectsPreAdmissionPage.getTextFromSuccessMessage();
+//		Assert.assertTrue(successToastText.contains("Pre-Admission has been created"));
+//		String preAdmissionTitle = pageObjectsPreAdmissionPage.getPreAdmissionTitle();
+//		Assert.assertEquals(preAdmissionTitle, "Pre-Admission for " + patientName);
+//		String admissionDetailsHeader = pageObjectsPreAdmissionPage.getAdmissionDetailsHeader();
+//		Assert.assertEquals(admissionDetailsHeader, "Admission Details");
 		Reporter.log("The PreAdmission was created successfully");
 	}
 
@@ -164,8 +182,6 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		String partialicd10code = "bladder";
 		String icd10code1 = "Malignant neoplasm, trigone of bladder";
 		String hospitalName = "Wits Donald Gordon Medical Centre";
-		By pLocatorTable = By.cssSelector("table");
-		By pLocatorRow = By.cssSelector("table > tbody");
 		String localDate;
 		String localTimePlusTwoMinutes;
 		String patientname = "Two";
@@ -192,13 +208,9 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		pageObjectsPreAdmissionPage.clickCloseButton();
 		pageObjectsHomePage.clickOnPreAdmissionButtonInLeftMenu();
 		pageObjectsPreAdmissionPage.filterOnPatientInPreadmissionList(patientname);
-		int numberOfPreAdmissionRowsBefore = basePageLogBox.getNumberOfTableRows(pLocatorTable, pLocatorRow);
-		Assert.assertEquals(numberOfPreAdmissionRowsBefore, 1);
 		pageObjectsPreAdmissionPage.deletePreAdmission();
 		pageObjectsPreAdmissionPage.confirmPreAdmissionDelete();
 		// THEN
-//		 Assert.assertTrue(numberOfPreAdmissionRowsAfter.contains() );
-//		 numberOfPreAdmissionRowsBefore);
 		String rowText = pageObjectsPreAdmissionPage.getTextFromTableFirstRow();
 		Assert.assertEquals(rowText, "No data available");
 		Reporter.log("The PreAdmission was deleted successfully");
