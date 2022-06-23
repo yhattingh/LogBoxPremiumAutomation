@@ -3,7 +3,6 @@ package pageObjectsLogBox;
 import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.Test;
 import frameWork.BasePageFrameWork;
 import frameWork.FileUtilities;
 
@@ -22,13 +21,9 @@ public class PageObjectsBrochurePage extends BasePageFrameWork {
 	// Method: Click Login Button
 	public void clickLoginButtonToSubmitUsernameAndPassword() throws InterruptedException {
 		driver.findElement(By.cssSelector("#login-submit")).click();
-//		driver.wait(100);
-
 	}
 
 	// Method: To Test if Values are Read from Excel File with Username and Password
-	// @Test(dataProvider = "logBoxUserAccount", dataProviderClass =
-	// ReadDataFromExcel.class)
 	public void testExcelReader(String username, String password) {
 		System.out.println(username + " " + password);
 	}
@@ -48,17 +43,14 @@ public class PageObjectsBrochurePage extends BasePageFrameWork {
 		WebElement username = driver.findElement(By.id("username"));
 		WebElement password = driver.findElement(By.id("password"));
 
-		// Method: To call the FileUtilities method to read from Excel
 		fileUtilities.setExcelFile(inputFile, "sheet1");
 		int i = rowNumber;
 		username.sendKeys(fileUtilities.getCellData(i, cellNumber1));
 		password.sendKeys(fileUtilities.getCellData(i, cellNumber2));
-
 	}
-	
-	//Method: To log in as Activity Feed role
-	public void insertActivityUsernameAndPasswordFromExcel()
-			throws IOException, InterruptedException {
+
+	// Method: To log in as Activity Feed role
+	public void insertActivityUsernameAndPasswordFromExcel() throws IOException, InterruptedException {
 
 		FileUtilities fileUtilities = new FileUtilities();
 
@@ -68,25 +60,22 @@ public class PageObjectsBrochurePage extends BasePageFrameWork {
 		// Method: To call the FileUtilities method to read from Excel
 		fileUtilities.setExcelFile(inputFile, "sheet1");
 		int i = 1;
-		username.sendKeys(fileUtilities.getCellData(1,1));
-		password.sendKeys(fileUtilities.getCellData(1,2));
-
+		username.sendKeys(fileUtilities.getCellData(1, 1));
+		password.sendKeys(fileUtilities.getCellData(1, 2));
 	}
-	
-	//Method: To log in as Activity Feed role
-		public void insertPreAdmissionUsernameAndPasswordFromExcel()
-				throws IOException, InterruptedException {
 
-			FileUtilities fileUtilities = new FileUtilities();
+	// Method: To log in as Activity Feed role
+	public void insertPreAdmissionUsernameAndPasswordFromExcel() throws IOException, InterruptedException {
 
-			WebElement username = driver.findElement(By.id("username"));
-			WebElement password = driver.findElement(By.id("password"));
+		FileUtilities fileUtilities = new FileUtilities();
 
-			// Method: To call the FileUtilities method to read from Excel
-			fileUtilities.setExcelFile(inputFile, "sheet1");
-			int i = 2;
-			username.sendKeys(fileUtilities.getCellData(2,1));
-			password.sendKeys(fileUtilities.getCellData(2,2));
+		WebElement username = driver.findElement(By.id("username"));
+		WebElement password = driver.findElement(By.id("password"));
 
-		}
+		// Method: To call the FileUtilities method to read from Excel
+		fileUtilities.setExcelFile(inputFile, "sheet1");
+		int i = 2;
+		username.sendKeys(fileUtilities.getCellData(2, 1));
+		password.sendKeys(fileUtilities.getCellData(2, 2));
+	}
 }

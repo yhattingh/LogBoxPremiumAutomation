@@ -14,26 +14,15 @@ public class PageObjectsActivityFeedPage extends BasePageFrameWork {
 
 	// Method: Click Activity on Activity Feed Page
 	public void clickSearchedActivity(String searchedactivity) {
-		String returnedActivity = getElementText(
-				By.cssSelector("[class='col col-12']:nth-of-type(1) span:nth-of-type(2)"));
-		if (returnedActivity.contains(searchedactivity)) {
-			clickElement(By.cssSelector("div:nth-of-type(1) > .mb-3.pb-2.theme--light.v-card.v-sheet"));
-		} else {
-			waitUntilElementNoLongerDisplays(5, By.className(".pageLoadingBar"));
-			clickElement(By.cssSelector("div:nth-of-type(1) > .mb-3.pb-2.theme--light.v-card.v-sheet"));
-		}
+		waitUntilElementNoLongerDisplays(5, By.className(".pageLoadingBar"));
+		clickElement(By.cssSelector("div:nth-of-type(1) > .mb-3.pb-2.theme--light.v-card.v-sheet"));
 	}
 
 	// Method: Click on Activity to Edit
-	public void clickToEditActivity() {
-		String returnedActivityFeed = getElementText(
+	public void clickToEditActivity() throws InterruptedException {
+		waitUntilElementNoLongerDisplays(5, By.className(".pageLoadingBar"));
+		clickElement(
 				By.cssSelector("[class] [class='col col-12']:nth-of-type(1) [class] .small-flex-child:nth-of-type(1)"));
-		if (returnedActivityFeed.contains("ActivityFeed")) {
-			clickElement(By.cssSelector("[class] [class='col col-12']:nth-of-type(1) [class] .small-flex-child:nth-of-type(1)"));
-		} else {
-			waitUntilElementNoLongerDisplays(5, By.className(".pageLoadingBar"));
-			clickElement(By.cssSelector("[class] [class='col col-12']:nth-of-type(1) [class] .small-flex-child:nth-of-type(1)"));
-		}
 	}
 
 	// Method: Click DateTime
@@ -55,21 +44,26 @@ public class PageObjectsActivityFeedPage extends BasePageFrameWork {
 
 	// Method: Verify if radio button is selected
 	public void clickInpatientRadioButton() {
-		clickElement(By.cssSelector(".v-input--radio-group__input .theme--light:nth-of-type(1) .v-input--selection-controls__ripple"));
+		clickElement(By.cssSelector(
+				".v-input--radio-group__input .theme--light:nth-of-type(1) .v-input--selection-controls__ripple"));
 	}
-	
+
+	// Method:  Select the Inpatient Radio Button
 	public void selectInpatientRadioButton() throws InterruptedException {
 		clickElement(By.xpath("//*[contains(text(),'INPATIENT')]"));
 	}
-	
+
+	// Method:  Click the Set Button on Dialog box
 	public void clickSetButtonOnLocationDialogBox() {
+		waitforClick(20, (By.xpath("//*[contains(text(),'Set')]")));
 		clickElement(By.xpath("//*[contains(text(),'Set')]"));
-	}	
-	
+	}
+
 	// Method: Get Text of Inpatient / Outpatient button
 	public String getTextForInOutPatient() {
-		String InOutPatient = getElementText(By.xpath("//div[@id='app']/div[@class='v-application--wrap']/div[1]/main[@class='v-main']"
-				+ "/div[@class='v-main__wrap']/div[@class='container container--fluid']/div/div[2]/div/div[2]/div[@class='row']/div[1]/div[1]/button[@type='button']//span[@class='activity-meta-button-text']"));
+		String InOutPatient = getElementText(
+				By.xpath("//div[@id='app']/div[@class='v-application--wrap']/div[1]/main[@class='v-main']"
+						+ "/div[@class='v-main__wrap']/div[@class='container container--fluid']/div/div[2]/div/div[2]/div[@class='row']/div[1]/div[1]/button[@type='button']//span[@class='activity-meta-button-text']"));
 		return InOutPatient;
 	}
 }

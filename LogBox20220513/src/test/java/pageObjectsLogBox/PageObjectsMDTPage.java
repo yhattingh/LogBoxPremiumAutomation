@@ -30,7 +30,6 @@ public class PageObjectsMDTPage extends BasePageFrameWork {
 
 		for (int i = 0; i <= allOptions.size() - 1; i++) {
 			System.out.println(allOptions.get(i).getText());
-
 			if (allOptions.get(i).getText().contains(repeatoptions)) {
 				allOptions.get(i).click();
 				break;

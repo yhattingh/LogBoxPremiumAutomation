@@ -5,10 +5,10 @@
 		<listener class-name="listeners.Listeners" />
 	</listeners>
 
-	<test thread-count="5" name="Activity Feed">
-		<packages>
-			<package name="testsLogBox.ActivityFeedTests" />
-			<package name="testsLogBox.MDTMeetingsTests" />
-		</packages>
-	</test> <!-- Test -->
-</suite> <!-- Suite -->
+	<test thread-count="5" name="Activity and MDT Meeting Tests">
+		<classes>
+			<class name="testsLogBox.ActivityTests" />
+			<class name="testsLogBox.MDTMeetingsTests" />
+		</classes>
+	</test> <!-- Activity and MDT Meeting Tests -->
+</suite> <!-- Yolande -->

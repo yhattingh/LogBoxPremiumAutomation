@@ -19,16 +19,15 @@ public class ActivityTests extends BasePageFrameWork {
 	PageObjectsHomePage pageObjectsHomePage = new PageObjectsHomePage();
 	PageObjectsBrochurePage pageObjectsBrochurePage = new PageObjectsBrochurePage();
 	PageObjectsActivityPage pageObjectsActivityPage = new PageObjectsActivityPage();
-	BasePageFrameWork basePageFrameWork = new BasePageFrameWork();
 	BasePageLogBox basePageLogBox = new BasePageLogBox();
 	PageObjectsActivityFeedPage pageObjectsActivityFeedPage = new PageObjectsActivityFeedPage();
 
 	@AfterTest
-	public void cleanUp() {
-		basePageFrameWork.cleanUp();
+	public void cleanUpAfterTest() {
+		cleanUp();
 	}
 
-	// User Story One
+	// User Story One:  YH
 	@Test
 	public void shouldCreateCaseFileForSelectedPatient() throws InterruptedException, IOException {
 
@@ -38,17 +37,17 @@ public class ActivityTests extends BasePageFrameWork {
 		String selectOptionFromButtonList = "Create Case File";
 		String inputOnCaseFile = "Case file added on";
 
-		//GIVEN
+		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		
-		//WHEN
+
+		// WHEN
 		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
 		pageObjectsHomePage.clickOnSearchedPatient(patientName);
 		pageObjectsActivityPage.clickMoreButton();
 		pageObjectsActivityPage.selectOptionFromMoreButtonList(selectOptionFromButtonList);
-		localDateTime = basePageFrameWork.getLocalDateTime();
+		localDateTime = getLocalDateTime();
 		System.out.println("CURRENT LOCAL TIME" + " " + localDateTime);
 		pageObjectsActivityPage.inputCaseFilePresentingProblem(inputOnCaseFile + " " + localDateTime);
 		pageObjectsActivityPage.clickCaseFileDialogSaveButton();
@@ -56,8 +55,8 @@ public class ActivityTests extends BasePageFrameWork {
 		textFromFirstItemOnCaseFilesList = pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList();
 		System.out.println("The latest item on the list is: " + " " + textFromFirstItemOnCaseFilesList);
 		String feedURL = driver.getCurrentUrl();
-		
-		//THEN
+
+		// THEN
 		Assert.assertTrue(feedURL.contains("feed"));
 		Assert.assertTrue(pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList()
 				.equals("Case file added on" + " " + localDateTime));
@@ -66,7 +65,7 @@ public class ActivityTests extends BasePageFrameWork {
 				+ pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList());
 	}
 
-	// User Story Two
+	// User Story Two:  YH
 	@Test
 	public void shouldCreateActivityForSelectedPatient() throws InterruptedException, IOException {
 
@@ -79,7 +78,7 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		
+
 		// WHEN
 		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
 		pageObjectsHomePage.clickOnSearchedPatient(patientName);
@@ -87,18 +86,18 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsActivityPage.selectItemFromDropdownList(selectedCaseFile);
 		System.out.println("Case File number entered: " + " " + selectedCaseFile);
 		pageObjectsActivityPage.clickAddActivityButton();
-		localDateTime = basePageFrameWork.getLocalDateTime();
+		localDateTime = getLocalDateTime();
 		pageObjectsActivityPage.addTextNote(textNote + localDateTime);
 		pageObjectsActivityPage.clickPostButton();
 		System.out.println("Text Note Added = :" + " " + pageObjectsActivityPage.getTextFromActivityNote());
-		
+
 		// THEN
 		Assert.assertTrue(pageObjectsActivityPage.getTextFromActivityNote().equals(textNote + localDateTime));
 		Reporter.log("The following activity was created successfully: "
 				+ pageObjectsActivityPage.getTextFromActivityNote());
 	}
 
-	// User Story Three
+	// User Story Three:  YH
 	@Test
 	public void shouldRemoveDiagnosticCodeForAnActivity() throws InterruptedException, IOException {
 		String localDateTime;
@@ -111,24 +110,24 @@ public class ActivityTests extends BasePageFrameWork {
 		String selectICD10Code1 = "Clicking hip";
 		String selectICD10Code2 = "Congenital subluxation of hip, bilateral";
 
-		// GIVEN 
+		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		
+
 		// WHEN
 		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
 		pageObjectsHomePage.clickOnSearchedPatient(patientName);
 		pageObjectsActivityPage.clickMoreButton();
 		pageObjectsActivityPage.selectOptionFromMoreButtonList(selectOptionFromButtonList);
-		localDateTime = basePageFrameWork.getLocalDateTime();
+		localDateTime = getLocalDateTime();
 		System.out.println("CURRENT LOCAL TIME" + " " + localDateTime);
 		pageObjectsActivityPage.inputCaseFilePresentingProblem(inputOnCaseFile + " " + localDateTime);
 		pageObjectsActivityPage.clickCaseFileDialogSaveButton();
 		pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList();
 		pageObjectsActivityPage.clickAddActivityButton();
 		pageObjectsActivityPage.selectCategory(categorytext);
-		localDateTime = basePageFrameWork.getLocalDateTime();
+		localDateTime = getLocalDateTime();
 		pageObjectsActivityPage.addTextNote(textNote + localDateTime);
 		pageObjectsActivityPage.clickDiagnosisActionIcon();
 		basePageLogBox.searchForICD10Code(icd10Code);
@@ -142,14 +141,14 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsActivityPage.clickActivityPostButton();
 		System.out.println(
 				"Codes after remove action: " + " " + pageObjectsActivityPage.getTextForSelectedDiagnosisCodes());
-		
+
 		// THEN
 		Assert.assertTrue(pageObjectsActivityPage.getTextForSelectedDiagnosisCodes().contains(selectICD10Code2));
 		Reporter.log("One diagnosis code removed successfully.  Diagnosis code remaining:" + " "
 				+ pageObjectsActivityPage.getTextForSelectedDiagnosisCodes());
 	}
 
-	// User story four
+	// User story four:  YH
 	@Test(enabled = true)
 	public void shouldSelectInpatientLocation() throws InterruptedException, IOException {
 
@@ -159,7 +158,7 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.insertActivityUsernameAndPasswordFromExcel();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
-		
+
 		// WHEN
 		basePageLogBox.clickActivityMainMenuItem();
 		pageObjectsActivityFeedPage.searchForActivity(searchedActivity);
@@ -168,7 +167,7 @@ public class ActivityTests extends BasePageFrameWork {
 		pageObjectsActivityFeedPage.clickInpatientOutpatientButton();
 		pageObjectsActivityFeedPage.clickSetButtonOnLocationDialogBox();
 		System.out.println("Option selected: " + " " + pageObjectsActivityFeedPage.getTextForInOutPatient());
-		
+
 		// THEN
 		Assert.assertTrue(pageObjectsActivityFeedPage.getTextForInOutPatient().equals("Outpatient"));
 		Reporter.log("Patient Location successfully selected as:" + " "

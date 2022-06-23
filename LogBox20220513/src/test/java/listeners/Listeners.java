@@ -10,9 +10,9 @@ import frameWork.BasePageFrameWork;
 import frameWork.Utilities;
 
 public class Listeners extends BasePageFrameWork implements ITestListener {
-	
+
 	Utilities utilities = new Utilities();
-	
+
 	public void onTestStart(ITestResult result) {
 		// TODO Auto-generated method stub
 	}
@@ -164,42 +164,34 @@ public class Listeners extends BasePageFrameWork implements ITestListener {
 	@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void onTestSuccess(ITestResult result) {
-		// TODO Auto-generated method stub
-		// when this method is triggered take a screenshot
-				try {
-					
-					utilities.takeSnapShot("On test success" + utilities.timeReturn() + ".png");
-					System.out.println("Listener:Test Success");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		try {
+			utilities.takeSnapShot("On test success" + utilities.timeReturn() + ".png");
+			System.out.println("Listener:Test Success");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void onTestFailure(ITestResult result) {
-		// TODO Auto-generated method stub
-		// when this method is triggered take a screenshot
-				try {
-					utilities.takeSnapShot("On test failure" + utilities.timeReturn() + ".png");
-					System.out.println("Listener:  On test failure");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		try {
+			utilities.takeSnapShot("On test failure" + utilities.timeReturn() + ".png");
+			System.out.println("Listener:  On test failure");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void onTestSkipped(ITestResult result) {
-		// TODO Auto-generated method stub
-		// when this method is triggered take a screenshot
 		try {
 			utilities.takeSnapShot("On test skipped" + utilities.timeReturn() + ".png");
 			System.out.println("Listener:  On test failure");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	public void onStart(ITestContext context) {
@@ -209,7 +201,5 @@ public class Listeners extends BasePageFrameWork implements ITestListener {
 
 	public void onFinish(ITestContext context) {
 		// TODO Auto-generated method stub
-	
 	}
-
 }

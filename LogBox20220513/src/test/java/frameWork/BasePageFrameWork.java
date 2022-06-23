@@ -1,13 +1,9 @@
 package frameWork;
 
-import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -18,11 +14,9 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.poi.ss.usermodel.Table;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -31,12 +25,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.pdfbox.pdmodel.PDDocument;
-import org.pdfbox.util.PDFTextStripper;
-import org.testng.Assert;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
-import pageObjectsLogBox.BasePageLogBox;
 
 public class BasePageFrameWork {
 	// Declare the Webdriver
@@ -192,6 +181,7 @@ public class BasePageFrameWork {
 		driver.switchTo().window(childWindowID);
 	}
 
+	// Method: Switch to Parent Window / Tab
 	public void switchToParent() {
 		Set<String> handles = driver.getWindowHandles();
 		Iterator<String> it = handles.iterator();
@@ -238,14 +228,14 @@ public class BasePageFrameWork {
 		return localDate;
 	}
 
-	// Method to return the formatted current time only
+	// Method: To return the formatted current time only
 	public String getCurrentTime() {
 		LocalDateTime localDateTime = LocalDateTime.now();
 		String localTime = localDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 		return localTime;
 	}
 
-	// Method: Add or substract n days from LocalDate
+	// Method: Add or Substract n Days from LocalDate
 	public String getDateWithAddSubstractDays(int numberofdays) {
 		LocalDate localDate = LocalDate.now();
 		LocalDate newDate = localDate.plusDays(numberofdays);
@@ -253,7 +243,7 @@ public class BasePageFrameWork {
 		return dtf.format(newDate);
 	}
 
-	// Method: Add or substract n months from LocalDate
+	// Method: Add or Substract n Months from LocalDate
 	public String getDateWithAddSubstractMonths(int numberofmonths) {
 		LocalDate localDate = LocalDate.now();
 		LocalDate newDate = localDate.plusMonths(numberofmonths);
@@ -261,7 +251,7 @@ public class BasePageFrameWork {
 		return dtf.format(newDate);
 	}
 
-	// Method: Add or substract n minutes from LocalDate
+	// Method: Add or Substract n Minutes from LocalDate
 	public String getTimeWithAddSubstractMinutesUsedByStartTime(int numberofminutes) {
 		LocalTime localTime = LocalTime.now();
 		LocalTime newMinutes = localTime.plusMinutes(numberofminutes);
@@ -269,7 +259,7 @@ public class BasePageFrameWork {
 		return dtf.format(newMinutes);
 	}
 
-	// Method: Add or substract n minutes from LocalDate
+	// Method: Add or Substract n Minutes from LocalDate
 	public String getTimeWithAddSubstractMinutes(int numberofminutes) {
 		LocalTime localTime = LocalTime.now();
 		LocalTime newMinutes = localTime.plusMinutes(numberofminutes);
@@ -277,7 +267,7 @@ public class BasePageFrameWork {
 		return dtf.format(newMinutes);
 	}
 
-	// Method: Add or substract n minutes from LocalDate
+	// Method: Add or Substract n Minutes from LocalDate
 	public String getTimeWithAddSubstractHours(int numberofhours) {
 		LocalTime localTime = LocalTime.now();
 		LocalTime newMinutes = localTime.plusHours(numberofhours);
@@ -285,7 +275,7 @@ public class BasePageFrameWork {
 		return dtf.format(newMinutes);
 	}
 
-	// Method: If radio button is not selected, click radio button
+	// Method: If Radio Button is not Selected, Click Radio Button
 	public void isRadioButtonSelected(By pLocator) {
 		WebElement radioButton = driver.findElement(pLocator);
 		if (radioButton.isSelected()) {
@@ -293,18 +283,21 @@ public class BasePageFrameWork {
 			radioButton.click();
 	}
 
+	// Method: Get the Number of Rows in a Table
 	public int getNumberOfTableRows(By pLocatorTable, By pLocatorRow) {
 		WebElement webElement = driver.findElement(pLocatorTable);
 		List<WebElement> rows = webElement.findElements(pLocatorRow);
 		return rows.size();
 	}
 
+	// Method: Check if Table is Empty
 	public boolean checkIfTableIsEmpty(By pLocator, By pLocatorRow) {
 		WebElement webElement = driver.findElement(pLocator);
 		List<WebElement> rows = webElement.findElements(pLocatorRow);
 		return rows.isEmpty();
 	}
 
+	// Method: To Scroll Item into view in a List
 	public void scrollIntoView(By pLocator) {
 		WebElement element = driver.findElement(pLocator);
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
