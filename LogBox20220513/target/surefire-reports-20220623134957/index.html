@@ -49,7 +49,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\27823\AppData\Local\Temp\testng-eclipse-1524706104\testng-customsuite.xml</span>
+                    <span>C:\Users\27823\AppData\Local\Temp\testng-eclipse--712715193\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -102,7 +102,7 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="testsLogBox.PreAdmissionTests" class="method navigator-link" hash-for-method="shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields">shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="testsLogBox.PreAdmissionTests" class="method navigator-link" hash-for-method="shouldNotAllowPreadmissionForDraftPatient">shouldNotAllowPreadmissionForDraftPatient</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -125,9 +125,9 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields">
-                  </a> <!-- shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields -->
-                  <span class="method-name">shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields</span>
+                  <a name="shouldNotAllowPreadmissionForDraftPatient">
+                  </a> <!-- shouldNotAllowPreadmissionForDraftPatient -->
+                  <span class="method-name">shouldNotAllowPreadmissionForDraftPatient</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -135,7 +135,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\27823\AppData\Local\Temp\testng-eclipse-1524706104\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\27823\AppData\Local\Temp\testng-eclipse--712715193\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -146,7 +146,7 @@
     &lt;classes&gt;
       &lt;class name=&quot;testsLogBox.PreAdmissionTests&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields&quot;/&gt;
+          &lt;include name=&quot;shouldNotAllowPreadmissionForDraftPatient&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- testsLogBox.PreAdmissionTests --&gt;
     &lt;/classes&gt;
@@ -190,14 +190,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields')
+data.setCell(0, 1, 'shouldNotAllowPreadmissionForDraftPatient')
 data.setCell(0, 2, 'testsLogBox.PreAdmissionTests')
-data.setCell(0, 3, 16075);
+data.setCell(0, 3, 6763);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 16 seconds</span>
+              <span class="suite-total-time">Total running time: 6 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -209,9 +209,9 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="reporter-method-div">
-              <span class="reporter-method-name">shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields</span>
+              <span class="reporter-method-name">shouldNotAllowPreadmissionForDraftPatient</span>
               <div class="reporter-method-output-div">
-                <span class="reporter-method-output">The PreAdmission was created successfully</span>
+                <span class="reporter-method-output">The pre-admission is not allowed for draft patients</span>
               </div> <!-- reporter-method-output-div -->
             </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -230,6 +230,8 @@ return data;
                 <br/>
                 <span class="ignored-method-name">shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName</span>
                 <br/>
+                <span class="ignored-method-name">shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields</span>
+                <br/>
                 <span class="ignored-method-name">shouldOpenPreAdmissionPageAfterPatientSearch</span>
                 <br/>
                 <span class="ignored-method-name">shouldViewPreAdmissionFromPreAdmissionScreen</span>
@@ -239,8 +241,6 @@ return data;
                 <span class="ignored-method-name">shouldPrintPreAdmissionFromPreAdmissionScreen</span>
                 <br/>
                 <span class="ignored-method-name">shouldValidateRequiredFieldsWhenCreatingPreAdmission</span>
-                <br/>
-                <span class="ignored-method-name">shouldNotAllowPreadmissionForDraftPatient</span>
                 <br/>
                 <span class="ignored-method-name">shouldSendPreAdmissionToPatientEmailToComplete</span>
                 <br/>
@@ -256,9 +256,13 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">testsLogBox.PreAdmissionTests</div> <!-- chronological-class-name -->
               <div class="test-method">
-                <span class="method-name">shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields</span>
+                <span class="method-name">shouldNotAllowPreadmissionForDraftPatient</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- test-method -->
+              <div class="configuration-test after">
+                <span class="method-name">cleanUpAfterTest</span>
+                <span class="method-start">6768 ms</span>
+              </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

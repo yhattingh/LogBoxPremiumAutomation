@@ -55,7 +55,7 @@ public class PageObjectsHomePage extends BasePageFrameWork {
 
 	// Method: Click on Refresh Button
 	public void clickRefreshButton() {
-		clickElement(By.cssSelector(".order-first .material-icons"));
+		driver.navigate().refresh();
 	}
 
 	// Method: Click on MDT Meeting in Quick Links Bar
