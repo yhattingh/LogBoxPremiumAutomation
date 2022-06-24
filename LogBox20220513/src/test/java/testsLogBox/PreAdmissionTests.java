@@ -142,7 +142,7 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		int numberOfPreAdmissionRowsBefore = basePageLogBox.getNumberOfTableRows(pLocatorTable, pLocatorRow);
 		basePageLogBox.navigateToHomePage();
 		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		pageObjectsHomePage.clickOnEllipseNextToPatientName();
 		pageObjectsActivityPage.selectOptionFromMoreButtonList("Create Pre-Admission");
 		System.out.println("Clicked on Create Pre-Admission");
@@ -159,18 +159,12 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		pageObjectsPreAdmissionPage.clickSaveButton();
 		pageObjectsPreAdmissionPage.clickCloseButton();
 		pageObjectsHomePage.clickOnPreAdmissionButtonInLeftMenu();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		pageObjectsHomePage.clickRefreshButton();
 		int numberOfPreAdmissionRowsAfter = basePageLogBox.getNumberOfTableRows(pLocatorTable, pLocatorRow);
 		boolean checkRowsAfterGreaterThanBefore = pageObjectsPreAdmissionPage.preAdmissionsAfterIsGreaterThanBefore(numberOfPreAdmissionRowsBefore, numberOfPreAdmissionRowsAfter);
 		// THEN
 		Assert.assertEquals(checkRowsAfterGreaterThanBefore, true);
-//		String successToastText = pageObjectsPreAdmissionPage.getTextFromSuccessMessage();
-//		Assert.assertTrue(successToastText.contains("Pre-Admission has been created"));
-//		String preAdmissionTitle = pageObjectsPreAdmissionPage.getPreAdmissionTitle();
-//		Assert.assertEquals(preAdmissionTitle, "Pre-Admission for " + patientName);
-//		String admissionDetailsHeader = pageObjectsPreAdmissionPage.getAdmissionDetailsHeader();
-//		Assert.assertEquals(admissionDetailsHeader, "Admission Details");
 		Reporter.log("The PreAdmission was created successfully");
 	}
 
@@ -214,6 +208,49 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		String rowText = pageObjectsPreAdmissionPage.getTextFromTableFirstRow();
 		Assert.assertEquals(rowText, "No data available");
 		Reporter.log("The PreAdmission was deleted successfully");
+	}
+	
+	
+	@Test(enabled=false)
+	public void shouldDisplaySuccessMessageAfterPreAdmissionIsCreated()
+			throws IOException, InterruptedException {
+
+		String partialicd10code = "malignant";
+		String icd10code1 = "Follow-up examination after chemotherapy for malignant neoplasm";
+		String hospitalName = "Wits Donald Gordon Medical Centre";
+		String localDate;
+		String localTimePlusTwoMinutes;
+		String patientName = "PreAdmission One";
+
+		// GIVEN
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.insertPreAdmissionUsernameAndPasswordFromExcel();
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		// WHEN
+		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
+		//Thread.sleep(1000);
+		pageObjectsHomePage.clickOnEllipseNextToPatientName();
+		pageObjectsActivityPage.selectOptionFromMoreButtonList("Create Pre-Admission");
+		System.out.println("Clicked on Create Pre-Admission");
+		localDate = getLocalDate();
+		localTimePlusTwoMinutes = getTimeWithAddSubstractMinutesUsedByStartTime(2);
+		basePageLogBox.enterDate(localDate);
+		basePageLogBox.enterTime(localTimePlusTwoMinutes);
+		basePageLogBox.enterHospitalName(hospitalName);
+		basePageLogBox.selectHospitalName(hospitalName);
+		pageObjectsPreAdmissionPage.clickOnAddICD10CodesButton();
+		basePageLogBox.searchForICD10Code(partialicd10code);
+		basePageLogBox.selectICD10Code(icd10code1);
+		basePageLogBox.clickAddButtonOnICD10CodeDialog();
+		pageObjectsPreAdmissionPage.clickSaveButton();
+		pageObjectsPreAdmissionPage.clickCloseButton();
+		pageObjectsHomePage.clickOnPreAdmissionButtonInLeftMenu();
+		//Thread.sleep(1000);
+		pageObjectsHomePage.clickRefreshButton();
+		// THEN
+		String successToastText = pageObjectsPreAdmissionPage.getTextFromSuccessMessage();
+		Assert.assertTrue(successToastText.contains("Pre-Admission has been created"));
+		Reporter.log("The PreAdmission was created successfully");
 	}
 
 	@Test(enabled = false)
