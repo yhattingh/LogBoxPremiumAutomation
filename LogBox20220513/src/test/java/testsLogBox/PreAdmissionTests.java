@@ -142,7 +142,7 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		int numberOfPreAdmissionRowsBefore = basePageLogBox.getNumberOfTableRows(pLocatorTable, pLocatorRow);
 		basePageLogBox.navigateToHomePage();
 		pageObjectsHomePage.searchPracticePatientsInSearchBar(patientName);
-		//Thread.sleep(1000);
+		Thread.sleep(1000);
 		pageObjectsHomePage.clickOnEllipseNextToPatientName();
 		pageObjectsActivityPage.selectOptionFromMoreButtonList("Create Pre-Admission");
 		System.out.println("Clicked on Create Pre-Admission");

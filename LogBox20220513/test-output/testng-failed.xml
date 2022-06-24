@@ -7,7 +7,6 @@
         <methods>
           <include name="shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName"/>
           <include name="logOut"/>
-          <include name="shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields"/>
           <include name="cleanUpAfterTest"/>
         </methods>
       </class> <!-- testsLogBox.PreAdmissionTests -->

@@ -1,6 +1,7 @@
 package pageObjectsLogBox;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -16,19 +17,25 @@ public class PageObjectsHomePage extends BasePageFrameWork {
 
 	// Method: Click on the Searched Patient
 	public void clickOnSearchedPatient(String patientFirstName) {
-		String returnedPatientName = getElementText(
-				By.cssSelector("tbody .pointer:nth-of-type(1) .text-left:nth-of-type(2)"));
-		if (returnedPatientName.equals(patientFirstName)) {
+		try {
+			this.driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
+			this.waitUntilElementNoLongerDisplays(5, By.className(".pageLoadingBar"));
 			clickElement(By.cssSelector("tbody .pointer:nth-of-type(1) .text-start"));
-		} else {
-			waitUntilElementNoLongerDisplays(5, By.className(".pageLoadingBar"));
-			clickElement(By.cssSelector("tbody .pointer:nth-of-type(1) .text-start"));
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
 		}
 	}
 
 	// Method: Click on the Ellipse Next to Patient Name
 	public void clickOnEllipseNextToPatientName() {
-		clickElement(By.cssSelector("[class='text-right pa-0'] .material-icons"));
+		try {
+			this.driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
+			clickElement(By.cssSelector("[class='text-right pa-0'] .material-icons"));
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 	}
 
 	// Method: Click on Pre-Admissions Button in Left Menu
