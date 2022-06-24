@@ -1,5 +1,7 @@
 package pageObjectsLogBox;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 
 import frameWork.BasePageFrameWork;
@@ -14,15 +16,27 @@ public class PageObjectsActivityFeedPage extends BasePageFrameWork {
 
 	// Method: Click Activity on Activity Feed Page
 	public void clickSearchedActivity(String searchedactivity) {
-		waitUntilElementNoLongerDisplays(5, By.className(".pageLoadingBar"));
-		clickElement(By.cssSelector("div:nth-of-type(1) > .mb-3.pb-2.theme--light.v-card.v-sheet"));
+		try {
+			this.driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
+			this.waitUntilElementNoLongerDisplays(5, By.className(".pageLoadingBar"));
+			clickElement(By.cssSelector("div:nth-of-type(1) > .mb-3.pb-2.theme--light.v-card.v-sheet"));
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 	}
 
 	// Method: Click on Activity to Edit
 	public void clickToEditActivity() throws InterruptedException {
-		waitUntilElementNoLongerDisplays(5, By.className(".pageLoadingBar"));
-		clickElement(
-				By.cssSelector("[class] [class='col col-12']:nth-of-type(1) [class] .small-flex-child:nth-of-type(1)"));
+		try {
+			this.driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
+			this.waitUntilElementNoLongerDisplays(5, By.className(".pageLoadingBar"));
+			clickElement(By.cssSelector(
+					"[class] [class='col col-12']:nth-of-type(1) [class] .small-flex-child:nth-of-type(1)"));
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 	}
 
 	// Method: Click DateTime
@@ -48,12 +62,12 @@ public class PageObjectsActivityFeedPage extends BasePageFrameWork {
 				".v-input--radio-group__input .theme--light:nth-of-type(1) .v-input--selection-controls__ripple"));
 	}
 
-	// Method:  Select the Inpatient Radio Button
+	// Method: Select the Inpatient Radio Button
 	public void selectInpatientRadioButton() throws InterruptedException {
 		clickElement(By.xpath("//*[contains(text(),'INPATIENT')]"));
 	}
 
-	// Method:  Click the Set Button on Dialog box
+	// Method: Click the Set Button on Dialog box
 	public void clickSetButtonOnLocationDialogBox() {
 		waitforClick(20, (By.xpath("//*[contains(text(),'Set')]")));
 		clickElement(By.xpath("//*[contains(text(),'Set')]"));

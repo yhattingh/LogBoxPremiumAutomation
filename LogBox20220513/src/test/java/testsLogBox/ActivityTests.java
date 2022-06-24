@@ -40,7 +40,7 @@ public class ActivityTests extends BasePageFrameWork {
 
 		String textFromFirstItemOnCaseFilesList;
 		String localDateTime;
-		String patientName = "Joshua";
+		String patientName = "Joey";
 		String selectOptionFromButtonList = "Create Case File";
 		String inputOnCaseFile = "Case file added on";
 
@@ -79,7 +79,7 @@ public class ActivityTests extends BasePageFrameWork {
 		String localDateTime;
 		String selectedCaseFile = "Initial case file";
 		String textNote = "This is a new activity note created on ";
-		String patientName = "Joshua";
+		String patientName = "Joey";
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
@@ -108,7 +108,7 @@ public class ActivityTests extends BasePageFrameWork {
 	@Test
 	public void shouldRemoveDiagnosticCodeForAnActivity() throws InterruptedException, IOException {
 		String localDateTime;
-		String patientName = "Joshua";
+		String patientName = "Joey";
 		String selectOptionFromButtonList = "Create Case File";
 		String inputOnCaseFile = "Case file added on";
 		String textNote = "Add diagnostic codes for theater @";
