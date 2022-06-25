@@ -120,7 +120,7 @@ public class PreAdmissionTests extends BasePageFrameWork {
 	}
 
 	// User Story Four: CH
-	@Test
+	@Test (enabled =false)
 	public void shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields()
 			throws IOException, InterruptedException {
 
@@ -158,8 +158,8 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		basePageLogBox.clickAddButtonOnICD10CodeDialog();
 		pageObjectsPreAdmissionPage.clickSaveButton();
 		pageObjectsPreAdmissionPage.clickCloseButton();
+		Thread.sleep(1000);
 		pageObjectsHomePage.clickOnPreAdmissionButtonInLeftMenu();
-		//Thread.sleep(1000);
 		pageObjectsHomePage.clickRefreshButton();
 		int numberOfPreAdmissionRowsAfter = basePageLogBox.getNumberOfTableRows(pLocatorTable, pLocatorRow);
 		boolean checkRowsAfterGreaterThanBefore = pageObjectsPreAdmissionPage.preAdmissionsAfterIsGreaterThanBefore(numberOfPreAdmissionRowsBefore, numberOfPreAdmissionRowsAfter);
@@ -245,7 +245,7 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		pageObjectsPreAdmissionPage.clickSaveButton();
 		pageObjectsPreAdmissionPage.clickCloseButton();
 		pageObjectsHomePage.clickOnPreAdmissionButtonInLeftMenu();
-		//Thread.sleep(1000);
+		Thread.sleep(1000);
 		pageObjectsHomePage.clickRefreshButton();
 		// THEN
 		String successToastText = pageObjectsPreAdmissionPage.getTextFromSuccessMessage();
