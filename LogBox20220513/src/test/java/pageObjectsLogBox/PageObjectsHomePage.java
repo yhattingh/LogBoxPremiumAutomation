@@ -37,6 +37,11 @@ public class PageObjectsHomePage extends BasePageFrameWork {
 			System.out.println(e.toString());
 		}
 	}
+	
+	// Method: Click on Message Patient Button in Left Menu
+		public void clickOnMessagePatientButtonInLeftMenu() {
+			clickElement(By.xpath("//a[@href='#/message-patient']"));
+		}
 
 	// Method: Click on Pre-Admissions Button in Left Menu
 	public void clickOnPreAdmissionButtonInLeftMenu() {
