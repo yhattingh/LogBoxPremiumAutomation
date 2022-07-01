@@ -2,6 +2,8 @@ package testsLogBox;
 
 import java.io.IOException;
 
+import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
@@ -37,7 +39,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 
 	@Test
 	public void searchPatientToMessage() throws InterruptedException, IOException {
-		String patientName = "Charlie";
+		String patientName = "PreAdmission One";
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
@@ -48,15 +50,52 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		pageObjectsMessagePatientPage.clickSearchOnMessagePatientPage();
 		pageObjectsMessagePatientPage.enterPatientNameInSearchFieldOnMessagePatientPage(patientName);
 		// THEN
-		// Assert that the patient name is returned
+		String patientTextInList = pageObjectsMessagePatientPage.getTextFromMessagePatientSearchList();
+		Assert.assertEquals(patientTextInList, patientName);
+		Reporter.log("The searched patient is returned in the list");
 
 	}
 
-	public void shouldNotAllowDraftPatientForMessages() {
+	public void shouldNotAllowDraftPatientForMessages() throws InterruptedException, IOException {
+		String patientName = "Draft";
+
+		// GIVEN
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.loginUsernamePassword("logboxtest", "LogBoxMaster");
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		// WHEN
+		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
+		pageObjectsMessagePatientPage.clickSearchOnMessagePatientPage();
+		pageObjectsMessagePatientPage.enterPatientNameInSearchFieldOnMessagePatientPage(patientName);
+		// THEN
+		String errorTextInList = pageObjectsMessagePatientPage.getTextFromMessageDraftPatientError();
+		Assert.assertEquals(errorTextInList, "No Results found");
+		Reporter.log("The draft patients are excluded from the search for messaging patients");
 
 	}
 
-	public void shouldDisplaySmsEmailOptionsForMessages() {
+	public void shouldDisplaySmsEmailOptionsForMessages() throws InterruptedException, IOException {
+		String patientName = "PreAdmission One";
+		String message = "This is a test message";
+		String expectedSuccessMessage = "Message Sent";
+
+		// GIVEN
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.loginUsernamePassword("logboxtest", "LogBoxMaster");
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		// WHEN
+		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
+		pageObjectsMessagePatientPage.clickSearchOnMessagePatientPage();
+		pageObjectsMessagePatientPage.enterPatientNameInSearchFieldOnMessagePatientPage(patientName);
+		pageObjectsMessagePatientPage.clickOnReturnedPatient();
+		pageObjectsMessagePatientPage.clickOnSmsRadioButton();
+		pageObjectsMessagePatientPage.clickOnSmsRadioButton();
+		pageObjectsMessagePatientPage.enterTextInSmsTextArea(message);
+		pageObjectsMessagePatientPage.clickSendMessageButton();
+		//THEN
+		String successMessage = pageObjectsMessagePatientPage.getSentMessageSuccess();
+		Assert.assertEquals(successMessage, expectedSuccessMessage );
+		Reporter.log("The message was sent to the patient successfully");
 
 	}
 
