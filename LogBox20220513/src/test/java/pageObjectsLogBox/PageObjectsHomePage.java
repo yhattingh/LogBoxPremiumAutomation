@@ -38,9 +38,16 @@ public class PageObjectsHomePage extends BasePageFrameWork {
 		}
 	}
 	
+	//Method: Click drawer opener
+	public void clickdrawerbutton() {
+		clickElement(By.cssSelector(" .v-list-item__icon.pointer .material-icons"));
+	}
+	
 	// Method: Click on Message Patient Button in Left Menu
 		public void clickOnMessagePatientButtonInLeftMenu() {
-			clickElement(By.xpath("//a[@href='#/message-patient']"));
+			//waitForElement(100, (By.cssSelector("tr > th:nth-of-type(2)")));
+			clickElement(By.cssSelector(" .v-list-item__icon.pointer .material-icons"));
+			clickElement(By.cssSelector("[class] [tabindex='0']:nth-of-type(3) .material-icons"));
 		}
 
 	// Method: Click on Pre-Admissions Button in Left Menu

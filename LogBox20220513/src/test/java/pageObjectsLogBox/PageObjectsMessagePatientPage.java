@@ -34,7 +34,7 @@ public class PageObjectsMessagePatientPage extends BasePageFrameWork {
 	}
 	
 	public void clickOnSmsRadioButton() {
-		clickElement(By.cssSelector(".v-list-item--link.theme--light:nth-of-type(1) [role='radio']"));
+		clickElement(By.cssSelector("div[role='list'] > div:nth-of-type(1) .v-input__slot > div[role='radiogroup'] .v-input--selection-controls__ripple"));
 	}
 	
 	public void clickOnSmsExpandIcon() {
@@ -50,7 +50,7 @@ public class PageObjectsMessagePatientPage extends BasePageFrameWork {
 	}
 	
 	public String getSentMessageSuccess() {
-		String successMessage = getElementText(By.xpath("///span[@innertext='Message Sent']"));
+		String successMessage = getElementText(By.cssSelector(".v-dialog .v-toolbar__title"));
 		return successMessage;
 	}
 }
