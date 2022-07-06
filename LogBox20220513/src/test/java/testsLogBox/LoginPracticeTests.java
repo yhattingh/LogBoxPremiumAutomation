@@ -31,7 +31,13 @@ public class LoginPracticeTests extends BasePageFrameWork {
 	}
 
 	@Test
-	public void shouldNotLoginWithInValidUsernameValidPassword(String username, String password) throws IOException {
-
+	public void shouldNotLoginWithInValidUsernameValidPassword() throws IOException, InterruptedException {
+		
+		String username = "NotValidUsername";
+		String password = "LogBoxMaster";
+		
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.loginUsernamePassword(username, password);
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 	}
 }
