@@ -31,7 +31,34 @@ public class LoginPracticeTests extends BasePageFrameWork {
 	}
 
 	@Test
-	public void shouldNotLoginWithInValidUsernameValidPassword(String username, String password) throws IOException {
-
+	public void shouldNotLoginWithInValidUsernameValidPassword() throws IOException, InterruptedException {
+		
+		String username = "NotValidUsername";
+		String password = "LogBoxMaster";
+		String expectedErrorText = "Invalid username and/or password supplied. Please try again.";
+		
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.loginUsernamePassword(username, password);
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		
+		String actualValidationErrorText = pageObjectsBrochurePage.validationErrorText();
+		Assert.assertEquals(actualValidationErrorText, expectedErrorText);
+		Reporter.log("Validation error prevents user from logging in with invalid username and valid password");
+	}
+	
+	@Test
+	public void shouldNotLoginWithValidUsernameInvalidPassword() throws IOException, InterruptedException {
+		
+		String username = "logboxtest";
+		String password = "InvalidPassword";
+		String expectedErrorText = "Invalid username and/or password supplied. Please try again.";
+		
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.loginUsernamePassword(username, password);
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		
+		String actualValidationErrorText = pageObjectsBrochurePage.validationErrorText();
+		Assert.assertEquals(actualValidationErrorText, expectedErrorText);
+		Reporter.log("Validation error prevents user from logging in with invalid username and valid password");
 	}
 }

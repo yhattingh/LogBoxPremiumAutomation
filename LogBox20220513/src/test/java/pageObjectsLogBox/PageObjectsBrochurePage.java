@@ -78,4 +78,11 @@ public class PageObjectsBrochurePage extends BasePageFrameWork {
 		username.sendKeys(fileUtilities.getCellData(2, 1));
 		password.sendKeys(fileUtilities.getCellData(2, 2));
 	}
+	
+	//Method: To get the validation text on invalid login
+	public String validationErrorText() {
+	String validationErrorText = getElementText(By.cssSelector(".alert.alert-danger > div"));
+	return validationErrorText;
+	}
+	
 }

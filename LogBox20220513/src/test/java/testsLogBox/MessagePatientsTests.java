@@ -2,6 +2,8 @@ package testsLogBox;
 
 import java.io.IOException;
 
+import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
@@ -25,19 +27,19 @@ public class MessagePatientsTests extends BasePageFrameWork {
 	PageObjectsActivityPage pageObjectsActivityPage = new PageObjectsActivityPage();
 	PageObjectsMessagePatientPage pageObjectsMessagePatientPage = new PageObjectsMessagePatientPage();
 
-	@AfterTest
-	public void cleanUpAfterTest() {
-		cleanUp();
-	}
-
-	@AfterMethod
-	public void logOut() {
-		basePageLogBox.logOutOfLogBox();
-	}
+//	@AfterTest
+//	public void cleanUpAfterTest() {
+//		cleanUp();
+//	}
+//
+//	@AfterMethod
+//	public void logOut() {
+//		basePageLogBox.logOutOfLogBox();
+//	}
 
 	@Test
 	public void searchPatientToMessage() throws InterruptedException, IOException {
-		String patientName = "Charlie";
+		String patientName = "Charlie TestPatient";
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
@@ -48,27 +50,201 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		pageObjectsMessagePatientPage.clickSearchOnMessagePatientPage();
 		pageObjectsMessagePatientPage.enterPatientNameInSearchFieldOnMessagePatientPage(patientName);
 		// THEN
-		// Assert that the patient name is returned
+		String patientTextInList = pageObjectsMessagePatientPage.getTextFromMessagePatientSearchList();
+		Assert.assertEquals(patientTextInList, patientName);
+		Reporter.log("The searched patient is returned in the list");
 
 	}
 
-	public void shouldNotAllowDraftPatientForMessages() {
+	@Test
+	public void shouldNotAllowDraftPatientForMessages() throws InterruptedException, IOException {
+		String patientName = "Draft Patient";
 
+		// GIVEN
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.loginUsernamePassword("logboxtest", "LogBoxMaster");
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		// WHEN
+		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
+		pageObjectsMessagePatientPage.clickSearchOnMessagePatientPage();
+		pageObjectsMessagePatientPage.enterPatientNameInSearchFieldOnMessagePatientPage(patientName);
+		// THEN
+		String errorTextInList = pageObjectsMessagePatientPage.getTextFromMessageDraftPatientError();
+		Assert.assertEquals(errorTextInList, "No Results found");
+		Reporter.log("The draft patients are excluded from the search for messaging patients");
+	}
+	
+	@Test
+	public void shouldDisplayMessageQuestionnaireFormAppointmentOptions() throws InterruptedException, IOException {
+		String patientName = "PreAdmission One";
+
+		// GIVEN
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		// WHEN
+		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
+		pageObjectsMessagePatientPage.clickSearchOnMessagePatientPage();
+		pageObjectsMessagePatientPage.enterPatientNameInSearchFieldOnMessagePatientPage(patientName);
+		pageObjectsMessagePatientPage.clickOnReturnedPatient();
+		pageObjectsMessagePatientPage.clickOnSmsRadioButton();
+		// THEN
+		Boolean messageOption = pageObjectsMessagePatientPage.isMessageOptionDisplaying();
+		Boolean questionnaireOption = pageObjectsMessagePatientPage.isQuestionnaireOptionDisplaying();
+		Boolean formsOption = pageObjectsMessagePatientPage.isFormOptionDisplaying();
+		Boolean appointmentOption = pageObjectsMessagePatientPage.isAppointmentDisplaying();
+		
+		Assert.assertTrue(messageOption);
+		Assert.assertTrue(questionnaireOption);
+		Assert.assertTrue(formsOption);
+		Assert.assertTrue(appointmentOption);
+		Reporter.log("The options for message, questionnaire, form and appointment reminder display.");
+	}
+	
+	
+
+	@Test
+	public void shouldSMSPatientMessageText() throws InterruptedException, IOException {
+		String patientName = "PreAdmission One";
+		String message = "This is a test message";
+		String expectedSuccessMessage = "Success";
+
+		// GIVEN
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		// WHEN
+		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
+		pageObjectsMessagePatientPage.clickSearchOnMessagePatientPage();
+		pageObjectsMessagePatientPage.enterPatientNameInSearchFieldOnMessagePatientPage(patientName);
+		pageObjectsMessagePatientPage.clickOnReturnedPatient();
+		pageObjectsMessagePatientPage.clickOnSmsRadioButton();
+		pageObjectsMessagePatientPage.clickOnSmsExpandIcon();
+		pageObjectsMessagePatientPage.enterTextInSmsTextArea(message);
+		pageObjectsMessagePatientPage.clickSendMessageButton();
+		// THEN
+		String successMessage = pageObjectsMessagePatientPage.getSentMessageSuccess();
+		Assert.assertEquals(successMessage, expectedSuccessMessage);
+		Reporter.log("The message was sent to the patient successfully");
+	}
+	
+	@Test
+	public void shouldSMSPatientQuestionnaire() throws InterruptedException, IOException {
+		String patientName = "PreAdmission One";
+		String expectedSuccessMessage = "Success";
+
+		// GIVEN
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		// WHEN
+		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
+		pageObjectsMessagePatientPage.clickSearchOnMessagePatientPage();
+		pageObjectsMessagePatientPage.enterPatientNameInSearchFieldOnMessagePatientPage(patientName);
+		pageObjectsMessagePatientPage.clickOnReturnedPatient();
+		pageObjectsMessagePatientPage.clickOnSmsRadioButton();
+		pageObjectsMessagePatientPage.clickOnQuestionnaireExpandButton();
+		pageObjectsMessagePatientPage.selectQuestionnaire();
+		pageObjectsMessagePatientPage.clickSendMessageButton();
+		// THEN
+		String successMessage = pageObjectsMessagePatientPage.getSentMessageSuccess();
+		Assert.assertEquals(successMessage, expectedSuccessMessage);
+		Reporter.log("The questionnaire was sent to the patient successfully");
+	}
+	
+	@Test
+	public void shouldSMSPatientForm() throws InterruptedException, IOException {
+		String patientName = "PreAdmission One";
+		String expectedSuccessMessage = "Success";
+
+		// GIVEN
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		// WHEN
+		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
+		pageObjectsMessagePatientPage.clickSearchOnMessagePatientPage();
+		pageObjectsMessagePatientPage.enterPatientNameInSearchFieldOnMessagePatientPage(patientName);
+		pageObjectsMessagePatientPage.clickOnReturnedPatient();
+		pageObjectsMessagePatientPage.clickOnSmsRadioButton();
+		pageObjectsMessagePatientPage.clickOnFormsExpandButton();
+		pageObjectsMessagePatientPage.selectForm();
+		pageObjectsMessagePatientPage.clickSendMessageButton();
+		// THEN
+		String successMessage = pageObjectsMessagePatientPage.getSentMessageSuccess();
+		Assert.assertEquals(successMessage, expectedSuccessMessage);
+		Reporter.log("The form was sent to the patient successfully");
+	}
+	
+	@Test
+	public void shouldSMSPatientAppointmentReminder() throws InterruptedException, IOException {
+		String patientName = "PreAdmission One";
+		String expectedSuccessMessage = "Success";
+		String localDatePlus10;
+		String localTimePlusTwoMinutes;
+		// GIVEN
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+
+		// WHEN
+		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
+		pageObjectsMessagePatientPage.clickSearchOnMessagePatientPage();
+		pageObjectsMessagePatientPage.enterPatientNameInSearchFieldOnMessagePatientPage(patientName);
+		pageObjectsMessagePatientPage.clickOnReturnedPatient();
+		pageObjectsMessagePatientPage.clickOnSmsRadioButton();
+		pageObjectsMessagePatientPage.clickOnAppointmentReminderExpandButton();
+		localDatePlus10 = getDateWithAddSubstractDays(10);
+		localTimePlusTwoMinutes = getTimeWithAddSubstractMinutesUsedByStartTime(2);
+		basePageLogBox.enterDate(localDatePlus10);
+		basePageLogBox.enterTime(localTimePlusTwoMinutes);
+		pageObjectsMessagePatientPage.clickSendMessageButton();
+		// THEN
+		String successMessage = pageObjectsMessagePatientPage.getSentMessageSuccess();
+		Assert.assertEquals(successMessage, expectedSuccessMessage);
+		Reporter.log("The appointment reminder was sent to the patient successfully");
+	}
+	
+
+
+	public void shouldEmailPatientMessage() {
+		
+	}
+	
+	public void shouldEmailPatientQuestionnaire() {
+		
+	}
+	
+	public void shouldEmailPatientForm() {
+		
 	}
 
-	public void shouldDisplaySmsEmailOptionsForMessages() {
-
-	}
-
-	public void shouldSMSPatientMessageText() {
-
-	}
-
-	public void shouldSMSPatientAppointmentReminder() {
+	public void shouldEmailPatientAppointmentReminder() {
 
 	}
 	
-	public void shouldEmailPatientAppointmentReminder() {
+	public void shouldReceiveSmsByPatient() throws InterruptedException, IOException {
+		String patientName = "Charlie TestPatient";
+		String message = "This is a test message";
+		String expectedSuccessMessage = "Success";
 
+		// GIVEN
+		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
+		pageObjectsBrochurePage.loginUsernamePassword("logboxtest", "LogBoxMaster");
+		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
+		// WHEN
+		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
+		pageObjectsMessagePatientPage.clickSearchOnMessagePatientPage();
+		pageObjectsMessagePatientPage.enterPatientNameInSearchFieldOnMessagePatientPage(patientName);
+		pageObjectsMessagePatientPage.clickOnReturnedPatient();
+		pageObjectsMessagePatientPage.clickOnSmsRadioButton();
+		pageObjectsMessagePatientPage.clickOnSmsExpandIcon();
+		pageObjectsMessagePatientPage.enterTextInSmsTextArea(message);
+		pageObjectsMessagePatientPage.clickSendMessageButton();
+		// THEN
+		//Use maildev api here
+		Reporter.log("The sms message was received by the patient");
+
+		
 	}
 }

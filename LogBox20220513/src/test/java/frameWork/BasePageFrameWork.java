@@ -81,7 +81,7 @@ public class BasePageFrameWork {
 
 	// Method: Click on an Element
 	public void clickElement(By pLocator) {
-		waitforClick(50, pLocator);
+		waitforClick(100, pLocator);
 		getElement(pLocator).click();
 	}
 
