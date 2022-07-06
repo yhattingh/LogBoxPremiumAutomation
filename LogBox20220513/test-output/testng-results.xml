@@ -5,19 +5,13 @@
       <![CDATA[Validation error prevents user from logging in with invalid username and valid password]]>
     </line>
   </reporter-output>
-  <suite started-at="2022-07-06T14:02:15Z" name="Default suite" finished-at="2022-07-06T14:02:19Z" duration-ms="4727">
-    <groups>
-    </groups>
-    <test started-at="2022-07-06T14:02:15Z" name="Default test" finished-at="2022-07-06T14:02:19Z" duration-ms="4727">
-      <class name="testsLogBox.LoginPracticeTests">
-        <test-method signature="shouldNotLoginWithValidUsernameInvalidPassword()[pri:0, instance:testsLogBox.LoginPracticeTests@42cc13a0]" started-at="2022-07-06T14:02:15Z" name="shouldNotLoginWithValidUsernameInvalidPassword" finished-at="2022-07-06T14:02:19Z" duration-ms="4614" status="PASS">
+
           <reporter-output>
             <line>
               <![CDATA[Validation error prevents user from logging in with invalid username and valid password]]>
             </line>
           </reporter-output>
-        </test-method> <!-- shouldNotLoginWithValidUsernameInvalidPassword -->
-      </class> <!-- testsLogBox.LoginPracticeTests -->
+
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
