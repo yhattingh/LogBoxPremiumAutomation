@@ -1,6 +1,9 @@
 package pageObjectsLogBox;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import frameWork.BasePageFrameWork;
 
@@ -37,6 +40,18 @@ public class PageObjectsMessagePatientPage extends BasePageFrameWork {
 		clickElement(By.cssSelector("div[role='list'] > div:nth-of-type(1) .v-input__slot > div[role='radiogroup'] .v-input--selection-controls__ripple"));
 	}
 	
+	public void clickOnQuestionnaireExpandButton() {
+		clickElement(By.cssSelector("div:nth-of-type(2) > .v-expansion-panel-header  .material-icons.notranslate.theme--light.v-icon"));
+	}
+	
+	public void clickOnFormsExpandButton() {
+		clickElement(By.cssSelector("div:nth-of-type(3) > .v-expansion-panel-header  .material-icons.notranslate.theme--light.v-icon"));
+	}
+	
+	public void clickOnAppointmentReminderExpandButton() {
+		clickElement(By.cssSelector("div:nth-of-type(4) > .v-expansion-panel-header  .material-icons.notranslate.theme--light.v-icon"));
+	}
+	
 	public void clickOnSmsExpandIcon() {
 		clickElement(By.cssSelector(".v-expansion-panel:nth-of-type(1) .material-icons"));
 	}
@@ -53,4 +68,38 @@ public class PageObjectsMessagePatientPage extends BasePageFrameWork {
 		String successMessage = getElementText(By.cssSelector(".v-dialog .v-toolbar__title"));
 		return successMessage;
 	}
+	
+	public Boolean isMessageOptionDisplaying() {
+		Boolean messageDisplaying = elementExists(By.cssSelector("div:nth-of-type(1) > .v-expansion-panel-header"));
+		return messageDisplaying;
+	}
+	
+	public Boolean isQuestionnaireOptionDisplaying() {
+		Boolean questionDisplaying = elementExists(By.cssSelector("div:nth-of-type(2) > .v-expansion-panel-header"));
+		return questionDisplaying;
+	}
+	
+	public Boolean isFormOptionDisplaying() {
+		Boolean formDisplaying = elementExists(By.cssSelector("div:nth-of-type(3) > .v-expansion-panel-header"));
+		return formDisplaying;
+	}
+	
+	public Boolean isAppointmentDisplaying() {
+		Boolean appointDisplaying = elementExists(By.cssSelector("div:nth-of-type(4) > .v-expansion-panel-header"));
+		return appointDisplaying;
+	}
+	
+	public void selectQuestionnaire() {
+		clickElement(By.cssSelector("div[role='list'] > div:nth-of-type(2) input[role='checkbox']"));
+	}
+
+	public void selectForm() {
+		clickElement(By.cssSelector(".v-expansion-panel-content div[role='list'] .v-input__slot > div[role='radiogroup'] > div:nth-of-type(1) .v-input--selection-controls__ripple"));	
+	}
+	
+	public void selectDateAndTimeForAppointmentReminder(String Date, String Time) {
+		
+	}
+	
+	
 }
