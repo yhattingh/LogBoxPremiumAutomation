@@ -9,6 +9,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import frameWork.BasePageFrameWork;
+import frameWork.MailDevAPIMethods;
 import frameWork.ReadDataFromExcel;
 import pageObjectsLogBox.BasePageLogBox;
 import pageObjectsLogBox.PageObjectsActivityPage;
@@ -26,6 +27,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 	PageObjectsHomePage pageObjectsHomePage = new PageObjectsHomePage();
 	PageObjectsActivityPage pageObjectsActivityPage = new PageObjectsActivityPage();
 	PageObjectsMessagePatientPage pageObjectsMessagePatientPage = new PageObjectsMessagePatientPage();
+	MailDevAPIMethods mailDevAPIMethods = new MailDevAPIMethods();
 
 //	@AfterTest
 //	public void cleanUpAfterTest() {
@@ -73,7 +75,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		Assert.assertEquals(errorTextInList, "No Results found");
 		Reporter.log("The draft patients are excluded from the search for messaging patients");
 	}
-	
+
 	@Test
 	public void shouldDisplayMessageQuestionnaireFormAppointmentOptions() throws InterruptedException, IOException {
 		String patientName = "PreAdmission One";
@@ -93,15 +95,13 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		Boolean questionnaireOption = pageObjectsMessagePatientPage.isQuestionnaireOptionDisplaying();
 		Boolean formsOption = pageObjectsMessagePatientPage.isFormOptionDisplaying();
 		Boolean appointmentOption = pageObjectsMessagePatientPage.isAppointmentDisplaying();
-		
+
 		Assert.assertTrue(messageOption);
 		Assert.assertTrue(questionnaireOption);
 		Assert.assertTrue(formsOption);
 		Assert.assertTrue(appointmentOption);
 		Reporter.log("The options for message, questionnaire, form and appointment reminder display.");
 	}
-	
-	
 
 	@Test
 	public void shouldSMSPatientMessageText() throws InterruptedException, IOException {
@@ -127,7 +127,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		Assert.assertEquals(successMessage, expectedSuccessMessage);
 		Reporter.log("The message was sent to the patient successfully");
 	}
-	
+
 	@Test
 	public void shouldSMSPatientQuestionnaire() throws InterruptedException, IOException {
 		String patientName = "PreAdmission One";
@@ -151,7 +151,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		Assert.assertEquals(successMessage, expectedSuccessMessage);
 		Reporter.log("The questionnaire was sent to the patient successfully");
 	}
-	
+
 	@Test
 	public void shouldSMSPatientForm() throws InterruptedException, IOException {
 		String patientName = "PreAdmission One";
@@ -175,7 +175,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		Assert.assertEquals(successMessage, expectedSuccessMessage);
 		Reporter.log("The form was sent to the patient successfully");
 	}
-	
+
 	@Test
 	public void shouldSMSPatientAppointmentReminder() throws InterruptedException, IOException {
 		String patientName = "PreAdmission One";
@@ -204,47 +204,48 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		Assert.assertEquals(successMessage, expectedSuccessMessage);
 		Reporter.log("The appointment reminder was sent to the patient successfully");
 	}
-	
-
 
 	public void shouldEmailPatientMessage() {
-		
+
 	}
-	
+
 	public void shouldEmailPatientQuestionnaire() {
-		
+
 	}
-	
+
 	public void shouldEmailPatientForm() {
-		
+
 	}
 
 	public void shouldEmailPatientAppointmentReminder() {
 
 	}
-	
+
+	@Test
 	public void shouldReceiveSmsByPatient() throws InterruptedException, IOException {
 		String patientName = "Charlie TestPatient";
-		String message = "This is a test message";
-		String expectedSuccessMessage = "Success";
+		String message = "This is a test sms message";
+		String localDate;
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
 		pageObjectsBrochurePage.loginUsernamePassword("logboxtest", "LogBoxMaster");
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
+		mailDevAPIMethods.deleteAllMailsInMailbox();
 		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
 		pageObjectsMessagePatientPage.clickSearchOnMessagePatientPage();
 		pageObjectsMessagePatientPage.enterPatientNameInSearchFieldOnMessagePatientPage(patientName);
 		pageObjectsMessagePatientPage.clickOnReturnedPatient();
 		pageObjectsMessagePatientPage.clickOnSmsRadioButton();
 		pageObjectsMessagePatientPage.clickOnSmsExpandIcon();
-		pageObjectsMessagePatientPage.enterTextInSmsTextArea(message);
+		localDate = getLocalDateTime();
+		pageObjectsMessagePatientPage.enterTextInSmsTextArea(message + localDate);
 		pageObjectsMessagePatientPage.clickSendMessageButton();
+		Thread.sleep(100);
 		// THEN
-		//Use maildev api here
-		Reporter.log("The sms message was received by the patient");
+		mailDevAPIMethods.verifyTextOfMailReceived(message + localDate + " Do Not Reply.");
+		Reporter.log("The sms message was received by the patient in mailbox.");
 
-		
 	}
 }
