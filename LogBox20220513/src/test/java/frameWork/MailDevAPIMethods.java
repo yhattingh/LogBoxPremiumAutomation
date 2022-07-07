@@ -14,7 +14,7 @@ import static org.hamcrest.Matchers.*;
 
 import java.util.List;
 
-public class EmailTesting extends BasePageFrameWork {
+public class MailDevAPIMethods extends BasePageFrameWork {
 
 	@BeforeTest
 	public void setUp() {
@@ -68,6 +68,33 @@ public class EmailTesting extends BasePageFrameWork {
 			statusCode(200).
 			and().
 			body("[0].text", equalTo("Test Message Do Not Reply.")).
+			extract().path("[0].text");
+			System.out.println("Value found:" + " " + var);
+	}
+	
+	@Test
+	public void deleteAllMailsInMailbox() {
+		RestAssured.baseURI = "https://qa.logbox.co.za/maildev/email/all";
+		given().auth().basic("dev", "1290zxnm").
+		when().
+		log().all().
+		delete().
+		then().
+			statusCode(200);
+		
+	}
+
+	public void verifyTextOfMailReceived(String messageText) {
+		RestAssured.baseURI = "https://qa.logbox.co.za/maildev/email";
+		String var = 
+		given().auth().basic("dev", "1290zxnm").
+		when().
+		log().all().
+		get().
+		then().
+			statusCode(200).
+			and().
+			body("[0].text", equalTo(messageText)).
 			extract().path("[0].text");
 			System.out.println("Value found:" + " " + var);
 	}
