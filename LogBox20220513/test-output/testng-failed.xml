@@ -5,7 +5,7 @@
     <classes>
       <class name="testsLogBox.MessagePatientsTests">
         <methods>
-          <include name="shouldReceiveSmsByPatient"/>
+          <include name="shouldReceiveEmailQuestionnaireByPatient"/>
         </methods>
       </class> <!-- testsLogBox.MessagePatientsTests -->
     </classes>

@@ -98,4 +98,33 @@ public class MailDevAPIMethods extends BasePageFrameWork {
 			extract().path("[0].text");
 			System.out.println("Value found:" + " " + var);
 	}
+	
+	public void verifyTextOfMailReceivedContains(String messageText) {
+		RestAssured.baseURI = "https://qa.logbox.co.za/maildev/email";
+		String var = 
+		given().auth().basic("dev", "1290zxnm").
+		when().
+		log().all().
+		get().
+		then().
+			statusCode(200).
+			and().body("[0].text", contains(messageText)).
+			extract().path("[0].text");
+			System.out.println("Value found:" + " " + var);
+	}
+	
+	public void verifyHeaderTextOfMailReceived(String headerTextSubject ) {
+		RestAssured.baseURI = "https://qa.logbox.co.za/maildev/email";
+		String var = 
+		given().auth().basic("dev", "1290zxnm").
+		when().
+		log().all().
+		get().
+		then().
+		statusCode(200).
+		and().
+		body("[0].subject", equalTo(headerTextSubject)).
+		extract().path("[0].subject");
+		System.out.println("Value found:" + " " + var);
+	}
 }
