@@ -36,7 +36,7 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		basePageLogBox.logOutOfLogBox();
 	}
 
-	// User Story One: CH
+
 	@Test
 	public void shouldOpenPreAdmissionPageAfterPatientSearch() throws IOException, InterruptedException {
 
@@ -62,7 +62,7 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		Reporter.log("A new PreAdmission page was opened for patient: PreAdmission One");
 	}
 
-	// User Story Two: CH
+	
 	@Test
 	public void shouldNotAllowPreadmissionForDraftPatient() throws IOException, InterruptedException {
 
@@ -89,7 +89,7 @@ public class PreAdmissionTests extends BasePageFrameWork {
 
 	}
 
-	// User Story Three: CH
+
 	@Test(dataProvider = "PreAdmissionPatients", dataProviderClass = ReadDataFromExcel.class)
 	public void shouldValidateRequiredFieldsWhenCreatingPreAdmission(String patientName)
 			throws IOException, InterruptedException {
@@ -119,7 +119,7 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		Reporter.log("The Preadmission is validated on required fields");
 	}
 
-	// User Story Four: CH
+	
 	@Test (enabled =false)
 	public void shouldCreatePreAdmissionFromEllipseOptionsWithRequiredFields()
 			throws IOException, InterruptedException {
@@ -168,7 +168,7 @@ public class PreAdmissionTests extends BasePageFrameWork {
 		Reporter.log("The PreAdmission was created successfully");
 	}
 
-	// User Story Five: CH
+	
 	@Test
 	public void shouldDeletePreAdmissionFromPreAdmissionListOnSearchedPatientName()
 			throws IOException, InterruptedException {
@@ -280,6 +280,12 @@ public class PreAdmissionTests extends BasePageFrameWork {
 
 	@Test(enabled = false)
 	public void shouldDisplayNotificationInPracticeAfterCompletionOfPreAdmissionByPatient(String patientName)
+			throws IOException {
+
+	}
+	
+	@Test(enabled = false)
+	public void shouldDownloadCompletedPreAdmission(String patientName)
 			throws IOException {
 
 	}

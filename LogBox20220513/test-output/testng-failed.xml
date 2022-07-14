@@ -5,7 +5,9 @@
     <classes>
       <class name="testsLogBox.MessagePatientsTests">
         <methods>
-          <include name="shouldReceiveEmailQuestionnaireByPatient"/>
+          <include name="logOut"/>
+          <include name="cleanUpAfterTest"/>
+          <include name="shouldReceiveSmsAppointmentReminderByPatient"/>
         </methods>
       </class> <!-- testsLogBox.MessagePatientsTests -->
     </classes>
