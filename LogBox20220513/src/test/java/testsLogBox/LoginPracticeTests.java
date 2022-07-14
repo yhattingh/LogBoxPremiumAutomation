@@ -10,12 +10,12 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import frameWork.BasePageFrameWork;
 import frameWork.FileUtilities;
-import pageObjectsLogBox.BasePageLogBox;
+import pageObjectsLogBox.BasePageGeoClock;
 import pageObjectsLogBox.PageObjectsBrochurePage;
 
 public class LoginPracticeTests extends BasePageFrameWork {
 	// Instantiate Page Object Classes
-	BasePageLogBox basePageLogBox = new BasePageLogBox();
+	BasePageGeoClock basePageLogBox = new BasePageGeoClock();
 	PageObjectsBrochurePage pageObjectsBrochurePage = new PageObjectsBrochurePage();
 	FileUtilities fileUtilities = new FileUtilities();
 
