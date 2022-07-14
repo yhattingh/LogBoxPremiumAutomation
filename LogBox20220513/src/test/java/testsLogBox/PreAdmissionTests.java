@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import frameWork.BasePageFrameWork;
 import frameWork.ReadDataFromExcel;
-import pageObjectsLogBox.BasePageLogBox;
+import pageObjectsLogBox.BasePageGeoClock;
 import pageObjectsLogBox.PageObjectsActivityPage;
 import pageObjectsLogBox.PageObjectsBrochurePage;
 import pageObjectsLogBox.PageObjectsHomePage;
@@ -19,7 +19,7 @@ import pageObjectsLogBox.PageObjectsPreAdmissionPage;
 
 public class PreAdmissionTests extends BasePageFrameWork {
 	// Instantiate Page Object Classes
-	BasePageLogBox basePageLogBox = new BasePageLogBox();
+	BasePageGeoClock basePageLogBox = new BasePageGeoClock();
 	PageObjectsBrochurePage pageObjectsBrochurePage = new PageObjectsBrochurePage();
 	PageObjectsPreAdmissionPage pageObjectsPreAdmissionPage = new PageObjectsPreAdmissionPage();
 	ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();

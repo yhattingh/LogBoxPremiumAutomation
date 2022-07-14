@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 import frameWork.BasePageFrameWork;
 
-public class BasePageLogBox extends BasePageFrameWork {
+public class BasePageGeoClock extends BasePageFrameWork {
 
 	// Declare Homepage URL
 	String homePageURL = "https://qa.logbox.co.za/premium/#/";

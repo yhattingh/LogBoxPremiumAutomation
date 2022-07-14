@@ -9,9 +9,9 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import frameWork.BasePageFrameWork;
-import frameWork.MailDevAPIMethods;
+import frameWork.LogBoxMailDevAPIMethods;
 import frameWork.ReadDataFromExcel;
-import pageObjectsLogBox.BasePageLogBox;
+import pageObjectsLogBox.BasePageGeoClock;
 import pageObjectsLogBox.PageObjectsActivityPage;
 import pageObjectsLogBox.PageObjectsBrochurePage;
 import pageObjectsLogBox.PageObjectsHomePage;
@@ -20,14 +20,14 @@ import pageObjectsLogBox.PageObjectsPreAdmissionPage;
 
 public class MessagePatientsTests extends BasePageFrameWork {
 
-	BasePageLogBox basePageLogBox = new BasePageLogBox();
+	BasePageGeoClock basePageLogBox = new BasePageGeoClock();
 	PageObjectsBrochurePage pageObjectsBrochurePage = new PageObjectsBrochurePage();
 	PageObjectsPreAdmissionPage pageObjectsPreAdmissionPage = new PageObjectsPreAdmissionPage();
 	ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
 	PageObjectsHomePage pageObjectsHomePage = new PageObjectsHomePage();
 	PageObjectsActivityPage pageObjectsActivityPage = new PageObjectsActivityPage();
 	PageObjectsMessagePatientPage pageObjectsMessagePatientPage = new PageObjectsMessagePatientPage();
-	MailDevAPIMethods mailDevAPIMethods = new MailDevAPIMethods();
+	LogBoxMailDevAPIMethods mailDevAPIMethods = new LogBoxMailDevAPIMethods();
 
 	@AfterTest
 	public void cleanUpAfterTest() {
@@ -236,7 +236,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 
 	}
 
-	@Test(enabled =false)
+	@Test
 	public void shouldEmailPatientQuestionnaire() throws InterruptedException, IOException {
 		String patientName = "PreAdmission One";
 		String expectedSuccessMessage = "Success";

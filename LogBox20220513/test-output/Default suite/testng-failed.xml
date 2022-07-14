@@ -3,13 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testsLogBox.MessagePatientsTests">
+      <class name="testsGeoClock.LoginManagerTests">
         <methods>
-          <include name="logOut"/>
-          <include name="cleanUpAfterTest"/>
-          <include name="shouldReceiveSmsAppointmentReminderByPatient"/>
+          <include name="shouldLoginValidUsernameValidPasswordGeoClock"/>
         </methods>
-      </class> <!-- testsLogBox.MessagePatientsTests -->
+      </class> <!-- testsGeoClock.LoginManagerTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

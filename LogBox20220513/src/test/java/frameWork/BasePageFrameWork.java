@@ -60,7 +60,7 @@ public class BasePageFrameWork {
 			}
 		}
 	}
-
+	
 	// Method: Cleanup
 	public void cleanUp() {
 		driver.quit();

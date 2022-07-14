@@ -9,7 +9,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import frameWork.BasePageFrameWork;
-import pageObjectsLogBox.BasePageLogBox;
+import pageObjectsLogBox.BasePageGeoClock;
 import pageObjectsLogBox.PageObjectsActivityFeedPage;
 import pageObjectsLogBox.PageObjectsActivityPage;
 import pageObjectsLogBox.PageObjectsBrochurePage;
@@ -21,7 +21,7 @@ public class ActivityTests extends BasePageFrameWork {
 	PageObjectsHomePage pageObjectsHomePage = new PageObjectsHomePage();
 	PageObjectsBrochurePage pageObjectsBrochurePage = new PageObjectsBrochurePage();
 	PageObjectsActivityPage pageObjectsActivityPage = new PageObjectsActivityPage();
-	BasePageLogBox basePageLogBox = new BasePageLogBox();
+	BasePageGeoClock basePageLogBox = new BasePageGeoClock();
 	PageObjectsActivityFeedPage pageObjectsActivityFeedPage = new PageObjectsActivityFeedPage();
 
 	@AfterTest

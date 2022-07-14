@@ -14,7 +14,7 @@ import static org.hamcrest.Matchers.*;
 
 import java.util.List;
 
-public class MailDevAPIMethods extends BasePageFrameWork {
+public class LogBoxMailDevAPIMethods extends BasePageFrameWork {
 
 	
 	public void setUp() {

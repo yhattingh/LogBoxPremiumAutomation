@@ -99,7 +99,7 @@ public class PageObjectsMessagePatientPage extends BasePageFrameWork {
 	}
 
 	public void selectQuestionnaire() {
-		clickElement(By.cssSelector("div[role='list'] > div:nth-of-type(2) input[role='checkbox']"));	
+		clickElement(By.cssSelector(".v-input--checkbox .v-input--selection-controls__ripple"));	
 	}
 	
 	public void selectQuestionnaireForEmail() {
