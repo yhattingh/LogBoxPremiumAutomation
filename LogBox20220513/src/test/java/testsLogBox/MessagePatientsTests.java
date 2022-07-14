@@ -19,7 +19,7 @@ import pageObjectsLogBox.PageObjectsMessagePatientPage;
 import pageObjectsLogBox.PageObjectsPreAdmissionPage;
 
 public class MessagePatientsTests extends BasePageFrameWork {
-	// Instantiate Page Object Classes
+
 	BasePageLogBox basePageLogBox = new BasePageLogBox();
 	PageObjectsBrochurePage pageObjectsBrochurePage = new PageObjectsBrochurePage();
 	PageObjectsPreAdmissionPage pageObjectsPreAdmissionPage = new PageObjectsPreAdmissionPage();
@@ -29,23 +29,23 @@ public class MessagePatientsTests extends BasePageFrameWork {
 	PageObjectsMessagePatientPage pageObjectsMessagePatientPage = new PageObjectsMessagePatientPage();
 	MailDevAPIMethods mailDevAPIMethods = new MailDevAPIMethods();
 
-//	@AfterTest
-//	public void cleanUpAfterTest() {
-//		cleanUp();
-//	}
-//
-//	@AfterMethod
-//	public void logOut() {
-//		basePageLogBox.logOutOfLogBox();
-//	}
+	@AfterTest
+	public void cleanUpAfterTest() {
+		cleanUp();
+	}
+
+	@AfterMethod
+	public void logOut() {
+		basePageLogBox.logOutOfLogBox();
+	}
 
 	@Test
 	public void searchPatientToMessage() throws InterruptedException, IOException {
-		String patientName = "Charlie TestPatient";
+		String patientName = "PreAdmission One";
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("logboxtest", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
@@ -64,7 +64,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("logboxtest", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
@@ -82,7 +82,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
@@ -111,7 +111,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
@@ -122,6 +122,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		pageObjectsMessagePatientPage.clickOnSmsExpandIcon();
 		pageObjectsMessagePatientPage.enterTextInSmsTextArea(message);
 		pageObjectsMessagePatientPage.clickSendMessageButton();
+		pageObjectsMessagePatientPage.closeMessageSuccessToast();
 		// THEN
 		String successMessage = pageObjectsMessagePatientPage.getSentMessageSuccess();
 		Assert.assertEquals(successMessage, expectedSuccessMessage);
@@ -135,7 +136,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
@@ -146,6 +147,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		pageObjectsMessagePatientPage.clickOnQuestionnaireExpandButton();
 		pageObjectsMessagePatientPage.selectQuestionnaire();
 		pageObjectsMessagePatientPage.clickSendMessageButton();
+		pageObjectsMessagePatientPage.closeMessageSuccessToast();
 		// THEN
 		String successMessage = pageObjectsMessagePatientPage.getSentMessageSuccess();
 		Assert.assertEquals(successMessage, expectedSuccessMessage);
@@ -159,7 +161,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
@@ -170,6 +172,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		pageObjectsMessagePatientPage.clickOnFormsExpandButton();
 		pageObjectsMessagePatientPage.selectForm();
 		pageObjectsMessagePatientPage.clickSendMessageButton();
+		pageObjectsMessagePatientPage.closeMessageSuccessToast();
 		// THEN
 		String successMessage = pageObjectsMessagePatientPage.getSentMessageSuccess();
 		Assert.assertEquals(successMessage, expectedSuccessMessage);
@@ -184,7 +187,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		String localTimePlusTwoMinutes;
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 
 		// WHEN
@@ -199,12 +202,14 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		basePageLogBox.enterDate(localDatePlus10);
 		basePageLogBox.enterTime(localTimePlusTwoMinutes);
 		pageObjectsMessagePatientPage.clickSendMessageButton();
+		pageObjectsMessagePatientPage.closeMessageSuccessToast();
 		// THEN
 		String successMessage = pageObjectsMessagePatientPage.getSentMessageSuccess();
 		Assert.assertEquals(successMessage, expectedSuccessMessage);
 		Reporter.log("The appointment reminder sms was sent to the patient successfully");
 	}
 
+	@Test
 	public void shouldEmailPatientMessage() throws InterruptedException, IOException {
 		String patientName = "PreAdmission One";
 		String message = "This is a test message";
@@ -212,7 +217,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
@@ -223,6 +228,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		pageObjectsMessagePatientPage.clickOnSmsExpandIcon();
 		pageObjectsMessagePatientPage.enterTextInSmsTextArea(message);
 		pageObjectsMessagePatientPage.clickSendMessageButton();
+		pageObjectsMessagePatientPage.closeMessageSuccessToast();
 		// THEN
 		String successMessage = pageObjectsMessagePatientPage.getSentMessageSuccess();
 		Assert.assertEquals(successMessage, expectedSuccessMessage);
@@ -230,13 +236,14 @@ public class MessagePatientsTests extends BasePageFrameWork {
 
 	}
 
+	@Test(enabled =false)
 	public void shouldEmailPatientQuestionnaire() throws InterruptedException, IOException {
 		String patientName = "PreAdmission One";
 		String expectedSuccessMessage = "Success";
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
@@ -247,35 +254,39 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		pageObjectsMessagePatientPage.clickOnQuestionnaireExpandButton();
 		pageObjectsMessagePatientPage.selectQuestionnaire();
 		pageObjectsMessagePatientPage.clickSendMessageButton();
+		pageObjectsMessagePatientPage.closeMessageSuccessToast();
 		// THEN
 		String successMessage = pageObjectsMessagePatientPage.getSentMessageSuccess();
 		Assert.assertEquals(successMessage, expectedSuccessMessage);
 		Reporter.log("The questionnaire email was sent to the patient successfully");
 	}
 
+	@Test
 	public void shouldEmailPatientForm() throws InterruptedException, IOException {
 		String patientName = "PreAdmission One";
 		String expectedSuccessMessage = "Success";
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
 		pageObjectsMessagePatientPage.clickSearchOnMessagePatientPage();
 		pageObjectsMessagePatientPage.enterPatientNameInSearchFieldOnMessagePatientPage(patientName);
 		pageObjectsMessagePatientPage.clickOnReturnedPatient();
-		pageObjectsMessagePatientPage.clickOnSmsRadioButton();
+		pageObjectsMessagePatientPage.clickOnEmailRadioButton();
 		pageObjectsMessagePatientPage.clickOnFormsExpandButton();
 		pageObjectsMessagePatientPage.selectForm();
 		pageObjectsMessagePatientPage.clickSendMessageButton();
+		pageObjectsMessagePatientPage.closeMessageSuccessToast();
 		// THEN
 		String successMessage = pageObjectsMessagePatientPage.getSentMessageSuccess();
 		Assert.assertEquals(successMessage, expectedSuccessMessage);
 		Reporter.log("The form email was sent to the patient successfully");
 	}
 
+	@Test
 	public void shouldEmailPatientAppointmentReminder() throws InterruptedException, IOException {
 		String patientName = "PreAdmission One";
 		String expectedSuccessMessage = "Success";
@@ -284,7 +295,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		pageObjectsHomePage.clickOnMessagePatientButtonInLeftMenu();
@@ -298,6 +309,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		basePageLogBox.enterDate(localDatePlus10);
 		basePageLogBox.enterTime(localTimePlusTwoMinutes);
 		pageObjectsMessagePatientPage.clickSendMessageButton();
+		pageObjectsMessagePatientPage.closeMessageSuccessToast();
 		// THEN
 		String successMessage = pageObjectsMessagePatientPage.getSentMessageSuccess();
 		Assert.assertEquals(successMessage, expectedSuccessMessage);
@@ -312,7 +324,7 @@ public class MessagePatientsTests extends BasePageFrameWork {
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		mailDevAPIMethods.deleteAllMailsInMailbox();
@@ -325,20 +337,21 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		localDate = getLocalDateTime();
 		pageObjectsMessagePatientPage.enterTextInSmsTextArea(message + localDate);
 		pageObjectsMessagePatientPage.clickSendMessageButton();
+		pageObjectsMessagePatientPage.closeMessageSuccessToast();
 		Thread.sleep(100);
 		// THEN
 		mailDevAPIMethods.verifyTextOfMailReceived(message + localDate + " Do Not Reply.");
 		Reporter.log("The sms message was received by the patient in mailbox.");
 	}
-	
-	@Test
+
+	@Test(enabled = false)
 	public void shouldReceiveSmsQuestionnaireByPatient() throws InterruptedException, IOException {
 		String patientName = "PreAdmission One";
 		String message = "Please complete the following questionnaire from LBAutomation PreadmissionToDischarges.";
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		mailDevAPIMethods.deleteAllMailsInMailbox();
@@ -350,20 +363,21 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		pageObjectsMessagePatientPage.clickOnQuestionnaireExpandButton();
 		pageObjectsMessagePatientPage.selectQuestionnaire();
 		pageObjectsMessagePatientPage.clickSendMessageButton();
+		pageObjectsMessagePatientPage.closeMessageSuccessToast();
 		Thread.sleep(100);
 		// THEN
 		mailDevAPIMethods.verifyTextOfMailReceivedContains(message);
 		Reporter.log("The sms questoinnaire was received by the patient in mailbox.");
 	}
-	
-	@Test
+
+	@Test(enabled = false) 
 	public void shouldReceiveSmsFormByPatient() throws InterruptedException, IOException {
 		String patientName = "PreAdmission One";
 		String message = "LBAutomation PreadmissionToDischarges has requested that you complete the following patient form: https://qa.logbox.co.za/survey";
 
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		mailDevAPIMethods.deleteAllMailsInMailbox();
@@ -375,25 +389,26 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		pageObjectsMessagePatientPage.clickOnFormsExpandButton();
 		pageObjectsMessagePatientPage.selectForm();
 		pageObjectsMessagePatientPage.clickSendMessageButton();
+		pageObjectsMessagePatientPage.closeMessageSuccessToast();
 		Thread.sleep(100);
 		// THEN
 		mailDevAPIMethods.verifyTextOfMailReceivedContains(message);
 		Reporter.log("The sms form was received by the patient in mailbox.");
 	}
-	
-	@Test
+
+	@Test(enabled=false)
 	public void shouldReceiveSmsAppointmentReminderByPatient() throws InterruptedException, IOException {
 		String patientName = "PreAdmission One";
 		String message = "Please remember your appointment with LBAutomation PreadmissionToDischarges on ";
-		String messageDate; 
+		String messageDate;
 		String message2 = " at ";
 		String messageTime;
-		String message3 = "Please phone the practice directly if you cannot attend on 0120101001. Do Not Reply.";
+		String message3 = ". Please phone the practice directly if you cannot attend on 0120101001. Do Not Reply.";
 		String localDatePlusTwo;
 		String localTimePlusTwoMinutes;
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		mailDevAPIMethods.deleteAllMailsInMailbox();
@@ -408,21 +423,23 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		basePageLogBox.enterDate(localDatePlusTwo);
 		basePageLogBox.enterTime(localTimePlusTwoMinutes);
 		pageObjectsMessagePatientPage.clickSendMessageButton();
+		pageObjectsMessagePatientPage.closeMessageSuccessToast();
 		Thread.sleep(100);
 		// THEN
 		messageDate = getDateInWordFormat(2);
-		mailDevAPIMethods.verifyTextOfMailReceivedContains(message + messageDate + message2 + localTimePlusTwoMinutes + message3);
+		mailDevAPIMethods.verifyTextOfMailReceivedContains(
+				message + messageDate + message2 + localTimePlusTwoMinutes + message3);
 		Reporter.log("The sms form was received by the patient in mailbox.");
 	}
-	
-	@Test
+
+	@Test (enabled = false)
 	public void shouldReceiveEmailMessageByPatient() throws InterruptedException, IOException {
 		String patientName = "PreAdmission One";
 		String messageTextSubject = "Message";
-	
+
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		mailDevAPIMethods.deleteAllMailsInMailbox();
@@ -434,20 +451,21 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		pageObjectsMessagePatientPage.clickOnSmsExpandIcon();
 		pageObjectsMessagePatientPage.enterTextInSmsTextArea(messageTextSubject);
 		pageObjectsMessagePatientPage.clickSendMessageButton();
+		pageObjectsMessagePatientPage.closeMessageSuccessToast();
 		Thread.sleep(100);
 		// THEN
 		mailDevAPIMethods.verifyHeaderTextOfMailReceived(messageTextSubject);
-		Reporter.log("The email message was received by the patient in mailbox.");	
+		Reporter.log("The email message was received by the patient in mailbox.");
 	}
-	
-	@Test
+
+	@Test (enabled = false)
 	public void shouldReceiveEmailQuestionnaireByPatient() throws InterruptedException, IOException {
 		String patientName = "PreAdmission One";
 		String messageTextSubject = "Practice Questionnaire";
-	
+
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		mailDevAPIMethods.deleteAllMailsInMailbox();
@@ -459,21 +477,22 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		pageObjectsMessagePatientPage.clickOnQuestionnaireExpandButton();
 		pageObjectsMessagePatientPage.selectQuestionnaireForEmail();
 		pageObjectsMessagePatientPage.clickSendMessageButton();
+		pageObjectsMessagePatientPage.closeMessageSuccessToast();
 		Thread.sleep(150);
 		// THEN
 		mailDevAPIMethods.verifyHeaderTextOfMailReceived(messageTextSubject);
-		Reporter.log("The email with questionnaire was received by the patient in mailbox.");	
+		Reporter.log("The email with questionnaire was received by the patient in mailbox.");
 	}
-	
-	@Test
+
+	@Test(enabled = false)
 	public void shouldReceiveEmailFormByPatient() throws InterruptedException, IOException {
 		String patientName = "PreAdmission One";
 		String messageTextPatientName = "Preadmission One";
 		String messageTextAction = "COMPLETE NOW";
-	
+
 		// GIVEN
 		pageObjectsBrochurePage.selectPracticeAndClickLoginButton();
-		pageObjectsBrochurePage.loginUsernamePassword("lbautomationpreadmissiontodischarge@gmail.com", "LogBoxMaster");
+		pageObjectsBrochurePage.loginPreAdmission();
 		pageObjectsBrochurePage.clickLoginButtonToSubmitUsernameAndPassword();
 		// WHEN
 		mailDevAPIMethods.deleteAllMailsInMailbox();
@@ -485,14 +504,16 @@ public class MessagePatientsTests extends BasePageFrameWork {
 		pageObjectsMessagePatientPage.clickOnFormsExpandButton();
 		pageObjectsMessagePatientPage.selectForm();
 		pageObjectsMessagePatientPage.clickSendMessageButton();
+		pageObjectsMessagePatientPage.closeMessageSuccessToast();
 		Thread.sleep(100);
 		// THEN
 		mailDevAPIMethods.verifyTextOfMailReceivedContains(messageTextPatientName);
 		mailDevAPIMethods.verifyTextOfMailReceivedContains(messageTextAction);
 		Reporter.log("The email with form was received by the patient in mailbox.");
 	}
-	
+
+	@Test(enabled = false)
 	public void shouldReceiveEmailAppointmentReminderByPatient() {
-		
+
 	}
 }

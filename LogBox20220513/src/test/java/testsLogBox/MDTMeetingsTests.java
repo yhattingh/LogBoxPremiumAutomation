@@ -36,7 +36,7 @@ public class MDTMeetingsTests extends BasePageFrameWork {
 		basePageLogBox.logOutOfLogBox();
 	}
 
-	// User story five: YH
+
 	@Test(dataProvider = "MDTMeetings", dataProviderClass = ReadDataFromExcel.class)
 	public void shouldNotBeAllowedToSaveAMDTMeetingWithoutMeetingCoordinator(String doctorName, String doctorPhone,
 			String meetingNotes) throws InterruptedException, IOException {

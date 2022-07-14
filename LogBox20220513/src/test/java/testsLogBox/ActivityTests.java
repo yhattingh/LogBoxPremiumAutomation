@@ -34,7 +34,7 @@ public class ActivityTests extends BasePageFrameWork {
 		basePageLogBox.logOutOfLogBox();
 	}
 
-	// User Story One:  YH
+	
 	@Test
 	public void shouldCreateCaseFileForSelectedPatient() throws InterruptedException, IOException {
 
@@ -72,7 +72,7 @@ public class ActivityTests extends BasePageFrameWork {
 				+ pageObjectsActivityPage.getTextFromFirstItemOnCaseFilesList());
 	}
 
-	// User Story Two:  YH
+
 	@Test
 	public void shouldCreateActivityForSelectedPatient() throws InterruptedException, IOException {
 
@@ -104,7 +104,6 @@ public class ActivityTests extends BasePageFrameWork {
 				+ pageObjectsActivityPage.getTextFromActivityNote());
 	}
 
-	// User Story Three:  YH
 	@Test
 	public void shouldRemoveDiagnosticCodeForAnActivity() throws InterruptedException, IOException {
 		String localDateTime;
@@ -155,7 +154,7 @@ public class ActivityTests extends BasePageFrameWork {
 				+ pageObjectsActivityPage.getTextForSelectedDiagnosisCodes());
 	}
 
-	// User story four:  YH
+
 	@Test(enabled = true)
 	public void shouldSelectInpatientLocation() throws InterruptedException, IOException {
 

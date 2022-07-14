@@ -110,5 +110,9 @@ public class PageObjectsMessagePatientPage extends BasePageFrameWork {
 		clickElement(By.cssSelector(
 				".v-expansion-panel-content div[role='list'] .v-input__slot > div[role='radiogroup'] > div:nth-of-type(1) .v-input--selection-controls__ripple"));
 	}
+	
+	public void closeMessageSuccessToast() {
+		clickElement(By.cssSelector(" [role] .v-size--default:nth-child(2) .v-btn__content"));
+	}
 
 }

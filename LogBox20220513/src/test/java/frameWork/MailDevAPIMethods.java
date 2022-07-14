@@ -16,18 +16,18 @@ import java.util.List;
 
 public class MailDevAPIMethods extends BasePageFrameWork {
 
-	@BeforeTest
+	
 	public void setUp() {
 		// specify the base url to the RESTFUL web service
 		RestAssured.baseURI = "https://qa.logbox.co.za/maildev/email";
 	}
 
-	@AfterTest
+	
 	public void tearDown() {
 		cleanUp();
 	}
 
-	@Test
+	
 	public void verifyID() {
 		String var = 
 		given().auth().basic("dev", "1290zxnm").
@@ -42,7 +42,7 @@ public class MailDevAPIMethods extends BasePageFrameWork {
 			System.out.println("Value found:" + " " + var);
 	}
 	
-	@Test
+	
 	public void verifyOTPNumber() {
 		String var = 
 		given().auth().basic("dev", "1290zxnm").
@@ -57,7 +57,7 @@ public class MailDevAPIMethods extends BasePageFrameWork {
 			System.out.println("Value found:" + " " + var);
 	}
 	
-	@Test
+
 	public void verifyText() {
 		String var = 
 		given().auth().basic("dev", "1290zxnm").
@@ -72,7 +72,7 @@ public class MailDevAPIMethods extends BasePageFrameWork {
 			System.out.println("Value found:" + " " + var);
 	}
 	
-	@Test
+
 	public void deleteAllMailsInMailbox() {
 		RestAssured.baseURI = "https://qa.logbox.co.za/maildev/email/all";
 		given().auth().basic("dev", "1290zxnm").

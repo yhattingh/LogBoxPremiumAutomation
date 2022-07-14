@@ -82,7 +82,7 @@ public class PageObjectsPreAdmissionPage extends BasePageFrameWork {
 
 	// Method: To click the Save Button when creating a Pre-Admission
 	public void clickSaveButton() throws InterruptedException {
-		clickElement(By.cssSelector(".v-btn--has-bg"));
+		clickElement(By.cssSelector(".v-card__actions .v-size--default"));
 	}
 
 	// Method: To click the Close Button After the Pre-Admission was created
