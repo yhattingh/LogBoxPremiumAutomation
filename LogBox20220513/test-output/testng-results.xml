@@ -2,32 +2,6 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-07-14T13:07:22Z" name="Default suite" finished-at="2022-07-14T13:08:23Z" duration-ms="61565">
-    <groups>
-    </groups>
-    <test started-at="2022-07-14T13:07:22Z" name="Default test" finished-at="2022-07-14T13:08:23Z" duration-ms="61565">
-      <class name="testsGeoClock.LoginManagerTests">
-        <test-method signature="shouldLoginValidUsernameValidPasswordGeoClock()[pri:0, instance:testsGeoClock.LoginManagerTests@138a7441]" started-at="2022-07-14T13:07:22Z" name="shouldLoginValidUsernameValidPasswordGeoClock" finished-at="2022-07-14T13:08:23Z" duration-ms="61533" status="FAIL">
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for visibility of all elements located by By.xpath: //div[contains(text(),'account_circle')] (tried for 15 second(s) with 500 milliseconds interval)
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'DESKTOP-CVKJJ5N', ip: '10.199.123.167', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 103.0.5060.53 (a1711811edd7..., userDataDir: C:\Users\27823\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:56717}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 2bc1fdecec46bb278a8d89c78fcb30a4]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of all elements located by By.xpath: //div[contains(text(),'account_circle')] (tried for 15 second(s) with 500 milliseconds interval)
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'DESKTOP-CVKJJ5N', ip: '10.199.123.167', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.114, chrome: {chromedriverVersion: 103.0.5060.53 (a1711811edd7..., userDataDir: C:\Users\27823\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:56717}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 2bc1fdecec46bb278a8d89c78fcb30a4
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
-at frameWork.BasePageFrameWorkGeoClock.waitForElement(BasePageFrameWorkGeoClock.java:202)
-at testsGeoClock.LoginManagerTests.shouldLoginValidUsernameValidPasswordGeoClock(LoginManagerTests.java:27)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -55,11 +29,6 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- shouldLoginValidUsernameValidPasswordGeoClock -->
-      </class> <!-- testsGeoClock.LoginManagerTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

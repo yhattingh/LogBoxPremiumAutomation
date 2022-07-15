@@ -3,6 +3,7 @@ package pageObjectsLogBox;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import frameWork.BasePageFrameWork;
 
@@ -64,8 +65,7 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 
 	// Method: Click Add Activity Button
 	public void clickAddActivityButton() {
-		clickElement(By
-				.cssSelector(".mx-0.primary--text.theme--light.v-btn.v-btn--outlined.v-size--small > .v-btn__content"));
+		clickElement(By.cssSelector(".mx-0.primary--text.theme--light.v-btn.v-btn--outlined.v-size--small > .v-btn__content"));
 	}
 
 	// Method: Enter Text in Activity Dialog Box
@@ -136,5 +136,25 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 	// Method: Click ActivityFeed to Update Activity
 	public void clickOnActivityFeedToUpdateActivity() {
 		clickElement(By.cssSelector(".col.col-12.text-start > span:nth-of-type(1)"));
+	}
+	
+	// Method: Click Attachment Action Icon
+	public void clickAttachmentIcon() {
+		clickElement(By.cssSelector(".material-icons.notranslate.primary--text.theme--light.v-icon"));
+	}
+	
+	// Method: Click Here To Upload Option
+	public void clickAndUploadFile() throws InterruptedException {
+		
+//		String filePath = "C:\\autoProgram\\LogBoxPremiumAutomation\\LogBox20220513\\resources\\testDataInput\\UploadAttachmentTest.docx";
+		
+		String filePath = "C:\\Users\\Yolande\\Downloads\\UploadAttachmentTest.docx";
+		
+		String uploadFileButton = ".d-block.d-md-flex.justify-center.my-10.my-md-2.theme--light.v-subheader > div > .primary--text";
+		
+		clickElement(By.cssSelector(uploadFileButton));
+		
+		WebElement uploadFile = driver.findElement(By.cssSelector(uploadFileButton));
+		uploadFile.sendKeys(filePath);
 	}
 }
