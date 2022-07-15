@@ -60,7 +60,7 @@ public class BasePageFrameWork {
 			}
 		}
 	}
-
+	
 	// Method: Cleanup
 	public void cleanUp() {
 		driver.quit();
@@ -234,6 +234,14 @@ public class BasePageFrameWork {
 		String localTime = localDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 		return localTime;
 	}
+	
+	// Method:To return the formatted current date plus n days in word format"
+		public String getDateInWordFormat(int numberofdays) {
+			LocalDate localDate = LocalDate.now();
+			LocalDate newDate = localDate.plusDays(numberofdays);
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM");
+			return dtf.format(newDate);
+		}
 
 	// Method: Add or Substract n Days from LocalDate
 	public String getDateWithAddSubstractDays(int numberofdays) {

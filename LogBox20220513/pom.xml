@@ -18,7 +18,7 @@
 
 	<profiles>
 		<profile>
-			<id>Charlotte</id>
+			<id>Regression</id>
 			<build>
 				<plugins>
 					<plugin>

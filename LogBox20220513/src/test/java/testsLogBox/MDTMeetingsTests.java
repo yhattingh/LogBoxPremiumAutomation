@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import frameWork.BasePageFrameWork;
 import frameWork.WriteDataToFile;
-import pageObjectsLogBox.BasePageLogBox;
+import pageObjectsLogBox.BasePageGeoClock;
 import pageObjectsLogBox.PageObjectsBrochurePage;
 import pageObjectsLogBox.PageObjectsHomePage;
 import pageObjectsLogBox.PageObjectsMDTPage;
@@ -20,7 +20,7 @@ public class MDTMeetingsTests extends BasePageFrameWork {
 
 	PageObjectsBrochurePage pageObjectsBrochurePage = new PageObjectsBrochurePage();
 	BasePageFrameWork basePageFrameWork = new BasePageFrameWork();
-	BasePageLogBox basePageLogBox = new BasePageLogBox();
+	BasePageGeoClock basePageLogBox = new BasePageGeoClock();
 	PageObjectsMDTPage pageObjectsMDTPage = new PageObjectsMDTPage();
 	WriteDataToFile writeDataToFile = new WriteDataToFile();
 	ReadDataFromExcel readDataFromExcel = new ReadDataFromExcel();
@@ -36,7 +36,7 @@ public class MDTMeetingsTests extends BasePageFrameWork {
 		basePageLogBox.logOutOfLogBox();
 	}
 
-	// User story five: YH
+
 	@Test(dataProvider = "MDTMeetings", dataProviderClass = ReadDataFromExcel.class)
 	public void shouldNotBeAllowedToSaveAMDTMeetingWithoutMeetingCoordinator(String doctorName, String doctorPhone,
 			String meetingNotes) throws InterruptedException, IOException {

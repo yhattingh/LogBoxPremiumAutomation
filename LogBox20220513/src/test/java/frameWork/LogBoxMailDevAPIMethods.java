@@ -14,20 +14,20 @@ import static org.hamcrest.Matchers.*;
 
 import java.util.List;
 
-public class MailDevAPIMethods extends BasePageFrameWork {
+public class LogBoxMailDevAPIMethods extends BasePageFrameWork {
 
-	@BeforeTest
+	
 	public void setUp() {
 		// specify the base url to the RESTFUL web service
 		RestAssured.baseURI = "https://qa.logbox.co.za/maildev/email";
 	}
 
-	@AfterTest
+	
 	public void tearDown() {
 		cleanUp();
 	}
 
-	@Test
+	
 	public void verifyID() {
 		String var = 
 		given().auth().basic("dev", "1290zxnm").
@@ -42,7 +42,7 @@ public class MailDevAPIMethods extends BasePageFrameWork {
 			System.out.println("Value found:" + " " + var);
 	}
 	
-	@Test
+	
 	public void verifyOTPNumber() {
 		String var = 
 		given().auth().basic("dev", "1290zxnm").
@@ -57,7 +57,7 @@ public class MailDevAPIMethods extends BasePageFrameWork {
 			System.out.println("Value found:" + " " + var);
 	}
 	
-	@Test
+
 	public void verifyText() {
 		String var = 
 		given().auth().basic("dev", "1290zxnm").
@@ -72,7 +72,7 @@ public class MailDevAPIMethods extends BasePageFrameWork {
 			System.out.println("Value found:" + " " + var);
 	}
 	
-	@Test
+
 	public void deleteAllMailsInMailbox() {
 		RestAssured.baseURI = "https://qa.logbox.co.za/maildev/email/all";
 		given().auth().basic("dev", "1290zxnm").
@@ -97,5 +97,34 @@ public class MailDevAPIMethods extends BasePageFrameWork {
 			body("[0].text", equalTo(messageText)).
 			extract().path("[0].text");
 			System.out.println("Value found:" + " " + var);
+	}
+	
+	public void verifyTextOfMailReceivedContains(String messageText) {
+		RestAssured.baseURI = "https://qa.logbox.co.za/maildev/email";
+		String var = 
+		given().auth().basic("dev", "1290zxnm").
+		when().
+		log().all().
+		get().
+		then().
+			statusCode(200).
+			and().body("[0].text", contains(messageText)).
+			extract().path("[0].text");
+			System.out.println("Value found:" + " " + var);
+	}
+	
+	public void verifyHeaderTextOfMailReceived(String headerTextSubject ) {
+		RestAssured.baseURI = "https://qa.logbox.co.za/maildev/email";
+		String var = 
+		given().auth().basic("dev", "1290zxnm").
+		when().
+		log().all().
+		get().
+		then().
+		statusCode(200).
+		and().
+		body("[0].subject", equalTo(headerTextSubject)).
+		extract().path("[0].subject");
+		System.out.println("Value found:" + " " + var);
 	}
 }

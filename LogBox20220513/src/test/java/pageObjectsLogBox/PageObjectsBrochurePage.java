@@ -33,6 +33,12 @@ public class PageObjectsBrochurePage extends BasePageFrameWork {
 		driver.findElement(By.id("username")).sendKeys(username);
 		driver.findElement(By.id("password")).sendKeys(password);
 	}
+	
+	// Method: To Login with PreadmissionUsername and Password parameters
+		public void loginPreAdmission() throws IOException {
+			driver.findElement(By.id("username")).sendKeys("lbautomationpreadmissiontodischarge@gmail.com");
+			driver.findElement(By.id("password")).sendKeys("LogBoxMaster");
+		}
 
 	// Method: To input Username and Password from Excel
 	public void insertUsernameAndPasswordFromExcel(int rowNumber, int cellNumber1, int cellNumber2)
@@ -64,7 +70,7 @@ public class PageObjectsBrochurePage extends BasePageFrameWork {
 		password.sendKeys(fileUtilities.getCellData(1, 2));
 	}
 
-	// Method: To log in as Activity Feed role
+	// Method: To log in as Preadmission role
 	public void insertPreAdmissionUsernameAndPasswordFromExcel() throws IOException, InterruptedException {
 
 		FileUtilities fileUtilities = new FileUtilities();

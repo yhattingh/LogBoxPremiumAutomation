@@ -26,7 +26,7 @@ public class PageObjectsActivityPage extends BasePageFrameWork {
 
 	// Method: Click SAVE button on Case File Dialog Box
 	public void clickCaseFileDialogSaveButton() {
-		clickElement(By.cssSelector(".v-btn--has-bg.theme--light"));
+		clickElement(By.cssSelector(".v-card__actions .v-btn--has-bg .v-btn__content"));
 	}
 
 	// Method: Click on the Case Files DropDown Box
